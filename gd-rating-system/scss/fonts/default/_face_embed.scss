@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'gdrts-icons';
+    src: url('default/gdrts-icons.eot?#{$font-version}');
+    src: url('default/gdrts-icons.eot?#{$font-version}#iefix') format('embedded-opentype'),
+    url('data:application/font-woff;charset=utf-8;base64,#{$font_woff}') format('woff2'),
+    url('data:application/font-woff2;charset=utf-8;base64,#{$font_woff2}') format('woff'),
+    url('default/gdrts-icons.ttf?#{$font-version}') format('truetype'),
+    url('default/gdrts-icons.svg?#{$font-version}#gdssh') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: auto;
+}
