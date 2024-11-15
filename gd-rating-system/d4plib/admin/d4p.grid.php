@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Class_Grid
-Version: v2.8.18
+Version: v2.8.19
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -60,7 +60,7 @@ if (!class_exists('d4p_grid')) {
         public function single_row($item) {
             $classes = $this->get_row_classes($item);
 
-            echo '<tr'.(empty($classes) ? '' : ' class="'.join(' ', $classes).'"').'>';
+            echo '<tr'.(empty($classes) ? '' : ' class="'.sanitize_html_class(join(' ', $classes)).'"').'>';
             $this->single_row_columns($item);
             echo '</tr>';
 	    }

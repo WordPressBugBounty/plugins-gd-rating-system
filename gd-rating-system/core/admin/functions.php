@@ -24,11 +24,11 @@ function gdrts_render_grouped_select( $values, $args = array(), $attr = array() 
 	$id         = d4p_html_id_from_name( $name, $id );
 
 	if ( $class != '' ) {
-		$attributes[] = 'class="' . $class . '"';
+		$attributes[] = 'class="' . esc_attr(sanitize_html_class($class)) . '"';
 	}
 
 	if ( $style != '' ) {
-		$attributes[] = 'style="' . $style . '"';
+		$attributes[] = 'style="' . esc_attr($style) . '"';
 	}
 
 	if ( $multi ) {

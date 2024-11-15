@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Settings
-Version: v2.8.18
+Version: v2.8.19
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -181,7 +181,7 @@ if (!class_exists('d4pSettingsRender')) {
                         $classes[] = 'd4p-hidden-group';
                     }
 
-                    echo '<div class="'.join(' ', $classes).'" id="d4p-group-separator-'.$group.'">';
+                    echo '<div class="'.sanitize_html_class(join(' ', $classes)).'" id="d4p-group-separator-'.$group.'">';
                         echo '<h3><span>'.$obj['label'].'</span></h3>';
                     echo '</div>';
                 } else {
@@ -197,7 +197,7 @@ if (!class_exists('d4pSettingsRender')) {
                         $classes[] = $args['class'];
                     }
 
-                    echo '<div class="'.join(' ', $classes).'" id="d4p-group-'.$group.'">';
+                    echo '<div class="'.sanitize_html_class(join(' ', $classes)).'" id="d4p-group-'.$group.'">';
                         $kb = isset($obj['kb']) ? str_replace('%url%', $obj['kb']['url'], $this->kb) : '';
 
                         if ($kb != '') {
@@ -246,7 +246,7 @@ if (!class_exists('d4pSettingsRender')) {
             }
 
             if ($setting->input != 'hidden' && $setting->input != 'hr' && $setting->input != 'custom') {
-                echo '<tr class="'.$wrapper_class.'">';
+                echo '<tr class="'.sanitize_html_class($wrapper_class).'">';
                     $class = 'd4p-setting-'.$setting->input;
 
                     if (isset($setting->args['readonly']) && $setting->args['readonly']) {
@@ -259,7 +259,7 @@ if (!class_exists('d4pSettingsRender')) {
 
                     echo '<th scope="row">'.$setting->title.'</th>';
                     echo '<td>';
-                        echo '<div class="'.$class.'">';
+                        echo '<div class="'.sanitize_html_class($class).'">';
 
                         do_action('d4p_settings_group_top', $setting, $group);
 
@@ -275,7 +275,7 @@ if (!class_exists('d4pSettingsRender')) {
                     echo '</td>';
                 echo '</tr>';
             } else if ($setting->input == 'custom') {
-                echo '<tr valign="top" class="'.$wrapper_class.'">';
+                echo '<tr valign="top" class="'.sanitize_html_class($wrapper_class).'">';
                     echo '<td colspan="2">';
 
                     $class = 'd4p-setting-'.$setting->input;
@@ -284,14 +284,14 @@ if (!class_exists('d4pSettingsRender')) {
                         $class.= ' '.$setting->args['class'];
                     }
 
-                    echo '<div class="'.$class.'">';
+                    echo '<div class="'.sanitize_html_class($class).'">';
                     echo $setting->notice;
                     echo '</div>';
 
                     echo '</td>';
                 echo '</tr>';
             } else if ($setting->input == 'hr') {
-                echo '<tr valign="top" class="'.$wrapper_class.'">';
+                echo '<tr valign="top" class="'.sanitize_html_class($wrapper_class).'">';
                     echo '<td colspan="2">';
                         $class = 'd4p-setting-'.$setting->input;
 
@@ -299,7 +299,7 @@ if (!class_exists('d4pSettingsRender')) {
                             $class.= ' '.$setting->args['class'];
                         }
 
-                        echo '<div class="'.$class.'">';
+                        echo '<div class="'.sanitize_html_class($class).'">';
 
                         if ($setting->title != '') {
                             echo '<span>'.$setting->title.'</span>';

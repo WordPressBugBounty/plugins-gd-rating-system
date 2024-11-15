@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class gdrts_core_info {
 	public $code = 'gd-rating-system';
 
-	public $version = '3.6.1';
-	public $build = 991;
+	public $version = '3.6.2';
+	public $build = 996;
 	public $edition = 'lite';
 	public $status = 'stable';
-	public $updated = '2024.06.28';
+	public $updated = '2024.11.15';
 	public $url = 'https://plugins.dev4press.com/gd-rating-system/';
 	public $author_name = 'Milan Petrovic';
 	public $author_url = 'https://www.dev4press.com/';

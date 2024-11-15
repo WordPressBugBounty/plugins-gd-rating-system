@@ -21,7 +21,7 @@ $_tabs = array(
 
 ?>
 
-<div class="<?php echo join( ' ', $_classes ); ?>">
+<div class="<?php echo esc_attr(sanitize_html_class(join( ' ', $_classes ))); ?>">
     <h1><?php printf( __( 'Welcome to GD Rating System&nbsp;%s', 'gd-rating-system' ), gdrts_settings()->info_version ); ?></h1>
     <p class="d4p-about-text">
         Powerful, highly customizable and versatile ratings plugin to allow your users to vote for anything you want. Includes different rating methods and add-ons.

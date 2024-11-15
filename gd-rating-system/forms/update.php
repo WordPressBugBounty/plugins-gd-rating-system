@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $_classes = array( 'd4p-wrap', 'wpv-' . GDRTS_WPV, 'd4p-page-update' );
 
 ?>
-<div class="<?php echo join( ' ', $_classes ); ?>">
+<div class="<?php echo esc_attr(sanitize_html_class(join( ' ', $_classes ))); ?>">
     <div class="d4p-header">
         <div class="d4p-plugin">
             GD Rating System

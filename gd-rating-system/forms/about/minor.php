@@ -5,7 +5,7 @@
 <div class="d4p-about-minor">
     <h3><?php _e( 'Maintenance and Security Releases', 'gd-rating-system' ); ?></h3>
     <p>
-        <strong><?php _e( 'Version', 'gd-rating-system' ); ?> <span>3.4 / 3.5 / 3.5.1 / 3.6 / 3.6.1</span></strong> &minus;
+        <strong><?php _e( 'Version', 'gd-rating-system' ); ?> <span>3.4 / 3.5 / 3.5.1 / 3.6 / 3.6.1 / 3.6.2</span></strong> &minus;
         System requirements update. Various other updates and fixes.
     </p>
     <p>

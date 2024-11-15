@@ -17,7 +17,7 @@ class gdrts_transfer_yet_another_stars_rating {
 
 	public function db_tables_exist() {
 		$tables = array(
-			gdrts_db()->wpdb()->prefix . 'yasr_log'
+			gdrts_db()->wpdb()->prefix . 'yasr_log',
 		);
 
 		$ok = true;
@@ -49,7 +49,7 @@ class gdrts_transfer_yet_another_stars_rating {
 
 	private function _transfer_stars_rating_log( $max = 5, $offset = 0 ) {
 		$sql = "SELECT r.* FROM " . gdrts_db()->wpdb()->prefix . "yasr_log r WHERE r.`multi_set_id` = -1 AND r.id NOT IN
-                (SELECT CAST(meta_value as UNSIGNED) FROM " . gdrts_db()->logmeta . " WHERE meta_key = 'yasr-import') 
+                (SELECT CAST(meta_value as DECIMAL(10,2)) FROM " . gdrts_db()->logmeta . " WHERE meta_key = 'yasr-import') 
                 ORDER BY r.id ASC LIMIT " . $this->page;
 		$raw = gdrts_db()->run( $sql );
 
@@ -66,28 +66,31 @@ class gdrts_transfer_yet_another_stars_rating {
 				$args = array(
 					'entity' => 'posts',
 					'name'   => $post_type,
-					'id'     => $rating->post_id
+					'id'     => $rating->post_id,
 				);
 
 				$item = gdrts_get_rating_item( $args );
 
-				$factor = gdrtsm_stars_rating()->get_rule( 'stars' ) / $max;
+				if ( $item !== false ) {
+					$stars  = gdrtsm_stars_rating()->get_rule( 'stars' );
+					$factor = $stars / $max;
 
-				$data = array(
-					'action' => 'vote',
-					'ip'     => $rating->ip,
-					'logged' => $rating->date,
-					'vote'   => $rating->vote * $factor,
-					'max'    => gdrtsm_stars_rating()->get_rule( 'stars' )
-				);
+					$data = array(
+						'action' => 'vote',
+						'ip'     => $rating->ip,
+						'logged' => $rating->date,
+						'vote'   => $rating->vote * $factor,
+						'max'    => $stars,
+					);
 
-				$meta = array(
-					'yasr-import' => $rating->id
-				);
+					$meta = array(
+						'yasr-import' => $rating->id,
+					);
 
-				gdrtsm_stars_rating()->calculate( $item, 'vote', $data['vote'], $data['max'] );
+					gdrtsm_stars_rating()->calculate( $item, 'vote', $data['vote'], $data['max'] );
 
-				gdrts_db()->add_to_log( $item->item_id, $rating->user_id, gdrtsm_stars_rating()->method(), $data, $meta );
+					gdrts_db()->add_to_log( $item->item_id, $rating->user_id, gdrtsm_stars_rating()->method(), $data, $meta );
+				}
 			}
 		}
 	}

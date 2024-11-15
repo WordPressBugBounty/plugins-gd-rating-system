@@ -1,11 +1,11 @@
 === GD Rating System ===
 Contributors: GDragoN
 Donate link: https://plugins.dev4press.com/gd-rating-system/
-Version: 3.6.1
+Version: 3.6.2
 Tags: dev4press, stars, rating, like, vote
 Requires at least: 5.5
 Requires PHP: 7.4
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -168,6 +168,12 @@ Various improvements and fixes.
 Various improvements and fixes.
 
 == Changelog ==
+= 3.6.2 - 2024.11.15
+* Edit: proper sanitization of the HTML classes
+* Edit: d4pLib 2.8.19
+* Fix: authenticated stored cross-site scripting vulnerability
+* Fix: import from YASR plugin doesn't import decimal places
+
 = 3.6.1 - 2024.06.28
 * Edit: validate the template in render functions prior to inclusion
 * Fix: underlying functions not loaded on the blocks widgets panel

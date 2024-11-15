@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Functions
-Version: v2.8.18
+Version: v2.8.19
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -75,7 +75,7 @@ if (!function_exists('d4p_render_select')) {
         $id = d4p_html_id_from_name($name, $id);
 
         if ($class != '') {
-            $attributes[] = 'class="'.esc_attr($class).'"';
+            $attributes[] = 'class="'.esc_attr(sanitize_html_class($class)).'"';
         }
 
         if ($style != '') {
@@ -135,7 +135,7 @@ if (!function_exists('d4p_render_grouped_select')) {
         $id = d4p_html_id_from_name($name, $id);
 
         if ($class != '') {
-            $attributes[] = 'class="'.esc_attr($class).'"';
+            $attributes[] = 'class="'.esc_attr(sanitize_html_class($class)).'"';
         }
 
         if ($style != '') {
@@ -198,7 +198,7 @@ if (!function_exists('d4p_render_checkradios')) {
         $id = d4p_html_id_from_name($name, $id);
 
         if ($class != '') {
-            $attributes[] = 'class="'.esc_attr($class).'"';
+            $attributes[] = 'class="'.esc_attr(sanitize_html_class($class)).'"';
         }
 
         if ($style != '') {
@@ -265,7 +265,7 @@ if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
         $id = d4p_html_id_from_name($name, $id);
 
         if ($class != '') {
-            $attributes[] = 'class="'.esc_attr($class).'"';
+            $attributes[] = 'class="'.esc_attr(sanitize_html_class($class)).'"';
         }
 
         if ($style != '') {
@@ -318,7 +318,7 @@ if (!function_exists('d4p_render_checkradios_with_hierarchy')) {
 
 if (!function_exists('d4p_render_toggle_block')) {
     function d4p_render_toggle_block($title, $content, $classes = array()) {
-        $render = '<div class="d4p-section-toggle '.join(' ', $classes).'">';
+        $render = '<div class="d4p-section-toggle '.sanitize_html_class(join(' ', $classes)).'">';
         $render.= '<div class="d4p-toggle-title">';
         $render.= '<i class="fa fa-caret-down fa-fw"></i> '.$title;
         $render.= '</div>';

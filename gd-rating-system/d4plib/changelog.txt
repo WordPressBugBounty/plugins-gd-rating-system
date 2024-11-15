@@ -1,6 +1,10 @@
 === Dev4Press Library ===
 == Changelog ==
 
+= Version 2.8.19 - 2024.11.15 =
+* Edit: proper sanitization of the HTML classes
+* Fix: authenticated stored cross-site scripting vulnerability
+
 = Version 2.8.18 - 2024.06.07 =
 * Edit: removed translations MO files
 

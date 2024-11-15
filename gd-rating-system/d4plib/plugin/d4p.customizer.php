@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Plugin Core
-Version: v2.8.18
+Version: v2.8.19
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

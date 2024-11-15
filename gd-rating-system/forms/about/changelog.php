@@ -5,6 +5,14 @@
 <div class="d4p-group d4p-group-changelog">
     <h3><?php _e( 'Version', 'gd-rating-system' ); ?> 3</h3>
     <div class="d4p-group-inner">
+        <h4>Version: 3.6.2 / november 15 2024</h4>
+        <ul>
+            <li><strong>edit</strong> proper sanitization of the HTML classes</li>
+            <li><strong>edit</strong> d4pLib 2.8.19</li>
+            <li><strong>fix</strong> authenticated stored cross-site scripting vulnerability</li>
+            <li><strong>fix</strong> import from YASR plugin doesn't import decimal places</li>
+        </ul>
+
         <h4>Version: 3.6.1 / june 28 2024</h4>
         <ul>
             <li><strong>edit</strong> validate the template in render functions prior to inclusion</li>
