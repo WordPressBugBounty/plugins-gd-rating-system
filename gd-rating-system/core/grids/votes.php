@@ -18,12 +18,12 @@ class gdrts_grid_votes extends d4p_grid {
 	function __construct( $args = array() ) {
 		$this->_remove_log = gdrts_settings()->get( 'admin_log_remove' );
 
-		$this->_status = isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : '';
+		$this->_status = ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : '';
 
 		parent::__construct( array(
 			'singular' => 'vote',
 			'plural'   => 'votes',
-			'ajax'     => false
+			'ajax'     => false,
 		) );
 	}
 
@@ -60,7 +60,7 @@ class gdrts_grid_votes extends d4p_grid {
 		return array(
 			'all'      => '<a href="' . $url . '" class="' . ( $this->_status == '' ? 'current' : '' ) . '">' . __( 'All', 'gd-rating-system' ) . '</a>',
 			'active'   => '<a href="' . add_query_arg( 'status', 'active', $url ) . '" class="' . ( $this->_status == 'active' ? 'current' : '' ) . '">' . __( 'Active', 'gd-rating-system' ) . '</a>',
-			'inactive' => '<a href="' . add_query_arg( 'status', 'replaced', $url ) . '" class="' . ( $this->_status == 'inactive' ? 'current' : '' ) . '">' . __( 'Inactive', 'gd-rating-system' ) . '</a>'
+			'inactive' => '<a href="' . add_query_arg( 'status', 'replaced', $url ) . '" class="' . ( $this->_status == 'inactive' ? 'current' : '' ) . '">' . __( 'Inactive', 'gd-rating-system' ) . '</a>',
 		);
 	}
 
@@ -77,25 +77,25 @@ class gdrts_grid_votes extends d4p_grid {
 				'dy-03' => __( 'Last 3 day', 'gd-rating-system' ),
 				'dy-05' => __( 'Last 5 day', 'gd-rating-system' ),
 				'dy-07' => __( 'Last 7 day', 'gd-rating-system' ),
-				'dy-30' => __( 'Last 30 days', 'gd-rating-system' )
+				'dy-30' => __( 'Last 30 days', 'gd-rating-system' ),
 			), $this->list_all_months_dropdown() );
 
 			$all_methods = array_merge( array(
-				'-1' => __( 'All Methods', 'gd-rating-system' )
+				'-1' => __( 'All Methods', 'gd-rating-system' ),
 			), gdrts_list_all_methods( true ) );
 
 			$all_entities = array_merge( array(
 				array(
 					'title'  => __( 'Global', 'gd-rating-system' ),
-					'values' => array( '' => __( 'All Entities', 'gd-rating-system' ) )
-				)
+					'values' => array( '' => __( 'All Entities', 'gd-rating-system' ) ),
+				),
 			), gdrts_list_all_entities() );
 
-			$_sel_entity  = isset( $_GET['filter-entity'] ) && ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
-			$_sel_method  = isset( $_GET['filter-method'] ) && ! empty( $_GET['filter-method'] ) ? d4p_sanitize_basic( $_GET['filter-method'] ) : '';
-			$_sel_item_id = isset( $_GET['filter-item_id'] ) && ! empty( $_GET['filter-item_id'] ) ? absint( $_GET['filter-item_id'] ) : '';
+			$_sel_entity  = ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
+			$_sel_method  = ! empty( $_GET['filter-method'] ) ? d4p_sanitize_basic( $_GET['filter-method'] ) : '';
+			$_sel_item_id = ! empty( $_GET['filter-item_id'] ) ? absint( $_GET['filter-item_id'] ) : '';
 			$_sel_user_id = isset( $_GET['filter-user_id'] ) && $_GET['filter-user_id'] !== '' ? absint( $_GET['filter-user_id'] ) : '';
-			$_sel_period  = isset( $_GET['filter-period'] ) && ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : '';
+			$_sel_period  = ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : '';
 
 			echo '<div class="alignleft actions">';
 			d4p_render_grouped_select( $all_entities, array( 'selected' => $_sel_entity, 'name' => 'filter-entity' ) );
@@ -152,7 +152,7 @@ class gdrts_grid_votes extends d4p_grid {
 			'vote'   => __( 'Vote', 'gd-rating-system' ),
 			'user'   => __( 'User', 'gd-rating-system' ),
 			'ip'     => __( 'IP', 'gd-rating-system' ),
-			'logged' => __( 'Logged', 'gd-rating-system' )
+			'logged' => __( 'Logged', 'gd-rating-system' ),
 		) );
 	}
 
@@ -163,13 +163,13 @@ class gdrts_grid_votes extends d4p_grid {
 			'action' => array( 'l.action', false ),
 			'method' => array( 'l.method', false ),
 			'user'   => array( 'l.user_id', false ),
-			'logged' => array( 'l.logged', false )
+			'logged' => array( 'l.logged', false ),
 		);
 	}
 
 	public function get_bulk_actions() {
 		$bulk = array(
-			'delete' => __( 'Delete vote', 'gd-rating-system' )
+			'delete' => __( 'Delete vote', 'gd-rating-system' ),
 		);
 
 		if ( $this->_remove_log ) {
@@ -187,18 +187,14 @@ class gdrts_grid_votes extends d4p_grid {
 
 	protected function column_item( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_self( 'filter-item_id=' . $item->item_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_self( 'filter-item_id=' . $item->item_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
 		$_entity = gdrts()->get_entity( $item->entity );
 
 		$label = $_entity['label'] . ' :: ';
 
-		if ( isset( $_entity['types'][ $item->name ] ) ) {
-			$label .= $_entity['types'][ $item->name ];
-		} else {
-			$label .= $item->name . ' <strong style="color: #ff0000">(' . __( 'missing', 'gd-rating-system' ) . ')</strong>';
-		}
+		$label .= $_entity['types'][ $item->name ] ?? $item->name . ' <strong style="color: #ff0000">(' . __( 'missing', 'gd-rating-system' ) . ')</strong>';
 
 		$title = '';
 		$obj   = $this->rating_objects[ $item->item_id ];
@@ -222,7 +218,7 @@ class gdrts_grid_votes extends d4p_grid {
 
 	protected function column_method( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_self( 'filter-method=' . $item->method ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_self( 'filter-method=' . $item->method ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
 		$label = isset( gdrts()->methods[ $item->method ] ) ? gdrts()->methods[ $item->method ]['label'] : ucwords( str_replace( '-', ' ', $item->method ) );
@@ -263,7 +259,7 @@ class gdrts_grid_votes extends d4p_grid {
 
 	protected function column_user( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_self( 'filter-user_id=' . $item->user_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_self( 'filter-user_id=' . $item->user_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
 		$label = '';
@@ -284,10 +280,10 @@ class gdrts_grid_votes extends d4p_grid {
 
 	protected function column_ip( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_self( 'filter-ip=' . esc_attr($item->ip) ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_self( 'filter-ip=' . esc_attr( $item->ip ) ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
-		$render  = apply_filters( 'gdrts_votes_grid_content_column_ip', sprintf( '<span>%s</span>', esc_html($item->ip) ), $item );
+		$render  = apply_filters( 'gdrts_votes_grid_content_column_ip', sprintf( '<span>%s</span>', esc_html( $item->ip ) ), $item );
 		$actions = apply_filters( 'gdrts_votes_grid_actions_column_ip', $actions, $item );
 
 		return $render . $this->row_actions( $actions );
@@ -308,13 +304,13 @@ class gdrts_grid_votes extends d4p_grid {
 		$join   = gdrts_db()->logs . " l INNER JOIN " . gdrts_db()->items . " i ON l.item_id = i.item_id";
 		$where  = array();
 
-		$status  = isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : '';
-		$entity  = isset( $_GET['filter-entity'] ) && ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
-		$method  = isset( $_GET['filter-method'] ) && ! empty( $_GET['filter-method'] ) ? d4p_sanitize_basic( $_GET['filter-method'] ) : '';
-		$item_id = isset( $_GET['filter-item_id'] ) && ! empty( $_GET['filter-item_id'] ) ? absint( $_GET['filter-item_id'] ) : '';
+		$status  = ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : '';
+		$entity  = ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
+		$method  = ! empty( $_GET['filter-method'] ) ? d4p_sanitize_basic( $_GET['filter-method'] ) : '';
+		$item_id = ! empty( $_GET['filter-item_id'] ) ? absint( $_GET['filter-item_id'] ) : '';
 		$user_id = isset( $_GET['filter-user_id'] ) && $_GET['filter-user_id'] !== '' ? absint( $_GET['filter-user_id'] ) : - 1;
-		$ip      = isset( $_GET['filter-ip'] ) && ! empty( $_GET['filter-ip'] ) ? d4p_ip_cleanup( $_GET['filter-ip'] ) : '';
-		$last    = isset( $_GET['filter-period'] ) && ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : 0;
+		$ip      = ! empty( $_GET['filter-ip'] ) ? d4p_ip_cleanup( $_GET['filter-ip'] ) : '';
+		$last    = ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : 0;
 		$search  = isset( $_GET['s'] ) && $_GET['s'] != '' ? d4p_sanitize_basic( $_GET['s'] ) : '';
 
 		if ( $entity != '' ) {
@@ -407,7 +403,7 @@ class gdrts_grid_votes extends d4p_grid {
 			'orderby'  => $orderby,
 			'order'    => $order,
 			'offset'   => $offset,
-			'per_page' => $per_page
+			'per_page' => $per_page,
 		) );
 
 		if ( ! empty( $SQL['where'] ) ) {

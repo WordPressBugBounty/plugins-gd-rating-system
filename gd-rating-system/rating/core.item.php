@@ -104,7 +104,7 @@ class gdrts_rating_item {
 			'latest'   => '',
 			'meta'     => '',
 			'ratings'  => '',
-			'snippets' => ''
+			'snippets' => '',
 		);
 
 		$data = shortcode_atts( $defaults, $data );
@@ -149,7 +149,7 @@ class gdrts_rating_item {
 					'id'      => intval( $item->id ),
 					'latest'  => intval( mysql2date( 'G', $item->latest ) ),
 					'meta'    => gdrts_db()->get_item_meta( $item_id ),
-					'ratings' => gdrts_db()->get_item_ratings( $item_id )
+					'ratings' => gdrts_db()->get_item_ratings( $item_id ),
 				);
 
 				return gdrts_rating_item::cache_and_get_instance( $item_id, $data );
@@ -281,11 +281,7 @@ class gdrts_rating_item {
 	}
 
 	public function get_meta( $name, $default = false ) {
-		if ( isset( $this->meta[ $name ] ) ) {
-			return $this->meta[ $name ];
-		} else {
-			return $default;
-		}
+		return $this->meta[ $name ] ?? $default;
 	}
 
 	public function get_meta_prefixed( $prefix, $with_prefix = false ) {
@@ -367,7 +363,7 @@ class gdrts_rating_item {
 			'name'    => $this->name,
 			'id'      => $this->id,
 			'item_id' => $this->item_id,
-			'nonce'   => wp_create_nonce( $this->nonce_key() )
+			'nonce'   => wp_create_nonce( $this->nonce_key() ),
 		);
 	}
 
@@ -380,7 +376,7 @@ class gdrts_rating_item {
 			'gdrts-item-entity-' . $this->entity,
 			'gdrts-item-name-' . $this->name,
 			'gdrts-item-id-' . $this->id,
-			'gdrts-item-itemid-' . $this->item_id
+			'gdrts-item-itemid-' . $this->item_id,
 		);
 	}
 

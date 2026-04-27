@@ -13,7 +13,7 @@ function gdrts_render_grouped_select( $values, $args = array(), $attr = array() 
 		'style'    => '',
 		'multi'    => false,
 		'echo'     => true,
-		'readonly' => false
+		'readonly' => false,
 	);
 	$args     = wp_parse_args( $args, $defaults );
 	extract( $args );
@@ -24,11 +24,11 @@ function gdrts_render_grouped_select( $values, $args = array(), $attr = array() 
 	$id         = d4p_html_id_from_name( $name, $id );
 
 	if ( $class != '' ) {
-		$attributes[] = 'class="' . esc_attr(sanitize_html_class($class)) . '"';
+		$attributes[] = 'class="' . esc_attr( d4p_sanitize_html_classes( $class ) ) . '"';
 	}
 
 	if ( $style != '' ) {
-		$attributes[] = 'style="' . esc_attr($style) . '"';
+		$attributes[] = 'style="' . esc_attr( $style ) . '"';
 	}
 
 	if ( $multi ) {

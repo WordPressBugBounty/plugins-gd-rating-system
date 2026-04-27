@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <h4><?php _e( 'Rating Content', 'gd-rating-system' ); ?></h4>
@@ -29,7 +29,7 @@
             </label>
         </td>
     </tr>
-	<?php if ( gdrts_rules()->filters_allowed() ) { ?>
+    <?php if ( gdrts_rules()->filters_allowed() ) { ?>
         <tr>
             <td class="cell-singular">
                 <label for="<?php echo $this->get_field_id( 'variant_rule' ); ?>">
@@ -38,7 +38,7 @@
                 </label>
             </td>
         </tr>
-	<?php } ?>
+    <?php } ?>
     </tbody>
 </table>
 
@@ -48,14 +48,14 @@
     <tr>
         <td class="cell-singular">
             <label for="<?php echo $this->get_field_id( 'type' ); ?>"><?php _e( 'Type', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_entity_name_types(), array(
-				'id'       => $this->get_field_id( 'type' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'type' ),
-				'selected' => $instance['type']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_entity_name_types(), array(
+                    'id'       => $this->get_field_id( 'type' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'type' ),
+                    'selected' => $instance['type'],
+            ) ); ?>
             <em>
-				<?php _e( 'This option will be ignored if the widget is set to detect active post type.', 'gd-rating-system' ); ?>
+                <?php _e( 'This option will be ignored if the widget is set to detect active post type.', 'gd-rating-system' ); ?>
             </em>
         </td>
     </tr>

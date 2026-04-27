@@ -1,12 +1,12 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $list_styling = array(
-	'default' => __( 'Default styling', 'gd-rating-system' ),
-	'custom'  => __( 'Custom styling', 'gd-rating-system' ),
+        'default' => __( 'Default styling', 'gd-rating-system' ),
+        'custom'  => __( 'Custom styling', 'gd-rating-system' ),
 );
 
 ?>
@@ -16,17 +16,17 @@ $list_styling = array(
     <tr>
         <td class="cell-singular">
             <label for="<?php echo $this->get_field_id( 'styling' ); ?>"><?php _e( 'Styling to use', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( $list_styling, array(
-				'id'       => $this->get_field_id( 'styling' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'styling' ),
-				'selected' => $instance['styling']
-			) ); ?>
+            <?php d4p_render_select( $list_styling, array(
+                    'id'       => $this->get_field_id( 'styling' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'styling' ),
+                    'selected' => $instance['styling'],
+            ) ); ?>
             <em class="solo-content"><?php
 
-				_e( 'If set to custom, use options below to set styling.', 'gd-rating-system' );
+                _e( 'If set to custom, use options below to set styling.', 'gd-rating-system' );
 
-				?></em>
+                ?></em>
         </td>
     </tr>
     </tbody>
@@ -38,32 +38,32 @@ $list_styling = array(
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( 'template' ); ?>"><?php _e( 'Template', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_templates( 'stars-rating' ), array(
-				'id'       => $this->get_field_id( 'template' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'template' ),
-				'selected' => $instance['template']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_templates( 'stars-rating' ), array(
+                    'id'       => $this->get_field_id( 'template' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'template' ),
+                    'selected' => $instance['template'],
+            ) ); ?>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( 'distribution' ); ?>"><?php _e( 'Votes Distribution', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_distributions(), array(
-				'id'       => $this->get_field_id( 'distribution' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'distribution' ),
-				'selected' => $instance['distribution']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_distributions(), array(
+                    'id'       => $this->get_field_id( 'distribution' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'distribution' ),
+                    'selected' => $instance['distribution'],
+            ) ); ?>
         </td>
     </tr>
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( 'alignment' ); ?>"><?php _e( 'Alignment', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_align(), array(
-				'id'       => $this->get_field_id( 'alignment' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'alignment' ),
-				'selected' => $instance['alignment']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_align(), array(
+                    'id'       => $this->get_field_id( 'alignment' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'alignment' ),
+                    'selected' => $instance['alignment'],
+            ) ); ?>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( 'style_class' ); ?>"><?php _e( 'Additional CSS Class', 'gd-rating-system' ); ?>:</label>
@@ -79,26 +79,26 @@ $list_styling = array(
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( 'style_type' ); ?>"><?php _e( 'Style Type', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_style_type(), array(
-				'id'       => $this->get_field_id( 'style_type' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'style_type' ),
-				'selected' => $instance['style_type']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_style_type(), array(
+                    'id'       => $this->get_field_id( 'style_type' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'style_type' ),
+                    'selected' => $instance['style_type'],
+            ) ); ?>
 
             <label for="<?php echo $this->get_field_id( 'style_size' ); ?>"><?php _e( 'Size (px)', 'gd-rating-system' ); ?>:</label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'style_size' ); ?>" name="<?php echo $this->get_field_name( 'style_size' ); ?>" type="number" min="0" step="1" value="<?php echo esc_attr( $instance['style_size'] ); ?>"/>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( 'style_image_name' ); ?>"><?php _e( 'Image', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_style_image_name(), array(
-				'id'       => $this->get_field_id( 'style_image_name' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'style_image_name' ),
-				'selected' => $instance['style_image_name']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_style_image_name(), array(
+                    'id'       => $this->get_field_id( 'style_image_name' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'style_image_name' ),
+                    'selected' => $instance['style_image_name'],
+            ) ); ?>
 
-			<?php do_action( 'gdrts_widget_display_types', $this, $instance, 'stars-rating' ); ?>
+            <?php do_action( 'gdrts_widget_display_types', $this, $instance, 'stars-rating' ); ?>
         </td>
     </tr>
     </tbody>

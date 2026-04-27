@@ -21,7 +21,7 @@ class gdrts_method_like_this_init extends gdrts_extension_init {
 			'override'             => true,
 			'allow_multiple_votes' => false,
 			'has_max'              => false,
-			'form_ready'           => false
+			'form_ready'           => false,
 		) );
 	}
 

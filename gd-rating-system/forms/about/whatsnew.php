@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <?php include( GDRTS_PATH . 'forms/about/minor.php' ); ?>
@@ -13,7 +13,7 @@
                     And more rich snippets improvements
                 </p>
                 <p>
-                    Version 4.2 brings many very important features and updates, and this release has been entirely driven by the user feedback gathered over the last few months for both Pro and Free versions of the plugin.
+                    Version 3.7 brings many very important features and updates, and this release has been entirely driven by the user feedback gathered over the last few months for both Pro and Free versions of the plugin.
                 </p>
             </div>
         </div>

@@ -63,8 +63,8 @@ class gdrts_admin_core extends d4p_admin_core {
 			_e( 'This item is invalid.', 'gd-rating-system' );
 		} else {
 			$_gdrts_id    = $post->ID;
-			$_gdrts_title = $item->get( 'title', '' );
-			$_gdrts_url   = $item->get( 'url', '' );
+			$_gdrts_title = $item->get( 'title' );
+			$_gdrts_url   = $item->get( 'url' );
 
 			include( GDRTS_PATH . 'forms/meta/posts-override.php' );
 		}
@@ -148,7 +148,7 @@ class gdrts_admin_core extends d4p_admin_core {
 				if ( $post_type != 'attachment' && ( is_null( $allowed_types ) || ( is_array( $allowed_types ) && in_array( $post_type, $allowed_types ) ) ) ) {
 					add_meta_box( 'gdrts-metabox', __( 'GD Rating System', 'gd-rating-system' ), array(
 						$this,
-						'metabox_post'
+						'metabox_post',
 					), $post_type, 'normal', 'high' );
 				}
 			}
@@ -239,7 +239,7 @@ class gdrts_admin_core extends d4p_admin_core {
 			'log'         => array( 'title' => __( 'Votes Log', 'gd-rating-system' ), 'icon' => 'file-text-o' ),
 			'transfer'    => array( 'title' => __( 'Transfer Data', 'gd-rating-system' ), 'icon' => 'exchange' ),
 			'information' => array( 'title' => __( 'Information', 'gd-rating-system' ), 'icon' => 'info-circle' ),
-			'tools'       => array( 'title' => __( 'Tools', 'gd-rating-system' ), 'icon' => 'wrench' )
+			'tools'       => array( 'title' => __( 'Tools', 'gd-rating-system' ), 'icon' => 'wrench' ),
 		) );
 	}
 
@@ -304,12 +304,12 @@ class gdrts_admin_core extends d4p_admin_core {
 			wp_enqueue_style( 'gdrts-balloon', $this->file( 'css', 'admin/balloon' ), array(), gdrts_settings()->file_version() );
 			wp_enqueue_style( 'gdrts-plugin', $this->file( 'css', 'admin/plugin' ), array(
 				'd4plib-admin',
-				'gdrts-balloon'
+				'gdrts-balloon',
 			), gdrts_settings()->file_version() );
 
 			wp_enqueue_script( 'd4plib-shared', $this->file( 'js', 'shared', true ), array(
 				'jquery',
-				'wp-color-picker'
+				'wp-color-picker',
 			), D4P_VERSION, true );
 			wp_enqueue_script( 'd4plib-admin', $this->file( 'js', 'admin', true ), array( 'd4plib-shared' ), D4P_VERSION, true );
 			wp_enqueue_script( 'd4plib-limitkeypress', GDRTS_URL . 'd4plib/resources/libraries/jquery.limitkeypress.min.js', array(), gdrts_settings()->file_version(), true );
@@ -317,7 +317,7 @@ class gdrts_admin_core extends d4p_admin_core {
 			wp_enqueue_script( 'gdrts-plugin', $this->file( 'js', 'admin/plugin' ), array(
 				'd4plib-admin',
 				'd4plib-limitkeypress',
-				'jquery-ui-sortable'
+				'jquery-ui-sortable',
 			), gdrts_settings()->file_version(), true );
 
 			do_action( 'gdrts_admin_enqueue_scripts', $this->page, $this->panel );
@@ -356,7 +356,7 @@ class gdrts_admin_core extends d4p_admin_core {
 				'dialog_changelog'          => __( 'Changelog', 'gd-rating-system' ),
 				'button_stop'               => __( 'Stop Process', 'gd-rating-system' ),
 				'step_transfer'             => gdrts_settings()->get( 'step_transfer' ),
-				'step_recalculate'          => gdrts_settings()->get( 'step_recalculate' )
+				'step_recalculate'          => gdrts_settings()->get( 'step_recalculate' ),
 			) );
 
 			wp_localize_script( 'gdrts-plugin', 'gdrts_data', $_data );
@@ -378,7 +378,7 @@ class gdrts_admin_core extends d4p_admin_core {
 
 			wp_enqueue_script( 'd4plib-shared', $this->file( 'js', 'shared', true ), array(
 				'jquery',
-				'wp-color-picker'
+				'wp-color-picker',
 			), D4P_VERSION, true );
 			wp_enqueue_script( 'd4plib-metabox', $this->file( 'js', 'meta', true ), array( 'd4plib-shared' ), D4P_VERSION, true );
 			wp_enqueue_script( 'gdrts-metabox', $this->file( 'js', 'admin/meta' ), array( 'd4plib-metabox' ), gdrts_settings()->file_version(), true );
@@ -388,7 +388,7 @@ class gdrts_admin_core extends d4p_admin_core {
 			$_data = apply_filters( 'gdrts_admin_enqueue_scripts_posts_data', array(
 				'nonce'            => wp_create_nonce( 'gdrts-admin-internal' ),
 				'wp_version'       => GDRTS_WPV,
-				'flatpickr_locale' => $flatpickr_locale
+				'flatpickr_locale' => $flatpickr_locale,
 			) );
 
 			wp_localize_script( 'gdrts-metabox', 'gdrts_data', $_data );
@@ -403,7 +403,7 @@ class gdrts_admin_core extends d4p_admin_core {
 			wp_enqueue_style( 'd4plib-widgets', $this->file( 'css', 'widgets', true ), array(), D4P_VERSION );
 			wp_enqueue_script( 'd4plib-widgets', $this->file( 'js', 'widgets', true ), array(
 				'jquery',
-				'wp-color-picker'
+				'wp-color-picker',
 			), D4P_VERSION, true );
 
 			do_action( 'gdrts_admin_enqueue_scripts_widgets', $hook );
@@ -416,7 +416,7 @@ class gdrts_admin_core extends d4p_admin_core {
 				'string_media_image_title'   => __( 'Select Image', 'gd-rating-system' ),
 				'string_media_image_button'  => __( 'Use Selected Image', 'gd-rating-system' ),
 				'string_are_you_sure'        => __( 'Are you sure you want to do this?', 'gd-rating-system' ),
-				'string_image_not_selected'  => __( 'Image not selected.', 'gd-rating-system' )
+				'string_image_not_selected'  => __( 'Image not selected.', 'gd-rating-system' ),
 			) );
 		}
 	}

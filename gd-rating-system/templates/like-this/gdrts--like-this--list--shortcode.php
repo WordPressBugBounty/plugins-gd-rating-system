@@ -12,13 +12,13 @@
             </thead>
             <tbody>
 
-			<?php
+            <?php
 
-			if ( gdrts_list()->have_items() ) :
-				while ( gdrts_list()->have_items() ) :
-					gdrts_list()->the_item();
+            if ( gdrts_list()->have_items() ) :
+                while ( gdrts_list()->have_items() ) :
+                    gdrts_list()->the_item();
 
-					?>
+                    ?>
 
                     <tr>
                         <td class="gdrts-grid-order"><?php echo gdrts_list()->item()->ordinal; ?></td>
@@ -28,28 +28,28 @@
                         <td class="gdrts-grid-likes"><?php gdrts_loop()->render()->likes(); ?></td>
                     </tr>
 
-				<?php
+                <?php
 
-				endwhile;
+                endwhile;
 
-			else :
+            else :
 
-				?>
+                ?>
 
                 <tr>
                     <td colspan="4"><?php _e( 'No items found.', 'gd-rating-system' ); ?></td>
                 </tr>
 
-			<?php
+            <?php
 
-			endif;
+            endif;
 
-			?>
+            ?>
 
             </tbody>
         </table>
 
-		<?php gdrts_list()->json(); ?>
+        <?php gdrts_list()->json(); ?>
 
     </div>
 </div>

@@ -18,7 +18,7 @@ class gdrts_method_stars_rating_init extends gdrts_extension_init {
 	public function register() {
 		gdrts()->register_method( 'stars-rating', __( 'Stars Rating', 'gd-rating-system' ), array(
 			'override'      => true,
-			'db_normalized' => 100
+			'db_normalized' => 100,
 		) );
 	}
 
@@ -59,14 +59,14 @@ class gdrts_method_stars_rating_init extends gdrts_extension_init {
 			__( 'Bad', 'gd-rating-system' ),
 			__( 'Good', 'gd-rating-system' ),
 			__( 'Great', 'gd-rating-system' ),
-			__( 'Excellent', 'gd-rating-system' )
+			__( 'Excellent', 'gd-rating-system' ),
 		) );
 	}
 
 	public function info( $info = array() ) {
 		return array(
 			'icon'        => 'star',
-			'description' => __( 'Classic, stars based rating method.', 'gd-rating-system' )
+			'description' => __( 'Classic, stars based rating method.', 'gd-rating-system' ),
 		);
 	}
 

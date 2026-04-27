@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-dashboard-card d4p-group-dashboard-pro">

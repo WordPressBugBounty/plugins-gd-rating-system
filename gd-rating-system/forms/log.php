@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 include( GDRTS_PATH . 'forms/shared/top.php' );
@@ -9,7 +9,7 @@ include( GDRTS_PATH . 'forms/shared/top.php' );
 $_status = isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : '';
 
 if ( ! in_array( $_status, array( 'active', 'inactive' ) ) ) {
-	$_status = '';
+    $_status = '';
 }
 
 ?>
@@ -20,17 +20,17 @@ if ( ! in_array( $_status, array( 'active', 'inactive' ) ) ) {
             <input type="hidden" value="getback" name="gdrts_handler"/>
             <input type="hidden" value="<?php echo $_status; ?>" name="status"/>
 
-			<?php
+            <?php
 
-			require_once( GDRTS_PATH . 'core/grids/votes.php' );
+            require_once( GDRTS_PATH . 'core/grids/votes.php' );
 
-			$_grid = new gdrts_grid_votes();
-			$_grid->prepare_items();
-			$_grid->views();
-			$_grid->search_box( __( 'Search', 'gd-rating-system' ), 'log' );
-			$_grid->display();
+            $_grid = new gdrts_grid_votes();
+            $_grid->prepare_items();
+            $_grid->views();
+            $_grid->search_box( __( 'Search', 'gd-rating-system' ), 'log' );
+            $_grid->display();
 
-			?>
+            ?>
         </form>
     </div>
 

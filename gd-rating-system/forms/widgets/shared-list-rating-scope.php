@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <h4><?php _e( 'Scope and Order', 'gd-rating-system' ); ?></h4>
@@ -26,21 +26,21 @@
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e( 'Order by', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( $this->get_orderby_list(), array(
-				'id'       => $this->get_field_id( 'orderby' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'orderby' ),
-				'selected' => $instance['orderby']
-			) ); ?>
+            <?php d4p_render_select( $this->get_orderby_list(), array(
+                    'id'       => $this->get_field_id( 'orderby' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'orderby' ),
+                    'selected' => $instance['orderby'],
+            ) ); ?>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php _e( 'Order', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_order(), array(
-				'id'       => $this->get_field_id( 'order' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'order' ),
-				'selected' => $instance['order']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_order(), array(
+                    'id'       => $this->get_field_id( 'order' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'order' ),
+                    'selected' => $instance['order'],
+            ) ); ?>
         </td>
     </tr>
     </tbody>

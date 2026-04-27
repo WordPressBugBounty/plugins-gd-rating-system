@@ -14,7 +14,7 @@ class gdrtsWidget_like_this_block extends gdrts_widget_single_core {
 		'style_type'       => '',
 		'style_theme'      => '',
 		'style_image_name' => '',
-		'style_size'       => 30
+		'style_size'       => 30,
 	);
 
 	public function __construct( $id_base = false, $name = "", $widget_options = array(), $control_options = array() ) {
@@ -31,20 +31,20 @@ class gdrtsWidget_like_this_block extends gdrts_widget_single_core {
 			$_tabs = array(
 				'global'  => array(
 					'name'    => __( 'Global', 'gd-rating-system' ),
-					'include' => array( 'shared-global', 'shared-display' )
+					'include' => array( 'shared-global', 'shared-display' ),
 				),
 				'content' => array(
 					'name'    => __( 'Content', 'gd-rating-system' ),
-					'include' => array( 'shared-content', 'shared-rating' )
+					'include' => array( 'shared-content', 'shared-rating' ),
 				),
 				'display' => array(
 					'name'    => __( 'Display', 'gd-rating-system' ),
-					'include' => array( 'like-this-display' )
+					'include' => array( 'like-this-display' ),
 				),
 				'extra'   => array(
 					'name'    => __( 'Extra', 'gd-rating-system' ),
-					'include' => array( 'shared-wrapper' )
-				)
+					'include' => array( 'shared-wrapper' ),
+				),
 			);
 
 			include( GDRTS_PATH . 'forms/widgets/shared-loader.php' );
@@ -80,7 +80,7 @@ class gdrtsWidget_like_this_block extends gdrts_widget_single_core {
 				'style_theme',
 				'style_image_name',
 				'style_size',
-				'style_class'
+				'style_class',
 			), 'like_this_block', 'like-this' );
 
 			foreach ( $keys as $key ) {

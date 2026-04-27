@@ -18,7 +18,7 @@ class gdrts_core_plugin {
 	private $_jquery = 'jquery';
 
 	public $js_locale = array(
-		'flatpickr' => array( 'da', 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr' )
+		'flatpickr' => array( 'da', 'de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru', 'sr' ),
 	);
 
 	public $widgets = array();
@@ -85,7 +85,7 @@ class gdrts_core_plugin {
 	}
 
 	public function lib_file( $lib, $type, $name, $min = true, $base_url = null ) {
-		$get = is_null( $base_url ) ? GDRTS_URL . 'libs/' : $base_url;
+		$get = $base_url ?? GDRTS_URL . 'libs/';
 
 		$get .= $lib . '/' . $name;
 
@@ -99,7 +99,7 @@ class gdrts_core_plugin {
 	}
 
 	public function file( $type, $name, $d4p = false, $min = true, $base_url = null ) {
-		$get = is_null( $base_url ) ? GDRTS_URL : $base_url;
+		$get = $base_url ?? GDRTS_URL;
 
 		if ( $d4p ) {
 			$get .= 'd4plib/resources/';
@@ -158,30 +158,30 @@ class gdrts_core_plugin {
 			'stars-rating-block' => array(
 				'method' => 'stars-rating',
 				'label'  => __( 'Stars Rating Block', 'gd-rating-system' ),
-				'widget' => 'gdrtsWidget_stars_rating_block'
+				'widget' => 'gdrtsWidget_stars_rating_block',
 			),
 			'stars-rating-list'  => array(
 				'method' => 'stars-rating',
 				'label'  => __( 'Stars Rating List', 'gd-rating-system' ),
-				'widget' => 'gdrtsWidget_stars_rating_list'
+				'widget' => 'gdrtsWidget_stars_rating_list',
 			),
 			'like-this-block'    => array(
 				'method' => 'like-this',
 				'label'  => __( 'Like This Block', 'gd-rating-system' ),
-				'widget' => 'gdrtsWidget_like_this_block'
+				'widget' => 'gdrtsWidget_like_this_block',
 			),
 			'like-this-list'     => array(
 				'method' => 'like-this',
 				'label'  => __( 'Like This List', 'gd-rating-system' ),
-				'widget' => 'gdrtsWidget_like_this_list'
-			)
+				'widget' => 'gdrtsWidget_like_this_list',
+			),
 		) );
 
 		$disabled_widgets = apply_filters( 'gdrts_disabled_widgets', gdrts_settings()->get( 'disable_widgets', 'early' ) );
 
 		foreach ( $this->widgets as $folder => $data ) {
 			if ( ! in_array( $folder, $disabled_widgets ) ) {
-				$path = isset( $data['folder'] ) ? $data['folder'] : GDRTS_PATH . 'widgets/';
+				$path = $data['folder'] ?? GDRTS_PATH . 'widgets/';
 
 				require_once( $path . $folder . '.php' );
 
@@ -329,7 +329,7 @@ class gdrts_core_plugin {
 			'user'       => get_current_user_id(),
 			'handler'    => 'gdrts_live_handler',
 			'ajax_error' => gdrts_settings()->get( 'debug_ajax_error' ),
-			'wp_version' => GDRTS_WPV
+			'wp_version' => GDRTS_WPV,
 		) );
 
 		wp_localize_script( $this->_load_js ? 'gdrts-full' : 'gdrts-ratings-core', 'gdrts_rating_data', $_args );

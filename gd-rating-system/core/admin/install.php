@@ -15,7 +15,7 @@ function gdrts_list_database_tables() {
 		$wpdb->prefix . 'gdrts_items_basic' => 9,
 		$wpdb->prefix . 'gdrts_logmeta'     => 4,
 		$wpdb->prefix . 'gdrts_logs'        => 12,
-		$wpdb->prefix . 'gdrts_cache'       => 6
+		$wpdb->prefix . 'gdrts_cache'       => 6,
 	);
 
 	return array_merge( $tables, apply_filters( 'gdrts_database_tables_list', array() ) );
@@ -34,7 +34,7 @@ function gdrts_install_database() {
 		'items_basic' => $wpdb->prefix . 'gdrts_items_basic',
 		'logmeta'     => $wpdb->prefix . 'gdrts_logmeta',
 		'logs'        => $wpdb->prefix . 'gdrts_logs',
-		'cache'       => $wpdb->prefix . 'gdrts_cache'
+		'cache'       => $wpdb->prefix . 'gdrts_cache',
 	);
 
 	$query = "CREATE TABLE " . $tables['itemmeta'] . " (
@@ -157,7 +157,7 @@ function gdrts_check_database() {
 			if ( $count != count( $columns ) ) {
 				$result[ $table ] = array(
 					"status" => "error",
-					"msg"    => __( 'Some columns are missing.', 'gd-rating-system' )
+					"msg"    => __( 'Some columns are missing.', 'gd-rating-system' ),
 				);
 			} else {
 				$result[ $table ] = array( "status" => "ok" );

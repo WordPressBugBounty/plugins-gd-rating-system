@@ -17,11 +17,11 @@ class gdrts_core_settings extends d4p_plugin_settings_corex {
 			'voting_disabled_message'          => 'Voting is currently disabled.',
 			'maintenance'                      => true,
 			'maintenance_message'              => 'Voting is currently disabled, data maintenance in progress.',
-			'cronjob_recheck_max_stars_rating' => false
+			'cronjob_recheck_max_stars_rating' => false,
 		),
 		'early'     => array(
 			'custom_entities' => array(),
-			'disable_widgets' => array()
+			'disable_widgets' => array(),
 		),
 		'load'      => array(),
 		'entities'  => array(),
@@ -30,7 +30,7 @@ class gdrts_core_settings extends d4p_plugin_settings_corex {
 		'methods'   => array(),
 		'rules'     => array(
 			'id'   => 0,
-			'list' => array()
+			'list' => array(),
 		),
 		'settings'  => array(
 			'load_on_demand'          => true,
@@ -62,9 +62,9 @@ class gdrts_core_settings extends d4p_plugin_settings_corex {
 			'log_vote_ip_hashed'      => false,
 			'metabox_override'        => false,
 			'step_transfer'           => 500,
-			'step_recalculate'        => 50
+			'step_recalculate'        => 50,
 		),
-		'items'     => array()
+		'items'     => array(),
 	);
 
 	protected function constructor() {
@@ -113,11 +113,11 @@ class gdrts_core_settings extends d4p_plugin_settings_corex {
 	}
 
 	public function set( $name, $value, $group = 'settings', $save = false ) {
-		if ( is_null( $group ) || empty( $group ) || is_null( $name ) || empty( $name ) ) {
+		if ( empty( $group ) || empty( $name ) ) {
 			return;
 		}
 
-		$old = isset( $this->current[ $group ][ $name ] ) ? $this->current[ $group ][ $name ] : null;
+		$old = $this->current[ $group ][ $name ] ?? null;
 
 		if ( $old != $value ) {
 			do_action( 'gdrts_settings_value_changed', $name, $group, $old, $value );

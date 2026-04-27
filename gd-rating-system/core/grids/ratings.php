@@ -15,10 +15,10 @@ class gdrts_grid_ratings extends d4p_grid {
 		parent::__construct( array(
 			'singular' => 'rating',
 			'plural'   => 'ratings',
-			'ajax'     => false
+			'ajax'     => false,
 		) );
 
-		$this->_status = isset( $_GET['status'] ) && ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : 'rated';
+		$this->_status = ! empty( $_GET['status'] ) ? d4p_sanitize_slug( $_GET['status'] ) : 'rated';
 	}
 
 	private function _log( $args ) {
@@ -60,7 +60,7 @@ class gdrts_grid_ratings extends d4p_grid {
 		return array(
 			'all'      => '<a href="' . add_query_arg( 'status', 'all', $url ) . '" class="' . ( $this->_status == 'all' ? 'current' : '' ) . '">' . __( 'All', 'gd-rating-system' ) . '</a>',
 			'rated'    => '<a href="' . add_query_arg( 'status', 'rated', $url ) . '" class="' . ( $this->_status == 'rated' ? 'current' : '' ) . '">' . __( 'Rated', 'gd-rating-system' ) . '</a>',
-			'notrated' => '<a href="' . add_query_arg( 'status', 'notrated', $url ) . '" class="' . ( $this->_status == 'notrated' ? 'current' : '' ) . '">' . __( 'Not Rated', 'gd-rating-system' ) . '</a>'
+			'notrated' => '<a href="' . add_query_arg( 'status', 'notrated', $url ) . '" class="' . ( $this->_status == 'notrated' ? 'current' : '' ) . '">' . __( 'Not Rated', 'gd-rating-system' ) . '</a>',
 		);
 	}
 
@@ -77,18 +77,18 @@ class gdrts_grid_ratings extends d4p_grid {
 				'dy-03' => __( 'Last 3 day', 'gd-rating-system' ),
 				'dy-05' => __( 'Last 5 day', 'gd-rating-system' ),
 				'dy-07' => __( 'Last 7 day', 'gd-rating-system' ),
-				'dy-30' => __( 'Last 30 days', 'gd-rating-system' )
+				'dy-30' => __( 'Last 30 days', 'gd-rating-system' ),
 			), $this->list_all_months_dropdown() );
 
 			$all_entities = array_merge( array(
 				array(
 					'title'  => __( 'Global', 'gd-rating-system' ),
-					'values' => array( '' => __( 'All Entities', 'gd-rating-system' ) )
-				)
+					'values' => array( '' => __( 'All Entities', 'gd-rating-system' ) ),
+				),
 			), gdrts_list_all_entities() );
 
-			$_sel_entity = isset( $_GET['filter-entity'] ) && ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
-			$_sel_period = isset( $_GET['filter-period'] ) && ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : '';
+			$_sel_entity = ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
+			$_sel_period = ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : '';
 
 			echo '<div class="alignleft actions">';
 			d4p_render_grouped_select( $all_entities, array( 'selected' => $_sel_entity, 'name' => 'filter-entity' ) );
@@ -139,7 +139,7 @@ class gdrts_grid_ratings extends d4p_grid {
 			'entity'  => __( 'Rating Type', 'gd-rating-system' ),
 			'id'      => __( 'ID', 'gd-rating-system' ),
 			'ratings' => __( 'Ratings', 'gd-rating-system' ),
-			'latest'  => __( 'Latest Vote', 'gd-rating-system' )
+			'latest'  => __( 'Latest Vote', 'gd-rating-system' ),
 		) );
 	}
 
@@ -149,7 +149,7 @@ class gdrts_grid_ratings extends d4p_grid {
 			'entity'  => array( 'entity', false ),
 			'name'    => array( 'name', false ),
 			'id'      => array( 'id', false ),
-			'latest'  => array( 'latest', false )
+			'latest'  => array( 'latest', false ),
 		);
 	}
 
@@ -167,12 +167,12 @@ class gdrts_grid_ratings extends d4p_grid {
 		return array(
 			'delete'             => __( 'Delete', 'gd-rating-system' ),
 			'clear'              => __( 'Clear', 'gd-rating-system' ),
-			'clear_stars-rating' => __( 'Clear Stars Ratings', 'gd-rating-system' )
+			'clear_stars-rating' => __( 'Clear Stars Ratings', 'gd-rating-system' ),
 		);
 	}
 
 	protected function column_default( $item, $column_name ) {
-		$value = isset( $item->$column_name ) ? $item->$column_name : '';
+		$value = $item->$column_name ?? '';
 
 		return apply_filters( 'gdrts_admin_grid_ratings_column_value', $value, $column_name, $item );
 	}
@@ -201,18 +201,14 @@ class gdrts_grid_ratings extends d4p_grid {
 
 	protected function column_entity( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_log( '&filter-entity=' . $item->entity . '.' . $item->name ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_log( '&filter-entity=' . $item->entity . '.' . $item->name ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
 		$_entity = gdrts()->get_entity( $item->entity );
 
 		$label = $_entity['label'] . ' :: ';
 
-		if ( isset( $_entity['types'][ $item->name ] ) ) {
-			$label .= $_entity['types'][ $item->name ];
-		} else {
-			$label .= $item->name . ' <strong style="color: red">(' . __( 'missing', 'gd-rating-system' ) . ')</strong>';
-		}
+		$label .= $_entity['types'][ $item->name ] ?? $item->name . ' <strong style="color: red">(' . __( 'missing', 'gd-rating-system' ) . ')</strong>';
 
 		$render  = apply_filters( 'gdrts_ratings_grid_content_column_entity', $label, $item );
 		$actions = apply_filters( 'gdrts_ratings_grid_actions_column_entity', $actions, $item );
@@ -222,7 +218,7 @@ class gdrts_grid_ratings extends d4p_grid {
 
 	protected function column_id( $item ) {
 		$actions = array(
-			'log' => '<a href="' . $this->_log( 'filter-item_id=' . $item->item_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>'
+			'log' => '<a href="' . $this->_log( 'filter-item_id=' . $item->item_id ) . '">' . __( 'Log', 'gd-rating-system' ) . '</a>',
 		);
 
 		$title = __( 'Item not found', 'gd-rating-system' );
@@ -267,8 +263,8 @@ class gdrts_grid_ratings extends d4p_grid {
 
 		$status = $this->_status;
 
-		$entity = isset( $_GET['filter-entity'] ) && ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
-		$last   = isset( $_GET['filter-period'] ) && ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : 0;
+		$entity = ! empty( $_GET['filter-entity'] ) ? d4p_sanitize_basic( $_GET['filter-entity'] ) : '';
+		$last   = ! empty( $_GET['filter-period'] ) ? d4p_sanitize_slug( $_GET['filter-period'] ) : 0;
 
 		if ( $status != '' && $status != 'all' ) {
 			$join .= " LEFT JOIN (SELECT DISTINCT item_id FROM " . gdrts_db()->items_basic . ") m ON m.item_id = i.item_id";
@@ -330,7 +326,7 @@ class gdrts_grid_ratings extends d4p_grid {
 			'orderby'  => $orderby,
 			'order'    => $order,
 			'offset'   => $offset,
-			'per_page' => $per_page
+			'per_page' => $per_page,
 		) );
 
 		if ( ! empty( $SQL['where'] ) ) {

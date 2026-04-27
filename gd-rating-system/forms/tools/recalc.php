@@ -1,12 +1,12 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div id="gdrts-recalc-intro">
     <div class="d4p-group d4p-group-reset d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'Recalculation tools will take existing log data and recalculate each object ratings based on the log.', 'gd-rating-system' ); ?>
+            <?php _e( 'Recalculation tools will take existing log data and recalculate each object ratings based on the log.', 'gd-rating-system' ); ?>
             <br/><br/>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'If the log entries are not complete, this will affect the final ratings results.', 'gd-rating-system' ); ?></li>
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-	<?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
+    <?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
         <div class="d4p-group d4p-group-reset">
             <h3><?php _e( 'Stars Rating', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
@@ -48,9 +48,9 @@
                 </table>
             </div>
         </div>
-	<?php } ?>
+    <?php } ?>
 
-	<?php if ( gdrts_is_method_loaded( 'like-this' ) ) { ?>
+    <?php if ( gdrts_is_method_loaded( 'like-this' ) ) { ?>
         <div class="d4p-group d4p-group-reset">
             <h3><?php _e( 'Like This', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
@@ -70,16 +70,16 @@
                 </table>
             </div>
         </div>
-	<?php } ?>
+    <?php } ?>
 
-	<?php do_action( 'gdrts_admin_tools_recalculation_panel' ); ?>
+    <?php do_action( 'gdrts_admin_tools_recalculation_panel' ); ?>
 </div>
 
 <div id="gdrts-recalc-process" style="display: none;">
     <div class="d4p-group d4p-group-reset d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'Recalculation is in progress.', 'gd-rating-system' ); ?><br/><br/>
+            <?php _e( 'Recalculation is in progress.', 'gd-rating-system' ); ?><br/><br/>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'Do not close this page, it will stop the process. If that happens, rating maintenance mode will remain active.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'If the process stops responding for a long time (due to server related issues, or some other problem), visit Settings -> Maintenance page to disable Maintenance Mode.', 'gd-rating-system' ); ?></li>

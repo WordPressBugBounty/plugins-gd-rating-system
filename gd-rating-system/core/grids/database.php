@@ -11,7 +11,7 @@ class gdrts_grid_database extends d4p_grid {
 		parent::__construct( array(
 			'singular' => 'table',
 			'plural'   => 'tables',
-			'ajax'     => false
+			'ajax'     => false,
 		) );
 	}
 
@@ -20,7 +20,7 @@ class gdrts_grid_database extends d4p_grid {
 			'name'    => __( 'Table', 'gd-rating-system' ),
 			'engine'  => __( 'Engine', 'gd-rating-system' ),
 			'records' => __( 'Records', 'gd-rating-system' ),
-			'size'    => __( 'Size', 'gd-rating-system' )
+			'size'    => __( 'Size', 'gd-rating-system' ),
 		);
 	}
 

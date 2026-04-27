@@ -27,7 +27,7 @@ class gdrts_core {
 		'terms'    => array( 'name' => 'terms', 'label' => 'Terms', 'types' => array(), 'icon' => 'tags' ),
 		'comments' => array( 'name' => 'comments', 'label' => 'Comments', 'types' => array(), 'icon' => 'comments-o' ),
 		'users'    => array( 'name' => 'users', 'label' => 'Users', 'types' => array(), 'icon' => 'users' ),
-		'custom'   => array( 'name' => 'custom', 'label' => 'Custom', 'types' => array(), 'icon' => 'asterisk' )
+		'custom'   => array( 'name' => 'custom', 'label' => 'Custom', 'types' => array(), 'icon' => 'asterisk' ),
 	);
 
 	public function __construct() {
@@ -290,7 +290,7 @@ class gdrts_core {
 			GDRTS_PATH . 'templates/',
 			GDRTS_PATH . 'templates/stars-rating/',
 			GDRTS_PATH . 'templates/like-this/',
-			WP_CONTENT_DIR . '/uploads/gdrts/'
+			WP_CONTENT_DIR . '/uploads/gdrts/',
 		) );
 	}
 
@@ -303,7 +303,7 @@ class gdrts_core {
 	}
 
 	public function get_entity( $entity ) {
-		return isset( $this->entities[ $entity ] ) ? $this->entities[ $entity ] : array();
+		return $this->entities[ $entity ] ?? array();
 	}
 
 	public function has_entity_type( $entity, $type ) {
@@ -311,7 +311,7 @@ class gdrts_core {
 	}
 
 	public function get_entity_types( $entity ) {
-		return isset( $this->entities[ $entity ]['types'] ) ? $this->entities[ $entity ]['types'] : array();
+		return $this->entities[ $entity ]['types'] ?? array();
 	}
 
 	public function get_entity_label( $entity ) {
@@ -323,7 +323,7 @@ class gdrts_core {
 			return $this->get_entity_label( $entity );
 		}
 
-		return isset( $this->entities[ $entity ]['types'][ $type ] ) ? $this->entities[ $entity ]['types'][ $type ] : '';
+		return $this->entities[ $entity ]['types'][ $type ] ?? '';
 	}
 
 	public function get_entity_joined_label( $name, $split = '::' ) {
@@ -333,7 +333,7 @@ class gdrts_core {
 
 		return array(
 			'entity' => $this->get_entity_label( $entity ),
-			'type'   => $this->get_entity_type_label( $entity, $type )
+			'type'   => $this->get_entity_type_label( $entity, $type ),
 		);
 	}
 
@@ -361,7 +361,7 @@ class gdrts_core {
 				'name'  => $entity,
 				'label' => $label,
 				'types' => $types,
-				'icon'  => $icon
+				'icon'  => $icon,
 			);
 		}
 	}
@@ -400,7 +400,7 @@ class gdrts_core {
 				'pro'                  => true,
 				'free'                 => false,
 				'pack'                 => false,
-				'plugin'               => false
+				'plugin'               => false,
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -434,7 +434,7 @@ class gdrts_core {
 				'db_normalized'        => 1,
 				'db_items_multi'       => false,
 				'db_logs_multi'        => false,
-				'method_settings'      => false
+				'method_settings'      => false,
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -466,7 +466,7 @@ class gdrts_core {
 			'name'   => $parts[2],
 			'file'   => basename( $path ),
 			'folder' => dirname( $path ),
-			'path'   => $path
+			'path'   => $path,
 		);
 
 		if ( gdrts_debug_on() ) {
@@ -478,14 +478,14 @@ class gdrts_core {
 		$this->widget = array(
 			'name'     => $name,
 			'args'     => $args,
-			'instance' => $instance
+			'instance' => $instance,
 		);
 	}
 
 	public function load_shortcode( $name, $args ) {
 		$this->shortcode = array(
 			'name' => $name,
-			'args' => $args
+			'args' => $args,
 		);
 	}
 
@@ -581,7 +581,7 @@ class gdrts_core {
 			'method'       => $method,
 			'method_label' => '',
 			'series'       => '',
-			'series_label' => ''
+			'series_label' => '',
 		);
 
 		if ( $_with_series ) {

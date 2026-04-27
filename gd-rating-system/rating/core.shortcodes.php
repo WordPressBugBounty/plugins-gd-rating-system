@@ -7,6 +7,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 class gdrts_core_shortcodes extends d4p_shortcodes_core {
 	public $prefix = 'gdrts';
 
+	public function __construct() {
+		add_action( 'after_setup_theme', array( $this, 'start' ) );
+	}
+
+	public function start() {
+		$this->init();
+
+		$this->_register();
+		$this->_shortcake();
+	}
+
 	public function init() {
 		$this->shortcodes = array(
 			'rating_value'       => array(
@@ -17,12 +28,12 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					'item_id' => 0,
 					'method'  => 'stars-rating',
 					'value'   => 'rating',
-					'tag'     => 'span'
-				)
+					'tag'     => 'span',
+				),
 			),
 			'rating_value_auto'  => array(
 				'name' => __( 'Rating Value - Auto item', 'gd-rating-system' ),
-				'atts' => array( 'method' => 'stars-rating', 'value' => 'rating', 'tag' => 'span' )
+				'atts' => array( 'method' => 'stars-rating', 'value' => 'rating', 'tag' => 'span' ),
 			),
 			'has_voted'          => array(
 				'name' => __( 'User Has Voted', 'gd-rating-system' ),
@@ -32,12 +43,12 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					'item_id' => 0,
 					'method'  => 'stars-rating',
 					'user_id' => 0,
-					'tag'     => 'span'
-				)
+					'tag'     => 'span',
+				),
 			),
 			'has_voted_auto'     => array(
 				'name' => __( 'User Has Voted - Auto item', 'gd-rating-system' ),
-				'atts' => array( 'method' => 'stars-rating', 'user_id' => 0, 'tag' => 'span' )
+				'atts' => array( 'method' => 'stars-rating', 'user_id' => 0, 'tag' => 'span' ),
 			),
 			'has_not_voted'      => array(
 				'name' => __( 'User Has Not Voted', 'gd-rating-system' ),
@@ -47,12 +58,12 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					'item_id' => 0,
 					'method'  => 'stars-rating',
 					'user_id' => 0,
-					'tag'     => 'span'
-				)
+					'tag'     => 'span',
+				),
 			),
 			'has_not_voted_auto' => array(
 				'name' => __( 'User Has Not Voted - Auto item', 'gd-rating-system' ),
-				'atts' => array( 'method' => 'stars-rating', 'user_id' => 0, 'tag' => 'span' )
+				'atts' => array( 'method' => 'stars-rating', 'user_id' => 0, 'tag' => 'span' ),
 			),
 			'stars_rating'       => array(
 				'name' => __( 'Stars Rating', 'gd-rating-system' ),
@@ -65,8 +76,8 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'font_color_empty'   => '',
 					          'font_color_current' => '',
 					          'font_color_active'  => '',
-					          'style_class'        => ''
-				          )
+					          'style_class'        => '',
+				          ),
 			),
 			'stars_rating_auto'  => array(
 				'name' => __( 'Stars Rating - Auto Item', 'gd-rating-system' ),
@@ -79,8 +90,8 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'font_color_empty'   => '',
 					          'font_color_current' => '',
 					          'font_color_active'  => '',
-					          'style_class'        => ''
-				          )
+					          'style_class'        => '',
+				          ),
 			),
 			'stars_rating_list'  => array(
 				'name' => __( 'Stars Ratings List', 'gd-rating-system' ),
@@ -92,8 +103,8 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'font_color_empty'   => '',
 					          'font_color_current' => '',
 					          'font_color_active'  => '',
-					          'style_class'        => ''
-				          )
+					          'style_class'        => '',
+				          ),
 			),
 			'like_this'          => array(
 				'name' => __( 'Like This', 'gd-rating-system' ),
@@ -103,8 +114,8 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'style_theme'      => '',
 					          'style_image_name' => '',
 					          'style_size'       => '',
-					          'style_class'      => ''
-				          )
+					          'style_class'      => '',
+				          ),
 			),
 			'like_this_auto'     => array(
 				'name' => __( 'Like This - Auto Item', 'gd-rating-system' ),
@@ -114,8 +125,8 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'style_theme'      => '',
 					          'style_image_name' => '',
 					          'style_size'       => '',
-					          'style_class'      => ''
-				          )
+					          'style_class'      => '',
+				          ),
 			),
 			'like_this_list'     => array(
 				'name' => __( 'Like This List', 'gd-rating-system' ),
@@ -125,9 +136,9 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 					          'style_type'       => 'font',
 					          'style_image_name' => 'thumb',
 					          'style_size'       => 20,
-					          'style_class'      => ''
-				          )
-			)
+					          'style_class'      => '',
+				          ),
+			),
 		);
 	}
 
@@ -144,7 +155,7 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 			'status'     => '',
 			'post_type'  => '',
 			'terms'      => '',
-			'author'     => ''
+			'author'     => '',
 		);
 	}
 
@@ -159,7 +170,7 @@ class gdrts_core_shortcodes extends d4p_shortcodes_core {
 			'class'          => '',
 			'template'       => '',
 			'alignment'      => '',
-			'disable_rating' => false
+			'disable_rating' => false,
 		);
 	}
 

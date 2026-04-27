@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 include( GDRTS_PATH . 'forms/shared/top.php' );
@@ -15,7 +15,7 @@ include( GDRTS_PATH . 'forms/shared/top.php' );
                 <h3><?php _e( 'Rating Types', 'gd-rating-system' ); ?></h3>
             </div>
             <div class="d4p-panel-info">
-				<?php _e( 'Manage rating entities and types.', 'gd-rating-system' ); ?>
+                <?php _e( 'Manage rating entities and types.', 'gd-rating-system' ); ?>
             </div>
             <div class="d4p-panel-buttons">
                 <a class="button-primary" href="<?php echo admin_url( 'admin.php?page=gd-rating-system-types&action=new' ); ?>"><?php _e( 'Add New Entity', 'gd-rating-system' ); ?></a>
@@ -28,15 +28,15 @@ include( GDRTS_PATH . 'forms/shared/top.php' );
             <input type="hidden" name="page" value="gd-rating-system-types"/>
             <input type="hidden" value="getback" name="gdrts_handler"/>
 
-			<?php
+            <?php
 
-			require_once( GDRTS_PATH . 'core/grids/types.php' );
+            require_once( GDRTS_PATH . 'core/grids/types.php' );
 
-			$_grid = new gdrts_grid_types();
-			$_grid->prepare_items();
-			$_grid->display();
+            $_grid = new gdrts_grid_types();
+            $_grid->prepare_items();
+            $_grid->display();
 
-			?>
+            ?>
         </form>
     </div>
 

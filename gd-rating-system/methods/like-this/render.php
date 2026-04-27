@@ -41,7 +41,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 		$defaults = array(
 			'before' => '',
 			'after'  => '',
-			'likes'  => $likes
+			'likes'  => $likes,
 		);
 
 		$atts = apply_filters( 'gdrts_render_single_like_this_args_rating',
@@ -62,7 +62,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 		$defaults = array(
 			'before' => '',
 			'after'  => '',
-			'likes'  => sprintf( _n( '%s person likes this.', '%s people like this.', $_rating, 'gd-rating-system' ), $this->owner()->calculate_compact_votes( $_rating ) )
+			'likes'  => sprintf( _n( '%s person likes this.', '%s people like this.', $_rating, 'gd-rating-system' ), $this->owner()->calculate_compact_votes( $_rating ) ),
 		);
 
 		$atts = apply_filters( 'gdrts_render_single_like_this_args_text_feed',
@@ -81,7 +81,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 		$defaults = array(
 			'allow_rating' => true,
 			'show_votes'   => true,
-			'labels'       => null
+			'labels'       => null,
 		);
 
 		$atts = apply_filters( 'gdrts_render_single_like_this_args_likes', wp_parse_args( $atts, $defaults ), $this );
@@ -116,7 +116,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 			'avatar_size'   => 16,
 			'class_user'    => 'gdrts_user_single',
 			'class_wrapper' => 'gdrts_users_lists',
-			'show_more'     => __( ' and %s more...', 'gd-rating-system' )
+			'show_more'     => __( ' and %s more...', 'gd-rating-system' ),
 		);
 
 		$args = apply_filters( 'gdrts_render_single_like_this_args_list_users', wp_parse_args( $atts, $defaults ), $this );
@@ -182,7 +182,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 			'gdrts-block-like',
 			$active ? 'gdrts-state-active' : 'gdrts-state-inactive',
 			'gdrts-likes-theme-' . $this->owner()->args( 'style_theme' ),
-			'gdrts-' . $this->owner()->args( 'style_type' ) . '-' . $this->owner()->args( 'style_name' )
+			'gdrts-' . $this->owner()->args( 'style_type' ) . '-' . $this->owner()->args( 'style_name' ),
 		);
 
 		if ( $this->owner()->args( 'style_type' ) == 'image' ) {
@@ -209,7 +209,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 
 	protected function _render_likes_text( $atts ) {
 		$active = $atts['allow_rating'] && $this->owner()->calc( 'allowed' ) && $this->owner()->calc( 'open' );
-		$labels = is_null( $atts['labels'] ) ? (array) $this->owner()->args( 'labels' ) : $atts['labels'];
+		$labels = $atts['labels'] ?? (array) $this->owner()->args( 'labels' );
 
 		$extra = $this->owner()->user()->has_voted() ? ' gdrts-like-hover' : '';
 
@@ -238,7 +238,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 
 	protected function _render_likes_font( $atts ) {
 		$active = $atts['allow_rating'] && $this->owner()->calc( 'allowed' ) && $this->owner()->calc( 'open' );
-		$labels = is_null( $atts['labels'] ) ? (array) $this->owner()->args( 'labels' ) : $atts['labels'];
+		$labels = $atts['labels'] ?? (array) $this->owner()->args( 'labels' );
 
 		$extra = '';
 
@@ -276,7 +276,7 @@ class gdrts_render_single_like_this extends gdrts_method_render_single {
 		$img = '<span class="gdrts-like-image" style="width: ' . $size . 'px; height: ' . $size . 'px; background-size: ' . $size . 'px ' . ( 4 * $size ) . 'px;"></span>';
 
 		$active = $atts['allow_rating'] && $this->owner()->calc( 'allowed' ) && $this->owner()->calc( 'open' );
-		$labels = is_null( $atts['labels'] ) ? (array) $this->owner()->args( 'labels' ) : $atts['labels'];
+		$labels = $atts['labels'] ?? (array) $this->owner()->args( 'labels' );
 
 		$extra = '';
 
@@ -347,7 +347,7 @@ class gdrts_render_list_like_this extends gdrts_method_render_list {
 		$defaults = array(
 			'before' => '',
 			'after'  => '',
-			'likes'  => sprintf( _n( '%s person likes this.', '%s people like this.', $_rating, 'gd-rating-system' ), $this->owner()->calculate_compact_votes( $_rating ) )
+			'likes'  => sprintf( _n( '%s person likes this.', '%s people like this.', $_rating, 'gd-rating-system' ), $this->owner()->calculate_compact_votes( $_rating ) ),
 		);
 
 		$atts = apply_filters( 'gdrts_render_list_like_this_args_rating',
@@ -365,7 +365,7 @@ class gdrts_render_list_like_this extends gdrts_method_render_list {
 	public function likes( $atts = array(), $echo = true ) {
 		$defaults = array(
 			'show_votes' => true,
-			'labels'     => null
+			'labels'     => null,
 		);
 
 		$atts = apply_filters( 'gdrts_render_list_like_this_args_likes', wp_parse_args( $atts, $defaults ), $this );
@@ -394,7 +394,7 @@ class gdrts_render_list_like_this extends gdrts_method_render_list {
 			'gdrts-block-like',
 			'gdrts-state-inactive',
 			'gdrts-likes-theme-' . $this->owner()->args( 'style_theme' ),
-			'gdrts-' . $this->owner()->args( 'style_type' ) . '-' . $this->owner()->args( 'style_name' )
+			'gdrts-' . $this->owner()->args( 'style_type' ) . '-' . $this->owner()->args( 'style_name' ),
 		);
 
 		if ( $this->owner()->args( 'style_type' ) == 'image' ) {
@@ -414,7 +414,7 @@ class gdrts_render_list_like_this extends gdrts_method_render_list {
 	}
 
 	protected function _render_likes_font( $atts ) {
-		$labels = is_null( $atts['labels'] ) ? (array) $this->owner()->args( 'labels' ) : $atts['labels'];
+		$labels = $atts['labels'] ?? (array) $this->owner()->args( 'labels' );
 
 		$html = '<span class="gdrts-like-this-symbol gdrts-like-symbol" title="' . $labels['like'] . '" data-rating="like"></span>';
 		$html .= '<span class="gdrts-like-this-suffix">' . $labels['like'] . '</span>';
@@ -437,7 +437,7 @@ class gdrts_render_list_like_this extends gdrts_method_render_list {
 
 		$img = '<span class="gdrts-like-image" style="width: ' . $size . 'px; height: ' . $size . 'px; background-size: ' . $size . 'px ' . ( 4 * $size ) . 'px;"></span>';
 
-		$labels = is_null( $atts['labels'] ) ? (array) $this->owner()->args( 'labels' ) : $atts['labels'];
+		$labels = $atts['labels'] ?? (array) $this->owner()->args( 'labels' );
 
 		$html = '<span class="gdrts-like-this-symbol gdrts-like-symbol" title="' . $labels['like'] . '" data-rating="like">' . $img . '</span>';
 		$html .= '<span class="gdrts-like-this-suffix">' . $labels['like'] . '</span>';

@@ -114,7 +114,7 @@ class gdrts_core_ajax {
 					429,
 					array(
 						'diff' => $diff,
-						'user' => $user
+						'user' => $user,
 					) );
 			}
 		}
@@ -145,21 +145,26 @@ class gdrts_core_ajax {
 			$request->series = null;
 		}
 
-		$user->load_log( $item_id, $request->method, $request->series );
-		$request->render->series = $request->series;
-
 		$completed = false;
-		if ( isset( $request->meta ) && isset( $request->method ) && is_string( $request->method ) ) {
-			switch ( $request->method ) {
-				case 'stars-rating':
-					$completed = gdrtsm_stars_rating()->vote( $request->meta, $item, $user, $request->render );
-					break;
-				case 'like-this':
-					$completed = gdrtsm_like_this()->vote( $request->meta, $item, $user, $request->render );
-					break;
-				default:
-					$completed = apply_filters( 'gdrts_ajax_vote_' . $request->method, false, $request->meta, $item, $user, $request->render );
-					break;
+		if ( isset( $request->method ) && is_string( $request->method ) && gdrts_is_method_valid( $request->method ) ) {
+			$request->method = d4p_sanitize_key_expanded( $request->method );
+			$request->series = d4p_sanitize_key_expanded( $request->series );
+
+			$user->load_log( $item_id, $request->method, $request->series );
+			$request->render->series = $request->series;
+
+			if ( isset( $request->meta ) ) {
+				switch ( $request->method ) {
+					case 'stars-rating':
+						$completed = gdrtsm_stars_rating()->vote( $request->meta, $item, $user, $request->render );
+						break;
+					case 'like-this':
+						$completed = gdrtsm_like_this()->vote( $request->meta, $item, $user, $request->render );
+						break;
+					default:
+						$completed = apply_filters( 'gdrts_ajax_vote_' . $request->method, false, $request->meta, $item, $user, $request->render );
+						break;
+				}
 			}
 		}
 
@@ -181,7 +186,7 @@ class gdrts_core_ajax {
 			$result = array(
 				'status' => 'ok',
 				'render' => $render,
-				'uid'    => $request->uid
+				'uid'    => $request->uid,
 			);
 
 			$this->respond( wp_json_encode( $result ) );
@@ -204,7 +209,7 @@ class gdrts_core_ajax {
 			'request' => $request,
 			'item'    => $item,
 			'uid'     => $uid,
-			'data'    => $data
+			'data'    => $data,
 		) );
 
 		$this->error( $message, $uid, $code );
@@ -213,7 +218,7 @@ class gdrts_core_ajax {
 	public function error( $message, $uid = '', $code = 400 ) {
 		$result = array(
 			'status'  => 'error',
-			'message' => $message
+			'message' => $message,
 		);
 
 		if ( ! empty( $uid ) ) {

@@ -12,7 +12,7 @@ function gdrts_prepare_votes_distribution( $distribution, $max, $type = 'normali
 			if ( $value > 0 ) {
 				$list[] = array(
 					'stars' => floatval( $key ),
-					'votes' => $value
+					'votes' => $value,
 				);
 			}
 		}
@@ -20,7 +20,7 @@ function gdrts_prepare_votes_distribution( $distribution, $max, $type = 'normali
 		for ( $i = $max; $i > 0; $i -- ) {
 			$list[ $i ] = array(
 				'stars' => $i,
-				'votes' => 0
+				'votes' => 0,
 			);
 		}
 

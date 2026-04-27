@@ -23,7 +23,7 @@ function gdrts_get_rating_item( $args ) {
 		'entity'  => null,
 		'name'    => null,
 		'item_id' => null,
-		'id'      => null
+		'id'      => null,
 	);
 
 	$atts = shortcode_atts( $defaults, $args );
@@ -77,7 +77,7 @@ function gdrts_get_current_user_rating() {
 
 function gdrts_read_cookies() {
 	$key = gdrts()->cookie_key();
-	$raw = isset( $_COOKIE[ $key ] ) ? $_COOKIE[ $key ] : '';
+	$raw = $_COOKIE[ $key ] ?? '';
 
 	$cookie = array();
 
@@ -301,8 +301,8 @@ function gdrts_list_all_entities() {
 		$rule = array(
 			'title'  => $obj['label'],
 			'values' => array(
-				$entity => sprintf( __( 'All %s Types', 'gd-rating-system' ), $obj['label'] )
-			)
+				$entity => sprintf( __( 'All %s Types', 'gd-rating-system' ), $obj['label'] ),
+			),
 		);
 
 		foreach ( $obj['types'] as $name => $label ) {
@@ -317,7 +317,7 @@ function gdrts_list_all_entities() {
 
 function gdrts_get_visitor_ip( $hashed = null ) {
 	$ip = d4p_visitor_ip();
-	$is = is_null( $hashed ) ? gdrts_using_hashed_ip() : false;
+	$is = is_null( $hashed ) && gdrts_using_hashed_ip();
 
 	if ( $is ) {
 		$ip = gdrts_get_hashed_ip( $ip );

@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
     <h3><?php _e( 'Cache Cleanup', 'gd-rating-system' ); ?></h3>

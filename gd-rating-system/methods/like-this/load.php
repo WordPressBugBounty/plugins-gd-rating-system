@@ -54,7 +54,7 @@ class gdrts_method_like_this extends gdrts_method {
 			'style_theme'                  => $this->get_rule( 'style_theme' ),
 			'style_size'                   => $this->get_rule( 'style_size' ),
 			'style_class'                  => $this->get_rule( 'class' ),
-			'labels'                       => $this->labels()
+			'labels'                       => $this->labels(),
 		);
 
 		if ( empty( $defaults['style_name'] ) && $defaults['style_type'] != 'text' ) {
@@ -86,7 +86,7 @@ class gdrts_method_like_this extends gdrts_method {
 			'style_name'  => $this->get_rule( $_type_name ),
 			'style_size'  => $this->get_rule( 'style_size' ),
 			'style_class' => $this->get_rule( 'class' ),
-			'labels'      => $this->labels()
+			'labels'      => $this->labels(),
 		);
 
 		if ( empty( $defaults['style_name'] ) ) {
@@ -113,7 +113,7 @@ class gdrts_method_like_this extends gdrts_method {
 		return array(
 			'like'   => $this->get_rule( 'labels_like' ),
 			'liked'  => $this->get_rule( 'labels_liked' ),
-			'unlike' => $this->get_rule( 'labels_unlike' )
+			'unlike' => $this->get_rule( 'labels_unlike' ),
 		);
 	}
 
@@ -211,7 +211,7 @@ class gdrts_method_like_this extends gdrts_method {
 			$data['likes'] = array(
 				'chars' => gdrts()->get_font_like_chars( $this->_args['style_type'], $this->_args['style_name'] ),
 				'type'  => $this->_args['style_type'],
-				'name'  => $this->_args['style_name']
+				'name'  => $this->_args['style_name'],
 			);
 		}
 
@@ -225,7 +225,7 @@ class gdrts_method_like_this extends gdrts_method {
 				'theme' => $this->_args['style_theme'],
 				'type'  => $this->_args['style_type'],
 				'name'  => $this->_args['style_name'],
-				'size'  => $this->_args['style_size']
+				'size'  => $this->_args['style_size'],
 			);
 
 			$data['labels'] = $this->labels();
@@ -295,7 +295,7 @@ class gdrts_method_like_this extends gdrts_method {
 			'errors'    => new WP_Error(),
 			'action'    => 'none',
 			'previous'  => '',
-			'reference' => 0
+			'reference' => 0,
 		);
 
 		if ( ! in_array( $vote, array( 'like', 'clear' ) ) ) {
@@ -377,7 +377,7 @@ class gdrts_method_like_this extends gdrts_method {
 			'ip'     => $user->ip,
 			'action' => $action,
 			'ref_id' => $reference,
-			'vote'   => $action == 'like' ? 1 : - 1
+			'vote'   => $action == 'like' ? 1 : - 1,
 		);
 
 		if ( isset( $input->logged ) ) {

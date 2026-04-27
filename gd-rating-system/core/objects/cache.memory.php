@@ -18,7 +18,7 @@ class gdrts_cache_memory extends d4p_cache_core {
 	}
 
 	public function get_item_id( $entity, $name, $id ) {
-		if ( ! is_null( $entity ) && ! is_null( $name ) && ! is_null( $id ) && is_numeric( $id ) ) {
+		if ( ! is_null( $entity ) && ! is_null( $name ) && is_numeric( $id ) ) {
 			$item_id = $this->get( 'item_id', $entity . '-' . $name . '-' . $id );
 
 			if ( $item_id === false ) {

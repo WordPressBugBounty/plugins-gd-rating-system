@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-dashboard-card d4p-group-dashboard-basic">
@@ -7,27 +7,27 @@
     <div class="d4p-group-stats">
         <ul>
 
-			<?php
+            <?php
 
-			$_data     = gdrts_statistics()->get_total_votes_counts();
-			$_total    = $_data['total'];
-			$_visitors = $_data['visitors'];
+            $_data     = gdrts_statistics()->get_total_votes_counts();
+            $_total    = $_data['total'];
+            $_visitors = $_data['visitors'];
 
-			?>
+            ?>
 
             <li><a href="admin.php?page=gd-rating-system-log">
-					<?php echo d4p_render_icon( 'flag', 'i', true, true ) ?>
-					<?php echo sprintf( _n( '<strong>%s</strong> Vote total', '<strong>%s</strong> Votes total', $_total, 'gd-rating-system' ), $_total ); ?></a>
+                    <?php echo d4p_render_icon( 'flag', 'i', true, true ) ?>
+                    <?php echo sprintf( _n( '<strong>%s</strong> Vote total', '<strong>%s</strong> Votes total', $_total, 'gd-rating-system' ), $_total ); ?></a>
             </li>
 
             <li><a href="admin.php?page=gd-rating-system-log&filter-user_id=0">
-					<?php echo d4p_render_icon( 'flag-o', 'i', true, true ) ?>
-					<?php echo sprintf( _n( '<strong>%s</strong> Vote anonymous', '<strong>%s</strong> Votes anonymous', $_visitors, 'gd-rating-system' ), $_visitors ); ?></a>
+                    <?php echo d4p_render_icon( 'flag-o', 'i', true, true ) ?>
+                    <?php echo sprintf( _n( '<strong>%s</strong> Vote anonymous', '<strong>%s</strong> Votes anonymous', $_visitors, 'gd-rating-system' ), $_visitors ); ?></a>
             </li>
 
-			<?php
+            <?php
 
-			?>
+            ?>
 
         </ul>
         <div class="d4p-clearfix"></div>
@@ -35,43 +35,43 @@
     <div class="d4p-group-inner">
         <h4><?php _e( 'Recent Votes', 'gd-rating-system' ); ?></h4>
 
-		<?php
+        <?php
 
-		$limit = apply_filters( 'gdrts_dashboard_votes_list_limit', 10 );
-		$logs  = gdrts_db()->get_latest_log_items( $limit );
+        $limit = apply_filters( 'gdrts_dashboard_votes_list_limit', 6 );
+        $logs  = gdrts_db()->get_latest_log_items( $limit );
 
-		if ( empty( $logs ) ) {
-			_e( 'There are no ratings logged.', 'gd-rating-system' );
-		} else {
+        if ( empty( $logs ) ) {
+            _e( 'There are no ratings logged.', 'gd-rating-system' );
+        } else {
 
-			?>
+            ?>
 
             <ul class="gdrts-dashboard-ratings">
 
-				<?php
+                <?php
 
-				$log_ids  = wp_list_pluck( $logs, 'log_id' );
-				$item_ids = wp_list_pluck( $logs, 'item_id' );
+                $log_ids  = wp_list_pluck( $logs, 'log_id' );
+                $item_ids = wp_list_pluck( $logs, 'item_id' );
 
-				gdrts_db()->process_log_entries( $log_ids );
-				gdrts_preload()->ratings_from_item_ids( $item_ids );
+                gdrts_db()->process_log_entries( $log_ids );
+                gdrts_preload()->ratings_from_item_ids( $item_ids );
 
-				foreach ( $logs as $log ) {
-					if ( gdrts_is_method_loaded( $log->method ) ) {
-						$log = gdrts_cache()->get_log_entry( $log->log_id );
+                foreach ( $logs as $log ) {
+                    if ( gdrts_is_method_loaded( $log->method ) ) {
+                        $log = gdrts_cache()->get_log_entry( $log->log_id );
 
-						include( GDRTS_PATH . 'forms/shared/dashboard-vote.php' );
-					}
-				}
+                        include( GDRTS_PATH . 'forms/shared/dashboard-vote.php' );
+                    }
+                }
 
-				?>
+                ?>
 
             </ul>
 
-			<?php
-		}
+            <?php
+        }
 
-		?>
+        ?>
 
     </div>
     <div class="d4p-group-footer">

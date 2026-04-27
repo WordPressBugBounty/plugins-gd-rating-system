@@ -63,7 +63,7 @@ foreach ( $items as $group ) {
 									'item'   => $_item,
 									'obj'    => $_objc,
 									'method' => $_method,
-									'active' => $ava
+									'active' => $ava,
 								);
 							}
 						}
@@ -78,7 +78,7 @@ foreach ( $items as $group ) {
 							'item'   => $_item,
 							'obj'    => $_objc,
 							'method' => '',
-							'active' => $ava
+							'active' => $ava,
 						);
 					}
 				}

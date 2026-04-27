@@ -13,7 +13,7 @@ class gdrts_grid_types extends d4p_grid {
 		parent::__construct( array(
 			'singular' => 'type',
 			'plural'   => 'types',
-			'ajax'     => false
+			'ajax'     => false,
 		) );
 
 		$this->custom_types = gdrts_settings()->get( 'custom_entities', 'early' );
@@ -39,7 +39,7 @@ class gdrts_grid_types extends d4p_grid {
 		return array(
 			'icon'   => '',
 			'entity' => __( 'Entity', 'gd-rating-system' ),
-			'types'  => __( 'Types', 'gd-rating-system' )
+			'types'  => __( 'Types', 'gd-rating-system' ),
 		);
 	}
 
@@ -70,8 +70,6 @@ class gdrts_grid_types extends d4p_grid {
 		foreach ( $item['types'] as $name => $label ) {
 			$types[] = '<li>' . $label . ' &middot; <strong>' . $name . '</strong></li>';
 		}
-
-		$render = '';
 
 		if ( empty( $types ) ) {
 			$render = __( 'No types registered.', 'gd-rating-system' );

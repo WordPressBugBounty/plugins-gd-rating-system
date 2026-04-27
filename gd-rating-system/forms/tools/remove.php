@@ -1,14 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-reset d4p-group-important">
     <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
     <div class="d4p-group-inner">
-		<?php _e( 'This tool can remove plugin settings saved in the WordPress options table and all database tables added by the plugin.', 'gd-rating-system' ); ?>
+        <?php _e( 'This tool can remove plugin settings saved in the WordPress options table and all database tables added by the plugin.', 'gd-rating-system' ); ?>
         <br/><br/>
-		<?php _e( 'Deletion operations are not reversible, and it is highly recommended to create database backup before proceeding with this tool.', 'gd-rating-system' ); ?>
-		<?php _e( 'If you choose to remove plugin settings, once that is done, all settings will be reinitialized to default values if you choose to leave plugin active.', 'gd-rating-system' ); ?>
+        <?php _e( 'Deletion operations are not reversible, and it is highly recommended to create database backup before proceeding with this tool.', 'gd-rating-system' ); ?>
+        <?php _e( 'If you choose to remove plugin settings, once that is done, all settings will be reinitialized to default values if you choose to leave plugin active.', 'gd-rating-system' ); ?>
     </div>
 </div>
 

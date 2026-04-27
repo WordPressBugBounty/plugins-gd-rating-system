@@ -23,7 +23,7 @@ class gdrts_widget_core extends WP_Widget {
 	public $widget_id;
 
 	public $defaults = array(
-		'title' => 'Base Widget Class'
+		'title' => 'Base Widget Class',
 	);
 
 	public $shared_defaults = array(
@@ -34,14 +34,14 @@ class gdrts_widget_core extends WP_Widget {
 		'_cached'  => 0,
 		'_devid'   => '',
 		'before'   => '',
-		'after'    => ''
+		'after'    => '',
 	);
 
 	public function __construct( $id_base = false, $name = '', $widget_options = array(), $control_options = array() ) {
 		$widget_options  = empty( $widget_options ) ? array(
 			'customize_selective_refresh' => $this->selective_refresh,
 			'classname'                   => 'cls_' . $this->widget_base,
-			'description'                 => $this->widget_description
+			'description'                 => $this->widget_description,
 		) : $widget_options;
 		$control_options = empty( $control_options ) ? array() : $control_options;
 
@@ -197,10 +197,10 @@ class gdrts_widget_core extends WP_Widget {
 
 	public function widget_output( $args, $instance ) {
 		/**
-		 * @var string $before_widget;
-		 * @var string $before_title;
-		 * @var string $after_title;
-		 * @var string $after_widget;
+		 * @var string $before_widget ;
+		 * @var string $before_title  ;
+		 * @var string $after_title   ;
+		 * @var string $after_widget  ;
 		 */
 		extract( $args, EXTR_SKIP );
 
@@ -291,7 +291,7 @@ class gdrts_widget_single_core extends gdrts_widget_core {
 		'alignment'   => '',
 		'style_class' => '',
 		'before'      => '',
-		'after'       => ''
+		'after'       => '',
 	);
 
 	public function widget( $args, $instance ) {
@@ -353,7 +353,7 @@ class gdrts_widget_list_core extends gdrts_widget_core {
 		'author'      => '',
 		'style_class' => '',
 		'before'      => '',
-		'after'       => ''
+		'after'       => '',
 	);
 
 	protected function _shared_update( $new_instance, $old_instance ) {
@@ -375,7 +375,7 @@ class gdrts_widget_list_core extends gdrts_widget_core {
 		$instance['rating_min'] = intval( $new_instance['rating_min'] );
 		$instance['votes_min']  = intval( $new_instance['votes_min'] );
 
-		$instance['rating']  = d4p_sanitize_basic( $new_instance['rating'] );
+		$instance['rating']   = d4p_sanitize_basic( $new_instance['rating'] );
 		$instance['template'] = d4p_sanitize_basic( $new_instance['template'] );
 
 		$instance['terms']  = d4p_sanitize_basic( $new_instance['terms'] );

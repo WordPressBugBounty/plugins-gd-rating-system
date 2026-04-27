@@ -58,7 +58,7 @@ class gdrts_core_user {
 	public function load_log( $item_id, $method, $series = null ) {
 		$data = gdrts_db()->get_log_item_user_method( $item_id, $this->id, $method, $series, $this->ip, $this->get_log_ids() );
 
-		if ( is_null( $series ) || empty( $series ) ) {
+		if ( empty( $series ) ) {
 			$this->log[ $item_id ][ $method ] = $data;
 		} else {
 			$this->log[ $item_id ][ $method ][ $series ] = $data;
@@ -103,7 +103,7 @@ class gdrts_core_user {
 			'ip'      => $this->ip,
 			'log_ids' => $this->get_log_ids(),
 			'from'    => $from,
-			'to'      => $to
+			'to'      => $to,
 		);
 
 		gdrts_preload()->user_stats( $args );

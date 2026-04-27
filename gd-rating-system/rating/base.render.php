@@ -14,7 +14,7 @@ if ( ! function_exists( 'gdrts_prepare_list_of_users' ) ) {
 				'name'  => $user->display_name,
 				'email' => $user->user_email,
 				'url'   => $user->user_url,
-				'vote'  => $user->vote
+				'vote'  => $user->vote,
 			);
 
 			if ( empty( $item['url'] ) ) {

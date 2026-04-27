@@ -28,7 +28,7 @@ class gdrts_core_log_item {
 	}
 
 	public function meta( $name, $default = null ) {
-		return isset( $this->meta[ $name ] ) ? $this->meta[ $name ] : $default;
+		return $this->meta[ $name ] ?? $default;
 	}
 
 	public function is_active_vote() {

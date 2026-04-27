@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <input type="hidden" name="gdrts[posts-override][nonce]" value="<?php echo wp_create_nonce( 'gdrts-posts-override-' . $_gdrts_id ); ?>"/>

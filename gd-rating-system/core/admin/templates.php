@@ -7,12 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 class gdrts_admin_templates {
 	public static function scan_for_templates() : array {
 		$paths   = gdrts()->default_storages_paths();
-		$paths[] = TEMPLATEPATH;
-		$paths[] = TEMPLATEPATH . '/gdrts';
+		$paths[] = get_template_directory();
+		$paths[] = get_template_directory() . '/gdrts';
 
-		if ( STYLESHEETPATH != TEMPLATEPATH ) {
-			$paths[] = STYLESHEETPATH;
-			$paths[] = STYLESHEETPATH . '/gdrts';
+		if ( get_stylesheet_directory() != get_template_directory() ) {
+			$paths[] = get_stylesheet_directory();
+			$paths[] = get_stylesheet_directory() . '/gdrts';
 		}
 
 		$templates = array();

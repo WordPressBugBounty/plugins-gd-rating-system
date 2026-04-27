@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Class - Shortcodes Core
-Version: v2.8.19
+Version: v2.8.20
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -60,7 +60,7 @@ if (!class_exists('d4p_shortcodes_core')) {
                 $classes[] = $extra_class;
             }
 
-            $wrapper = '<'.$tag.' class="'.sanitize_html_class(join(' ', $classes)).'">';
+            $wrapper = '<'.$tag.' class="'.d4p_sanitize_html_classes(join(' ', $classes)).'">';
             $wrapper.= $content;
             $wrapper.= '</'.$tag.'>';
 

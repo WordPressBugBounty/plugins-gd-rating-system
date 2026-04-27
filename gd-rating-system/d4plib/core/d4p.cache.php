@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib - Core - Cache Core
-Version: v2.8.19
+Version: v2.8.20
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/

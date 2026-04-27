@@ -19,7 +19,7 @@ class gdrts_core_standalone_render {
 			'style_class'        => '',
 			'font_color_empty'   => '#dddddd',
 			'font_color_current' => '#dd0000',
-			'title'              => ''
+			'title'              => '',
 		);
 
 		$atts = wp_parse_args( $args, $defaults );
@@ -45,7 +45,7 @@ class gdrts_core_standalone_render {
 			'style_class' => '',
 			'title'       => '',
 			'font_size'   => 32,
-			'font_color'  => '#f5ebce'
+			'font_color'  => '#f5ebce',
 		);
 
 		$atts = wp_parse_args( $args, $defaults );
@@ -71,7 +71,7 @@ class gdrts_core_standalone_render {
 			'style_class'  => '',
 			'labels_liked' => 'Liked',
 			'show_votes'   => true,
-			'title'        => ''
+			'title'        => '',
 		);
 
 		$atts = wp_parse_args( $args, $defaults );
@@ -116,7 +116,7 @@ class gdrts_core_standalone_render {
 		$list = array(
 			'gdrts-custom-stars-block',
 			'gdrts-' . $atts['style_type'] . '-' . $atts['style_name'],
-			'gdrts-stars-length-' . $atts['stars']
+			'gdrts-stars-length-' . $atts['stars'],
 		);
 
 		if ( $atts['style_type'] == 'image' ) {
@@ -192,7 +192,7 @@ class gdrts_core_standalone_render {
 		$list = array(
 			'gdrts-custom-like-block',
 			'gdrts-likes-theme-' . $atts['style_theme'],
-			'gdrts-' . $atts['style_type'] . '-' . $atts['style_name']
+			'gdrts-' . $atts['style_type'] . '-' . $atts['style_name'],
 		);
 
 		if ( $atts['style_type'] == 'image' ) {

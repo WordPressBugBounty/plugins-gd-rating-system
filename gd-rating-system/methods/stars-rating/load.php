@@ -57,7 +57,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 			'font_color_current'           => $this->get_rule( 'font_color_current' ),
 			'font_color_active'            => $this->get_rule( 'font_color_active' ),
 			'style_class'                  => $this->get_rule( 'class' ),
-			'labels'                       => $this->get_rule( 'labels' )
+			'labels'                       => $this->get_rule( 'labels' ),
 		);
 
 		if ( empty( $defaults['style_name'] ) ) {
@@ -92,7 +92,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 			'font_color_empty'   => $this->get_rule( 'font_color_empty' ),
 			'font_color_current' => $this->get_rule( 'font_color_current' ),
 			'font_color_active'  => $this->get_rule( 'font_color_active' ),
-			'labels'             => $this->get_rule( 'labels' )
+			'labels'             => $this->get_rule( 'labels' ),
 		);
 
 		if ( empty( $defaults['style_name'] ) ) {
@@ -117,7 +117,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 		for ( $id = 1; $id <= $this->_calc['stars']; $id ++ ) {
 			$key = $id - 1;
 
-			$label    = isset( $this->_args['labels'][ $key ] ) ? $this->_args['labels'][ $key ] : false;
+			$label    = $this->_args['labels'][ $key ] ?? false;
 			$labels[] = $label !== false ? __( $label, "gd-rating-system" ) : sprintf( _n( '%s Star', '%s Stars', $id, 'gd-rating-system' ), $id );
 		}
 
@@ -287,7 +287,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 				'char'       => gdrts()->get_font_star_char( $this->_args['style_type'], $this->_args['style_name'] ),
 				'name'       => $this->_args['style_name'],
 				'size'       => $this->_args['style_size'],
-				'type'       => $this->_args['style_type']
+				'type'       => $this->_args['style_type'],
 			);
 
 			$data['labels'] = $this->labels();
@@ -306,7 +306,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 				'name'       => $this->_args['style_name'],
 				'size'       => $this->_args['style_size'],
 				'type'       => $this->_args['style_type'],
-				'responsive' => $this->_args['responsive']
+				'responsive' => $this->_args['responsive'],
 			);
 
 			$data['labels'] = $this->labels();
@@ -418,7 +418,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 			'errors'    => new WP_Error(),
 			'action'    => 'none',
 			'previous'  => '',
-			'reference' => 0
+			'reference' => 0,
 		);
 
 		$vote = round( floatval( $input->value ), 2 );
@@ -476,7 +476,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 		 * @var mixed     $previous
 		 * @var integer   $reference
 		 */
-		extract( $validation, EXTR_OVERWRITE );
+		extract( $validation );
 
 		if ( $action == 'none' ) {
 			return true;
@@ -487,7 +487,7 @@ class gdrts_method_stars_rating extends gdrts_method {
 			'action' => $action,
 			'ref_id' => $reference,
 			'vote'   => $input->value,
-			'max'    => $input->max
+			'max'    => $input->max,
 		);
 
 		if ( isset( $input->logged ) ) {

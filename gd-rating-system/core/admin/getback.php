@@ -28,7 +28,7 @@ class gdrts_admin_getback {
 			}
 
 			if ( $_GET['single-action'] == 'enable-rule' ) {
-				$this->rule_activation( true );
+				$this->rule_activation();
 			}
 		}
 
@@ -165,7 +165,7 @@ class gdrts_admin_getback {
 
 			gdrts_admin_maintenance::recalculate_rating_object( $item_id, $method, $series, array(
 				'rating',
-				'distribution'
+				'distribution',
 			) );
 
 			$url .= '&message=recalculated';

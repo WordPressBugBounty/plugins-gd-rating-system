@@ -264,8 +264,8 @@ class gdrts_admin_postback {
 
 			$request = array(
 				'gdrtsvalue' => array(
-					'rules' => isset( $raw['settings'] ) ? $raw['settings'] : array()
-				)
+					'rules' => $raw['settings'] ?? array(),
+				),
 			);
 
 			$processor       = new d4pSettingsProcess( $settings );
@@ -274,7 +274,7 @@ class gdrts_admin_postback {
 			$data = $processor->process( $request );
 
 			$rule->active   = isset( $raw['active'] ) && $raw['active'] == 'on';
-			$rule->settings = isset( $data['rules'] ) ? $data['rules'] : array();
+			$rule->settings = $data['rules'] ?? array();
 			$rule->filters  = array();
 
 			gdrts_settings()->save_rule( $rule, true );

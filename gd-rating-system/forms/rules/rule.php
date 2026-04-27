@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 gdrts_rescan_for_templates();
@@ -18,7 +18,7 @@ $_active_id   = 'gdrtsvalue_rules_' . $rule->id . '_active';
 ?>
 
     <form method="post" action="">
-		<?php settings_fields( 'gd-rating-system-ruledit' ); ?>
+        <?php settings_fields( 'gd-rating-system-ruledit' ); ?>
         <input type="hidden" value="postback" name="gdrts_handler"/>
 
         <div class="d4p-content-left">
@@ -29,7 +29,7 @@ $_active_id   = 'gdrtsvalue_rules_' . $rule->id . '_active';
                     <h4><?php echo $rule->get_label(); ?></h4>
                 </div>
                 <div class="d4p-panel-info">
-					<?php _e( 'These settings will be used before default settings. You can temporarally disable this rule override or you can remove them.', 'gd-rating-system' ); ?>
+                    <?php _e( 'These settings will be used before default settings. You can temporarally disable this rule override or you can remove them.', 'gd-rating-system' ); ?>
                 </div>
                 <div class="d4p-panel-buttons">
                     <input type="submit" value="<?php _e( 'Save Settings', 'gd-rating-system' ); ?>" class="button-primary">
@@ -78,20 +78,20 @@ $_active_id   = 'gdrtsvalue_rules_' . $rule->id . '_active';
 
             <div class="d4p-group-divider"><?php _e( 'Rule Settings', 'gd-rating-system' ); ?></div>
 
-			<?php
+            <?php
 
-			d4p_includes( array(
-				array( 'name' => 'functions', 'directory' => 'admin' ),
-				array( 'name' => 'settings', 'directory' => 'admin' )
-			), GDRTS_D4PLIB );
+            d4p_includes( array(
+                    array( 'name' => 'functions', 'directory' => 'admin' ),
+                    array( 'name' => 'settings', 'directory' => 'admin' ),
+            ), GDRTS_D4PLIB );
 
-			$groups = apply_filters( 'gdrts_admin_get_rule_options_' . $rule->object, array(), $rule );
+            $groups = apply_filters( 'gdrts_admin_get_rule_options_' . $rule->object, array(), $rule );
 
-			$render       = new d4pSettingsRender( $panel, $groups );
-			$render->base = 'gdrtsvalue';
-			$render->render();
+            $render       = new d4pSettingsRender( $panel, $groups );
+            $render->base = 'gdrtsvalue';
+            $render->render();
 
-			?>
+            ?>
 
             <div class="clear"></div>
             <div style="padding-top: 15px; border-top: 1px solid #777; max-width: 800px;">

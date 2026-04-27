@@ -26,7 +26,7 @@ class gdrts_admin_upgrade {
 			'type'   => $type,
 			'error'  => '',
 			'insert' => 0,
-			'delete' => 0
+			'delete' => 0,
 		);
 
 		$status = gdrts_db()->query( $insert );

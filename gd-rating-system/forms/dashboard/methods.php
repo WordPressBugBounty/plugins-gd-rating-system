@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-dashboard-card d4p-group-dashboard-basic">
@@ -7,21 +7,21 @@
     <div class="d4p-group-stats">
         <ul>
 
-			<?php
+            <?php
 
-			$_data = gdrts_list_all_methods();
+            $_data = gdrts_list_all_methods();
 
-			foreach ( gdrts()->methods as $method => $obj ) {
+            foreach ( gdrts()->methods as $method => $obj ) {
 
-				?>
+                ?>
                 <li><a href="admin.php?page=gd-rating-system-settings&panel=method_<?php echo $method; ?>">
-					<?php echo d4p_render_icon( $obj['icon'], 'i', true, true ) ?>
+                    <?php echo d4p_render_icon( $obj['icon'], 'i', true, true ) ?>
                     <strong><?php echo $obj['label']; ?></strong></a>
                 </li><?php
 
-			}
+            }
 
-			?>
+            ?>
 
         </ul>
         <div class="d4p-clearfix"></div>
@@ -29,7 +29,7 @@
     <div class="d4p-group-inner">
         <h4><?php _e( 'Important', 'gd-rating-system' ); ?></h4>
         <p>
-			<?php _e( 'Each method has global configuration linked from this panel, and it allows you to configure it for specific rating type and override the default (or global) settings. Some addons have similar settings override support.', 'gd-rating-system' ); ?>
+            <?php _e( 'Each method has global configuration linked from this panel, and it allows you to configure it for specific rating type and override the default (or global) settings. Some addons have similar settings override support.', 'gd-rating-system' ); ?>
         </p>
     </div>
     <div class="d4p-group-footer">

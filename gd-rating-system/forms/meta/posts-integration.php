@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $_rating_methods = gdrts_admin_shared::data_list_embed_methods( '-' );
@@ -15,21 +15,21 @@ $_rating_methods = gdrts_admin_shared::data_list_embed_methods( '-' );
         <div class="gdrts-metabox-wrapper-left">
             <p>
                 <label for="gdrts_posts-integration_location"><?php _e( 'Display Rating Block', 'gd-rating-system' ); ?></label>
-				<?php d4p_render_select( array_merge( array( 'default' => __( 'Default', 'gd-rating-system' ) ), gdrtsa_admin_posts()->get_list_embed_locations() ), array(
-					'class'    => 'widefat',
-					'selected' => $_gdrts_display,
-					'name'     => 'gdrts[posts-integration][location]'
-				) ); ?>
+                <?php d4p_render_select( array_merge( array( 'default' => __( 'Default', 'gd-rating-system' ) ), gdrtsa_admin_posts()->get_list_embed_locations() ), array(
+                        'class'    => 'widefat',
+                        'selected' => $_gdrts_display,
+                        'name'     => 'gdrts[posts-integration][location]',
+                ) ); ?>
             </p>
         </div>
         <div class="gdrts-metabox-wrapper-right">
             <p>
                 <label for="gdrts_posts-integration_method"><?php _e( 'Rating Method', 'gd-rating-system' ); ?></label>
-				<?php d4p_render_select( array_merge( array( 'default' => __( 'Default', 'gd-rating-system' ) ), $_rating_methods ), array(
-					'class'    => 'widefat',
-					'selected' => $_gdrts_method,
-					'name'     => 'gdrts[posts-integration][method]'
-				) ); ?>
+                <?php d4p_render_select( array_merge( array( 'default' => __( 'Default', 'gd-rating-system' ) ), $_rating_methods ), array(
+                        'class'    => 'widefat',
+                        'selected' => $_gdrts_method,
+                        'name'     => 'gdrts[posts-integration][method]',
+                ) ); ?>
             </p>
             <p>
                 <label for="gdrts_posts-integration_priority"><?php _e( 'Rating Priority for Filter', 'gd-rating-system' ); ?></label>

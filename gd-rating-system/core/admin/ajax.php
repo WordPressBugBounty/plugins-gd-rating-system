@@ -31,7 +31,7 @@ class gdrts_admin_ajax {
 
 		require_once( GDRTS_PATH . 'core/admin/transfer.php' );
 
-		$operation = $_POST['operation'];
+		$operation = d4p_sanitize_key_expanded( $_POST['operation'] );
 
 		switch ( $operation ) {
 			case 'start':
@@ -98,7 +98,7 @@ class gdrts_admin_ajax {
 		@ini_set( 'memory_limit', '256M' );
 		@set_time_limit( 0 );
 
-		$operation = $_POST['operation'];
+		$operation = d4p_sanitize_key_expanded( $_POST['operation'] );
 
 		switch ( $operation ) {
 			case 'start':
@@ -243,7 +243,7 @@ class gdrts_admin_ajax {
 
 		require_once( GDRTS_PATH . 'core/admin/maintenance.php' );
 
-		$operation = $_POST['operation'];
+		$operation = d4p_sanitize_key_expanded( $_POST['operation'] );
 
 		switch ( $operation ) {
 			case 'break':

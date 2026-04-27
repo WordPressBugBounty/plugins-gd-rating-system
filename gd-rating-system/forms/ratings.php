@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 include( GDRTS_PATH . 'forms/shared/top.php' );
@@ -13,16 +13,16 @@ include( GDRTS_PATH . 'forms/shared/top.php' );
             <input type="hidden" name="page" value="gd-rating-system-ratings"/>
             <input type="hidden" value="getback" name="gdrts_handler"/>
 
-			<?php
+            <?php
 
-			require_once( GDRTS_PATH . 'core/grids/ratings.php' );
+            require_once( GDRTS_PATH . 'core/grids/ratings.php' );
 
-			$_grid = new gdrts_grid_ratings();
-			$_grid->prepare_items();
-			$_grid->views();
-			$_grid->display();
+            $_grid = new gdrts_grid_ratings();
+            $_grid->prepare_items();
+            $_grid->views();
+            $_grid->display();
 
-			?>
+            ?>
         </form>
     </div>
 

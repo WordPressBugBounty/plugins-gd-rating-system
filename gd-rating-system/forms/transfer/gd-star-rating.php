@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div id="gdrts-remotecall-intro">
@@ -8,7 +8,7 @@
     <div class="d4p-group d4p-group-import d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'This tool can import rating data from GD Star Rating plugin. Due to the vastly different strucutre of database tables between these plugins, there are some limitations to the import process.', 'gd-rating-system' ); ?>
+            <?php _e( 'This tool can import rating data from GD Star Rating plugin. Due to the vastly different strucutre of database tables between these plugins, there are some limitations to the import process.', 'gd-rating-system' ); ?>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'This tool can transfer posts, pages and comments ratings and number of votes along with votes log data.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'Imported data will be marked with special import flag and will be skipped later if you decide to use this tool again.', 'gd-rating-system' ); ?></li>
@@ -17,45 +17,45 @@
                 <li><?php _e( 'For import process to work, all GD Star Rating database tables must be present.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'Old GD Star Rating plugin database tables will not be modified in any way or deleted during this import process.', 'gd-rating-system' ); ?></li>
             </ul>
-			<?php _e( 'To make transfer faster, please follow these rules.', 'gd-rating-system' ); ?>
+            <?php _e( 'To make transfer faster, please follow these rules.', 'gd-rating-system' ); ?>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'To improve the speed of transfer, convert GD Star Rating tables from MyISAM to InnoDB Engine.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'Make sure to run each rating method import individually. Transfering multiple rating methods at once, can slow down the process.', 'gd-rating-system' ); ?></li>
             </ul>
-			<?php _e( 'There is no guarantee that transfer will be always successful.', 'gd-rating-system' ); ?>
+            <?php _e( 'There is no guarantee that transfer will be always successful.', 'gd-rating-system' ); ?>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'If there is data missing, or if it can\'t be matched correctly, the transfer might be incomplete.', 'gd-rating-system' ); ?></li>
             </ul>
         </div>
     </div>
 
-	<?php
+    <?php
 
-	require_once( GDRTS_PATH . 'core/transfer/gd-star-rating.php' );
+    require_once( GDRTS_PATH . 'core/transfer/gd-star-rating.php' );
 
-	$transfer = new gdrts_transfer_gd_star_rating();
+    $transfer = new gdrts_transfer_gd_star_rating();
 
-	if ( ! $transfer->db_tables_exist() ) {
+    if ( ! $transfer->db_tables_exist() ) {
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import d4p-group-important">
             <h3><?php _e( 'Transfer not possible', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php _e( 'Required database tables not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
+                <?php _e( 'Required database tables not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
             </div>
         </div>
 
-		<?php
+        <?php
 
-	} else {
+    } else {
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import">
             <h3><?php _e( 'Import: Stars Rating', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
+                <?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
                     <table class="form-table">
                         <tbody>
                         <tr valign="top">
@@ -74,8 +74,8 @@
                                 <div class="d4p-setting-number">
                                     <input type="text" class="widefat gdrts-tr-option gdrts-tr-checked-stars-rating" value="10" name="max">
                                     <em><strong><?php _e( 'Set this to the maximum rating value you used with GD Star Rating plugin for stars rating.', 'gd-rating-system' ); ?></strong>
-										<?php _e( 'When imported, ratings will be recalculated based on this value and currently set number of stars in GD Rating System.', 'gd-rating-system' ); ?>
-										<?php _e( 'If you want to keep same max rating, make sure to adjust the GD Rating System settings for this rating method before the transfer.', 'gd-rating-system' ); ?>
+                                        <?php _e( 'When imported, ratings will be recalculated based on this value and currently set number of stars in GD Rating System.', 'gd-rating-system' ); ?>
+                                        <?php _e( 'If you want to keep same max rating, make sure to adjust the GD Rating System settings for this rating method before the transfer.', 'gd-rating-system' ); ?>
                                     </em>
                                 </div>
                             </td>
@@ -96,15 +96,15 @@
                         </tr>
                         </tbody>
                     </table>
-				<?php } else { ?>
+                <?php } else { ?>
                     <p style="text-align: left"><?php _e( 'Rating method is not active.', 'gd-rating-system' ); ?></p>
-				<?php } ?>
+                <?php } ?>
             </div>
         </div>
 
-	<?php } ?>
+    <?php } ?>
 </div>
 
 <div id="gdrts-remotecall-process" style="display: none;">
-	<?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
+    <?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
 </div>

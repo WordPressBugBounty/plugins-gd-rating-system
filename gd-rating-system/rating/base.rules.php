@@ -64,7 +64,7 @@ class gdrts_settings_rule {
 	}
 
 	public function get( $name, $default = false ) {
-		return isset( $this->settings[ $name ] ) ? $this->settings[ $name ] : $default;
+		return $this->settings[ $name ] ?? $default;
 	}
 
 	public function get_entity_name() {
@@ -76,7 +76,7 @@ class gdrts_settings_rule {
 	public function get_type_name() {
 		$_parts = explode( '.', $this->item );
 
-		return isset( $_parts[1] ) ? $_parts[1] : false;
+		return $_parts[1] ?? false;
 	}
 
 	public function get_entity() {
@@ -123,7 +123,7 @@ class gdrts_settings_rule {
 
 	public function get_icons_for_display() {
 		$icons = array(
-			d4p_render_icon( apply_filters( 'gdrts_admin_icon_' . $this->object, 'flash' ) )
+			d4p_render_icon( apply_filters( 'gdrts_admin_icon_' . $this->object, 'flash' ) ),
 		);
 
 		if ( ! empty( $this->method ) ) {

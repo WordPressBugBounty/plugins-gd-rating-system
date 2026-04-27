@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class gdrts_font {
 	public $map = array(
 		'stars-rating' => 'stars',
-		'like-this'    => 'likes'
+		'like-this'    => 'likes',
 	);
 
 	public $status = 'hold';
@@ -22,7 +22,7 @@ abstract class gdrts_font {
 
 	public $active = array(
 		'stars-rating',
-		'like-this'
+		'like-this',
 	);
 
 	public function __construct() {
@@ -217,7 +217,7 @@ abstract class gdrts_font {
 				'id'       => $widget->get_field_id( $_name ),
 				'class'    => 'widefat',
 				'name'     => $widget->get_field_name( $_name ),
-				'selected' => $instance[ $_name ]
+				'selected' => $instance[ $_name ],
 			) );
 		}
 	}
@@ -238,8 +238,8 @@ abstract class gdrts_font {
 			'options' => $this->get_stars_list(),
 			'value'   => '',
 			'rule'    => array(
-				'style_type' => $this->name
-			)
+				'style_type' => $this->name,
+			),
 		);
 
 		return gdrts_insert_at_attr( $attrs, $item );
@@ -253,8 +253,8 @@ abstract class gdrts_font {
 			'options' => $this->get_likes_list(),
 			'value'   => '',
 			'rule'    => array(
-				'style_type' => $this->name
-			)
+				'style_type' => $this->name,
+			),
 		);
 
 		return gdrts_insert_at_attr( $attrs, $item );

@@ -120,8 +120,8 @@ class gdrts_core_loop {
 	}
 
 	public function please_wait( $text = null, $icon = null, $class = '', $echo = true ) {
-		$text = is_null( $text ) ? __( 'Please wait...', 'gd-rating-system' ) : $text;
-		$icon = is_null( $icon ) ? '<i aria-hidden="true" class="rtsicon-spinner rtsicon-spin rtsicon-va rtsicon-fw"></i>' : $icon;
+		$text = $text ?? __( 'Please wait...', 'gd-rating-system' );
+		$icon = $icon ?? '<i aria-hidden="true" class="rtsicon-spinner rtsicon-spin rtsicon-va rtsicon-fw"></i>';
 
 		$class = 'gdrts-rating-please-wait ' . $class;
 

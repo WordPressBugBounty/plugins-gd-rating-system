@@ -1,9 +1,13 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-about-minor">
     <h3><?php _e( 'Maintenance and Security Releases', 'gd-rating-system' ); ?></h3>
+    <p>
+        <strong><?php _e( 'Version', 'gd-rating-system' ); ?> <span>3.7</span></strong> &minus;
+        WordPress 7.0 support. Security updates and fixes.
+    </p>
     <p>
         <strong><?php _e( 'Version', 'gd-rating-system' ); ?> <span>3.4 / 3.5 / 3.5.1 / 3.6 / 3.6.1 / 3.6.2</span></strong> &minus;
         System requirements update. Various other updates and fixes.
@@ -21,6 +25,6 @@
         Few bug fixes.
     </p>
     <p>
-		<?php printf( __( 'For more information, see <a href=\'%s\'>the changelog</a>.', 'gd-rating-system' ), 'admin.php?page=gd-rating-system-about&panel=changelog' ); ?>
+        <?php printf( __( 'For more information, see <a href=\'%s\'>the changelog</a>.', 'gd-rating-system' ), 'admin.php?page=gd-rating-system-about&panel=changelog' ); ?>
     </p>
 </div>

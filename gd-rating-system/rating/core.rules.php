@@ -30,8 +30,8 @@ class gdrts_core_rules {
 	public function get_rule_settings( $obj, $entity = null, $name = null, $method = false, $filters = null ) {
 		$object = $obj->prefix;
 
-		$entity = is_null( $entity ) ? gdrts_single()->args( 'entity' ) : $entity;
-		$name   = is_null( $name ) ? gdrts_single()->args( 'name' ) : $name;
+		$entity = $entity ?? gdrts_single()->args( 'entity' );
+		$name   = $name ?? gdrts_single()->args( 'name' );
 
 		$filters = array();
 

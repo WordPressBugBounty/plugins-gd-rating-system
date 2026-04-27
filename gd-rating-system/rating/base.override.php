@@ -6,9 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'gdrts_get_hashed_ip' ) ) {
 	function gdrts_get_hashed_ip( $ip = null ) {
-		if ( is_null( $ip ) ) {
-			$ip = d4p_visitor_ip();
-		}
+		$ip = $ip ?? d4p_visitor_ip();
 
 		$md5 = function_exists( 'hash' ) ? hash( 'md5', $ip ) : md5( $ip );
 

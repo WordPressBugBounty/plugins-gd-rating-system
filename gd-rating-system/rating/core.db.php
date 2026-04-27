@@ -15,11 +15,11 @@ class gdrts_core_db extends d4p_wpdb_core {
 		'items_basic',
 		'logmeta',
 		'logs',
-		'exports'
+		'exports',
 	);
 	public $_metas = array(
 		'item' => 'item_id',
-		'log'  => 'log_id'
+		'log'  => 'log_id',
 	);
 
 	public function get_item( $item_id ) {
@@ -30,7 +30,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 		$item_ids = $this->clean_ids_list( $item_ids );
 
 		if ( ! empty( $item_ids ) ) {
-			$sql = "SELECT * FROM " . $this->items . " WHERE item_id IN (" . join( ', ', $item_ids ) . ")";
+			$sql = "SELECT * FROM " . $this->items . " WHERE item_id IN (" . join( ', ', array_map( 'absint', $item_ids ) ) . ")";
 
 			return $this->run_and_index( $sql, 'item_id' );
 		}
@@ -61,7 +61,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 					'latest' => $row->latest,
 					'votes'  => absint( $row->votes ),
 					'rating' => $row->rating / gdrts()->methods[ $row->method ]['db_normalized'],
-					'sum'    => absint( $row->sum ) / gdrts()->methods[ $row->method ]['db_normalized']
+					'sum'    => absint( $row->sum ) / gdrts()->methods[ $row->method ]['db_normalized'],
 				);
 
 				if ( $row->max > 0 ) {
@@ -82,7 +82,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			return array();
 		}
 
-		$raw  = $this->run( "SELECT * FROM " . $this->itemmeta . " WHERE item_id in (" . join( ', ', $items ) . ")" );
+		$raw  = $this->run( "SELECT * FROM " . $this->itemmeta . " WHERE item_id in (" . join( ', ', array_map( 'absint', $items ) ) . ")" );
 		$data = array();
 
 		foreach ( $raw as $row ) {
@@ -99,7 +99,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			return array();
 		}
 
-		$raw  = $this->run( "SELECT * FROM " . $this->items_basic . " WHERE item_id in (" . join( ', ', $items ) . ")" );
+		$raw  = $this->run( "SELECT * FROM " . $this->items_basic . " WHERE item_id in (" . join( ', ', array_map( 'absint', $items ) ) . ")" );
 		$data = array();
 
 		foreach ( $raw as $row ) {
@@ -112,7 +112,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 				'latest' => $row->latest,
 				'votes'  => $row->votes,
 				'rating' => $row->rating / gdrts()->methods[ $row->method ]['db_normalized'],
-				'sum'    => $row->sum / gdrts()->methods[ $row->method ]['db_normalized']
+				'sum'    => $row->sum / gdrts()->methods[ $row->method ]['db_normalized'],
 			);
 
 			if ( $row->max > 0 ) {
@@ -166,7 +166,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 
 		$where = array(
 			"entity = '$entity'",
-			"id IN (" . join( ',', $ids ) . ")"
+			"id IN (" . join( ',', array_map( 'absint', $ids ) ) . ")",
 		);
 
 		if ( ! is_null( $name ) ) {
@@ -200,7 +200,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			return array();
 		}
 
-		$raw  = $this->run( "SELECT * FROM " . $this->logmeta . " WHERE log_id in (" . join( ', ', $logs ) . ")" );
+		$raw  = $this->run( "SELECT * FROM " . $this->logmeta . " WHERE log_id in (" . join( ', ', array_map( 'absint', $logs ) ) . ")" );
 		$data = array();
 
 		foreach ( $raw as $row ) {
@@ -217,7 +217,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			return array();
 		}
 
-		$raw  = $this->run( "SELECT * FROM " . $this->logs_multi . " WHERE log_id in (" . join( ', ', $logs ) . ")" );
+		$raw  = $this->run( "SELECT * FROM " . $this->logs_multi . " WHERE log_id in (" . join( ', ', array_map( 'absint', $logs ) ) . ")" );
 		$data = array();
 
 		foreach ( $raw as $row ) {
@@ -268,17 +268,17 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'select' => array(
 				'l.*',
 				'COUNT(m.meta_id) as `meta`',
-				'0 as `multi`'
+				'0 as `multi`',
 			),
 			'from'   => array(
 				$this->logs . ' l',
-				'LEFT JOIN ' . $this->logmeta . ' m ON m.`log_id` = l.`log_id`'
+				'LEFT JOIN ' . $this->logmeta . ' m ON m.`log_id` = l.`log_id`',
 			),
 			'where'  => array(
-				"l.`item_id` = " . $item_id
+				"l.`item_id` = " . $item_id,
 			),
 			'group'  => 'l.`log_id`',
-			'order'  => 'l.`log_id` DESC'
+			'order'  => 'l.`log_id` DESC',
 		);
 
 		$SQL['where'] = array_merge( $SQL['where'], $filters );
@@ -309,18 +309,18 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'select' => array(
 				'l.*',
 				'COUNT(m.meta_id) as `meta`',
-				'0 as `multi`'
+				'0 as `multi`',
 			),
 			'from'   => array(
 				$this->logs . ' l',
-				'LEFT JOIN ' . $this->logmeta . ' m ON m.`log_id` = l.`log_id`'
+				'LEFT JOIN ' . $this->logmeta . ' m ON m.`log_id` = l.`log_id`',
 			),
 			'where'  => array(
 				"l.`item_id` = " . $item_id,
-				"l.`method` = '" . $method . "'"
+				"l.`method` = '" . $method . "'",
 			),
 			'group'  => 'l.`log_id`',
-			'order'  => 'l.`log_id` DESC'
+			'order'  => 'l.`log_id` DESC',
 		);
 
 		$SQL['where'] = array_merge( $SQL['where'], $filters );
@@ -356,7 +356,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 				'vote'   => array( 'items' => 0, 'log_id' => 0 ),
 				'revote' => array( 'items' => 0, 'log_id' => 0 ),
 				'like'   => array( 'items' => 0, 'log_id' => 0 ),
-				'clear'  => array( 'items' => 0, 'log_id' => 0 )
+				'clear'  => array( 'items' => 0, 'log_id' => 0 ),
 			);
 		}
 
@@ -369,16 +369,16 @@ class gdrts_core_db extends d4p_wpdb_core {
 				'l.`item_id`',
 				'l.`action`',
 				'COUNT(*) AS `items`',
-				'MAX(`log_id`) AS `log_id`'
+				'MAX(`log_id`) AS `log_id`',
 			),
 			'from'   => array(
-				$this->logs . ' l'
+				$this->logs . ' l',
 			),
 			'where'  => array(
-				"l.`item_id` IN (" . join( ',', $items ) . ")",
-				"l.`method` = '" . $method . "'"
+				"l.`item_id` IN (" . join( ',', array_map( 'absint', $items ) ) . ")",
+				"l.`method` = '" . $method . "'",
 			),
-			'group'  => 'l.`item_id`, l.`action`'
+			'group'  => 'l.`item_id`, l.`action`',
 		);
 
 		$SQL['where'] = array_merge( $SQL['where'], $filters );
@@ -417,7 +417,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'select' => array( '`logged`' ),
 			'from'   => array( $this->logs . ' l' ),
 			'where'  => $filters,
-			'order'  => 'l.`logged` DESC'
+			'order'  => 'l.`logged` DESC',
 		);
 
 		$query = $this->build_query( $SQL, false );
@@ -433,9 +433,9 @@ class gdrts_core_db extends d4p_wpdb_core {
 
 	public function update_item_latest( $item_id ) {
 		$this->update( $this->items, array(
-			'latest' => $this->datetime()
+			'latest' => $this->datetime(),
 		), array(
-			'item_id' => absint( $item_id )
+			'item_id' => absint( $item_id ),
 		) );
 	}
 
@@ -447,7 +447,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'logged' => $this->datetime(),
 			'ref_id' => 0,
 			'vote'   => '',
-			'max'    => 0
+			'max'    => 0,
 		);
 
 		$data = wp_parse_args( $data, $defaults );
@@ -499,7 +499,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'rating'  => 0,
 			'votes'   => 0,
 			'sum'     => 0,
-			'max'     => 0
+			'max'     => 0,
 		);
 
 		$args           = shortcode_atts( $defaults, $data );
@@ -525,10 +525,10 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'rating' => 0,
 			'votes'  => 0,
 			'sum'    => 0,
-			'max'    => 0
+			'max'    => 0,
 		);
 
-		$id = isset( $data['id'] ) ? $data['id'] : 0;
+		$id = $data['id'] ?? 0;
 
 		$args           = shortcode_atts( $defaults, $data );
 		$args['sum']    = $args['sum'] * gdrts()->methods[ $method ]['db_normalized'];
@@ -538,7 +538,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 
 		foreach ( $data as $key => $value ) {
 			if ( ! isset( $args[ $key ] ) && $key != 'id' ) {
-				$old  = isset( $backup[ $key ] ) ? $backup[ $key ] : '';
+				$old  = $backup[ $key ] ?? '';
 				$meta = is_null( $series ) ? $method . '_' . $key : $method . '-' . $series . '_' . $key;
 
 				$this->update_meta( 'item', $item_id, $meta, $value, $old );
@@ -577,7 +577,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'orderby' => 'l.logged',
 			'order'   => $args['order'] == 'DESC' ? 'DESC' : 'ASC',
 			'offset'  => $args['offset'] > 0 ? $args['offset'] : 0,
-			'limit'   => $args['limit'] > 0 ? $args['limit'] : 0
+			'limit'   => $args['limit'] > 0 ? $args['limit'] : 0,
 		);
 
 		$SQL['where'][] = "l.method = '" . esc_sql( $method ) . "'";
@@ -617,7 +617,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			'count'   => count( $list ),
 			'total'   => $this->get_found_rows(),
 			'offset'  => $SQL['offset'],
-			'limit'   => $SQL['limit']
+			'limit'   => $SQL['limit'],
 		);
 	}
 
@@ -672,7 +672,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			"SELECT l.*, COUNT(m.meta_id) AS `meta`, 0 AS `multi`
 FROM " . $this->logs . " l
 LEFT JOIN " . $this->logmeta . " m ON m.`log_id` = l.`log_id`
-WHERE l.`log_id` IN (" . join( ', ', $do ) . ")
+WHERE l.`log_id` IN (" . join( ', ', array_map( 'absint', $do ) ) . ")
 GROUP BY l.`log_id`";
 
 		$raw = $this->get_results( $query );
@@ -699,7 +699,7 @@ GROUP BY l.`log_id`";
 			$result = $this->insert( $this->items, array(
 				'entity' => $entity,
 				'name'   => $name,
-				'id'     => $id
+				'id'     => $id,
 			) );
 
 			if ( $result !== false ) {
@@ -734,14 +734,14 @@ GROUP BY l.`log_id`";
 
 			switch ( $verify ) {
 				case 'ip_or_cookie':
-					$where[] = "(l.`log_id` IN (" . join( ', ', $log_ids ) . ") OR l.`ip` = '" . esc_sql( $ip ) . "')";
+					$where[] = "(l.`log_id` IN (" . join( ', ', array_map( 'absint', $log_ids ) ) . ") OR l.`ip` = '" . esc_sql( $ip ) . "')";
 					break;
 				case 'ip_and_cookie':
-					$where[] = "l.`log_id` IN (" . join( ', ', $log_ids ) . ")";
+					$where[] = "l.`log_id` IN (" . join( ', ', array_map( 'absint', $log_ids ) ) . ")";
 					$where[] = "l.`ip` = '" . esc_sql( $ip ) . "'";
 					break;
 				case 'cookie':
-					$where[] = "l.`log_id` IN (" . join( ', ', $log_ids ) . ")";
+					$where[] = "l.`log_id` IN (" . join( ', ', array_map( 'absint', $log_ids ) ) . ")";
 					break;
 				default:
 				case 'ip':
@@ -800,7 +800,7 @@ GROUP BY l.`log_id`";
 		}
 
 		if ( ! empty( $_meta ) ) {
-			$raw = $this->run( "SELECT * FROM " . $this->logmeta . " WHERE `log_id` in (" . join( ', ', $_meta ) . ")" );
+			$raw = $this->run( "SELECT * FROM " . $this->logmeta . " WHERE `log_id` in (" . join( ', ', array_map( 'absint', $_meta ) ) . ")" );
 
 			foreach ( $raw as $meta ) {
 				$id  = absint( $meta->log_id );

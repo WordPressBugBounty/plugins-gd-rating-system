@@ -11,20 +11,20 @@ class gdrts_admin_maintenance {
 		$sql = "DELETE i, ib, im FROM " . gdrts_db()->items . " i 
                 INNER JOIN " . gdrts_db()->items_basic . " ib ON ib.item_id = i.item_id 
                 LEFT JOIN " . gdrts_db()->itemmeta . " im ON im.item_id = i.item_id 
-                WHERE i.item_id in (" . join( ', ', $item_id ) . ")";
+                WHERE i.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 		gdrts_db()->query( $sql );
 
 		$sql = "DELETE l, lm FROM " . gdrts_db()->logs . " l 
                 LEFT JOIN " . gdrts_db()->logmeta . " lm ON lm.log_id = l.log_id
-                WHERE l.item_id in (" . join( ', ', $item_id ) . ")";
+                WHERE l.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 		gdrts_db()->query( $sql );
 	}
 
 	public static function clear_rating_item_method( $item_id, $method = '', $series = '' ) {
 		$item_id = (array) $item_id;
 
-		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', $item_id ) . ")";
-		$sql_logs  = "DELETE l FROM " . gdrts_db()->logs . " l WHERE l.item_id in (" . join( ', ', $item_id ) . ")";
+		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
+		$sql_logs  = "DELETE l FROM " . gdrts_db()->logs . " l WHERE l.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 
 		if ( $method != '' ) {
 			$sql_items .= " AND b.method = '" . $method . "'";
@@ -43,7 +43,7 @@ class gdrts_admin_maintenance {
 	public static function clear_rating_item_method_limited( $item_id, $method = '', $series = '' ) {
 		$item_id = (array) $item_id;
 
-		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', $item_id ) . ")";
+		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 
 		if ( $method != '' ) {
 			$sql_items .= " AND b.method = '" . $method . "'";
@@ -107,7 +107,7 @@ class gdrts_admin_maintenance {
 
 		$sql = "DELETE l, lm FROM " . gdrts_db()->logs . " l
                 LEFT JOIN " . gdrts_db()->logmeta . " lm ON lm.log_id = l.log_id
-                WHERE l.log_id in (" . join( ', ', $ids ) . ")";
+                WHERE l.log_id in (" . join( ', ', array_map( 'absint', $ids ) ) . ")";
 
 		gdrts_db()->query( $sql );
 	}
@@ -138,7 +138,7 @@ class gdrts_admin_maintenance {
 			'items'     => 0,
 			'processed' => 0,
 			'saved'     => 0,
-			'cleared'   => 0
+			'cleared'   => 0,
 		);
 
 		foreach ( $objects as $obj ) {
@@ -180,7 +180,7 @@ class gdrts_admin_maintenance {
 			"l.`status` = 'active'",
 			"l.`action` = 'like'",
 			"l.`method` = 'like-this'",
-			"l.`item_id` = " . $item->item_id
+			"l.`item_id` = " . $item->item_id,
 		);
 
 		$log    = gdrts_db()->get_log_items_filter( $rule );

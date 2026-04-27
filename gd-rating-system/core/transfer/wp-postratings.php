@@ -17,7 +17,7 @@ class gdrts_transfer_wp_postratings {
 
 	public function db_tables_exist() {
 		$tables = array(
-			gdrts_db()->wpdb()->prefix . 'ratings'
+			gdrts_db()->wpdb()->prefix . 'ratings',
 		);
 
 		$ok = true;
@@ -83,7 +83,7 @@ class gdrts_transfer_wp_postratings {
 				$args = array(
 					'entity' => 'posts',
 					'name'   => $post_type,
-					'id'     => $rating->post_id
+					'id'     => $rating->post_id,
 				);
 
 				$item = gdrts_get_rating_item( $args );
@@ -95,11 +95,11 @@ class gdrts_transfer_wp_postratings {
 					'ip'     => $rating->ip,
 					'logged' => $rating->logged,
 					'vote'   => $rating->vote * $factor,
-					'max'    => gdrtsm_stars_rating()->get_rule( 'stars' )
+					'max'    => gdrtsm_stars_rating()->get_rule( 'stars' ),
 				);
 
 				$meta = array(
-					'wppr-import' => $rating->rating_id
+					'wppr-import' => $rating->rating_id,
 				);
 
 				gdrtsm_stars_rating()->calculate( $item, 'vote', $data['vote'], $data['max'] );
@@ -136,14 +136,14 @@ class gdrts_transfer_wp_postratings {
 					$args = array(
 						'entity' => 'posts',
 						'name'   => $post_type,
-						'id'     => $post
+						'id'     => $post,
 					);
 
 					$item = gdrts_get_rating_item( $args );
 					$item->prepare_save();
 					$item->prepare( 'stars-rating' );
 
-					if ( $item->get_meta( 'wppr-import', false ) === false ) {
+					if ( $item->get_meta( 'wppr-import' ) === false ) {
 						$factor = gdrtsm_stars_rating()->get_rule( 'stars' ) / $max;
 
 						$votes = intval( $item->get( 'stars-rating_votes', 0 ) );

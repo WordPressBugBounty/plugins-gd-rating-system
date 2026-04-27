@@ -27,10 +27,10 @@ class gdrts_admin_cron {
 					'name'   => $type,
 					'method' => 'stars-rating',
 					'series' => '',
-					'max'    => $settings['stars']
+					'max'    => $settings['stars'],
 				);
 
-				gdrts_admin_cron::recalculate_max_changed_single_type( $object, true );
+				gdrts_admin_cron::recalculate_max_changed_single_type( $object );
 			}
 		}
 	}
@@ -39,14 +39,14 @@ class gdrts_admin_cron {
 		$max = $object['max'];
 
 		$set = array(
-			"b.`rating` = FLOOR(b.`rating` * (" . $max . "/b.`max`))"
+			"b.`rating` = FLOOR(b.`rating` * (" . $max . "/b.`max`))",
 		);
 
 		$where = array(
 			"b.`method` = '" . $object['method'] . "'",
 			"i.`entity` = '" . $object['entity'] . "'",
 			"i.`name` = '" . $object['name'] . "'",
-			"b.`max` != " . $max
+			"b.`max` != " . $max,
 		);
 
 		if ( $sum ) {
@@ -78,12 +78,12 @@ class gdrts_admin_cron {
 			'stars-rating' => array(
 				'items',
 				'votes',
-				'rating'
+				'rating',
 			),
 			'like-this'    => array(
 				'items',
-				'rating'
-			)
+				'rating',
+			),
 		);
 
 		$old = gdrts_settings()->group_get( 'entities' );
@@ -130,7 +130,7 @@ ORDER BY i.entity";
 				$results[ $row->entity ][ $method ] = array(
 					'items'  => $row->items,
 					'votes'  => $row->votes,
-					'rating' => round( $row->rating / $normalize, 2 )
+					'rating' => round( $row->rating / $normalize, 2 ),
 				);
 			}
 
@@ -155,7 +155,7 @@ ORDER BY i.entity, i.name";
 				$results[ $type ][ $method ] = array(
 					'items'  => $row->items,
 					'votes'  => $row->votes,
-					'rating' => round( $row->rating / $normalize, 2 )
+					'rating' => round( $row->rating / $normalize, 2 ),
 				);
 			}
 		}
@@ -183,7 +183,7 @@ ORDER BY i.entity";
 			foreach ( $data as $row ) {
 				$results[ $row->entity ][ $method ] = array(
 					'items'  => $row->items,
-					'rating' => $row->rating
+					'rating' => $row->rating,
 				);
 			}
 
@@ -206,7 +206,7 @@ ORDER BY i.entity, i.name";
 
 				$results[ $type ][ $method ] = array(
 					'items'  => $row->items,
-					'rating' => $row->rating
+					'rating' => $row->rating,
 				);
 			}
 		}

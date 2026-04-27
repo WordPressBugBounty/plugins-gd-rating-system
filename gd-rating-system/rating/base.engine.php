@@ -46,7 +46,7 @@ abstract class gdrts_base_engine {
 		return is_null( $arg )
 			? $this->_args
 			:
-			( isset( $this->_args[ $arg ] ) ? $this->_args[ $arg ] : $value );
+			( $this->_args[ $arg ] ?? $value );
 	}
 
 	public function method() {

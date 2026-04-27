@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div id="gdrts-remotecall-intro">
@@ -8,7 +8,7 @@
     <div class="d4p-group d4p-group-import d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'This tool can import rating data from Yet Another Stars Rating plugin. There are some important things you need to know about import process.', 'gd-rating-system' ); ?>
+            <?php _e( 'This tool can import rating data from Yet Another Stars Rating plugin. There are some important things you need to know about import process.', 'gd-rating-system' ); ?>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'This tool can transfer posts ratings and number of votes, author reviews along with votes log data.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'Imported data will be marked with special import flag and will be skipped later if you decide to use this tool again.', 'gd-rating-system' ); ?></li>
@@ -21,33 +21,33 @@
         </div>
     </div>
 
-	<?php
+    <?php
 
-	require_once( GDRTS_PATH . 'core/transfer/yet-another-stars-rating.php' );
+    require_once( GDRTS_PATH . 'core/transfer/yet-another-stars-rating.php' );
 
-	$transfer = new gdrts_transfer_yet_another_stars_rating();
+    $transfer = new gdrts_transfer_yet_another_stars_rating();
 
-	if ( ! $transfer->db_tables_exist() ) {
+    if ( ! $transfer->db_tables_exist() ) {
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import d4p-group-important">
             <h3><?php _e( 'Transfer not possible', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php _e( 'Required database tables not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
+                <?php _e( 'Required database tables not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
             </div>
         </div>
 
-		<?php
+        <?php
 
-	} else {
+    } else {
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import">
             <h3><?php _e( 'Import: Stars Rating', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
+                <?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
                     <table class="form-table">
                         <tbody>
                         <tr valign="top">
@@ -62,16 +62,16 @@
                         </tr>
                         </tbody>
                     </table>
-				<?php } else { ?>
+                <?php } else { ?>
                     <p style="text-align: left"><?php _e( 'Rating method is not active.', 'gd-rating-system' ); ?></p>
-				<?php } ?>
+                <?php } ?>
             </div>
         </div>
 
-	<?php } ?>
+    <?php } ?>
 </div>
 
 <div id="gdrts-remotecall-process" style="display: none;">
-	<?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
+    <?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
 </div>
 

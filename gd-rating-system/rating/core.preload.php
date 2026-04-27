@@ -82,8 +82,8 @@ class gdrts_rating_preload {
 							'name'    => $obj->name,
 							'id'      => intval( $obj->id ),
 							'latest'  => intval( mysql2date( 'G', $obj->latest ) ),
-							'meta'    => isset( $metas[ $item_id ] ) ? $metas[ $item_id ] : array(),
-							'ratings' => isset( $ratings[ $item_id ] ) ? $ratings[ $item_id ] : array()
+							'meta'    => $metas[ $item_id ] ?? array(),
+							'ratings' => $ratings[ $item_id ] ?? array(),
 						);
 
 						gdrts_rating_item::cache_and_get_instance( $item_id, $data, false );
@@ -122,8 +122,8 @@ class gdrts_rating_preload {
 					'name'    => $obj->name,
 					'id'      => intval( $obj->id ),
 					'latest'  => intval( mysql2date( 'G', $obj->latest ) ),
-					'meta'    => isset( $metas[ $item_id ] ) ? $metas[ $item_id ] : array(),
-					'ratings' => isset( $ratings[ $item_id ] ) ? $ratings[ $item_id ] : array()
+					'meta'    => $metas[ $item_id ] ?? array(),
+					'ratings' => $ratings[ $item_id ] ?? array(),
 				);
 
 				gdrts_rating_item::cache_and_get_instance( $item_id, $data, false );

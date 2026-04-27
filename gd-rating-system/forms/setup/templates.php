@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
     <h3><?php _e( 'Rating templates', 'gd-rating-system' ); ?></h3>

@@ -1,11 +1,11 @@
 === GD Rating System ===
 Contributors: GDragoN
 Donate link: https://plugins.dev4press.com/gd-rating-system/
-Version: 3.6.2
+Version: 3.7
 Tags: dev4press, stars, rating, like, vote
 Requires at least: 5.5
 Requires PHP: 7.4
-Tested up to: 6.7
+Tested up to: 7.0
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -13,12 +13,12 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Powerful, highly customizable and versatile ratings plugin to allow your users to vote for anything you want.
 
 == Description ==
-GD Rating System is the successor to GD Star Rating plugin, but it has nothing in common with the old plugin. GD Rating System uses modular structure with most features split into addons and rating methods. For front end display plugin uses templates similar to WordPress theme templates and allows you to override existing templates or add new ones.
+GD Rating System is the successor to GD Star Rating plugin, but it has nothing in common with the old plugin. GD Rating System uses a modular structure with most features split into addons and rating methods. For front end display plugin uses templates similar to WordPress theme templates and allows you to override existing templates or add new ones.
 
 = Overview of plugin features =
 With GD Rating System you can rate anything. The Plugin supports several basic rating entities, and for each one you can have more than one rating type. This includes posts with all default and custom post types, comments, users, terms for default or custom taxonomies.
 
-Here is the list of most important plugin features:
+Here is the list of the most important plugin features:
 
 * Rating Method: Stars Rating
 * Rating Method: Like This (3.0)
@@ -38,9 +38,9 @@ Here is the list of most important plugin features:
 * Posts Addon: Auto sort by rating (v3.0)
 * Comments Addon: Sort by rating (v1.2)
 * Stars Rating: 20 icons in a font
-* Stars Rating: 6 image based sets
+* Stars Rating: 6 image-based sets
 * Like This Rating: 2 font icons sets in a font
-* Like This Rating: 1 image based set
+* Like This Rating: 1 image-based set
 * Administration: Rating objects log
 * Administration: Votes log
 * Administration: Custom rating rules
@@ -49,60 +49,6 @@ Here is the list of most important plugin features:
 * Data Transfer: Import from WP PostRatings
 * Data Transfer: Import from Yet Another Stars Rating
 * Data Transfer: Import from KK Star Ratings (v1.3)
-
-= Upgrade to GD Rating System Pro =
-The Pro version contains many more great features:
-
-* Rating Method: Slider Rating (v3.0)
-* Rating Method: Slider Review (v3.0)
-* Rating Method: Emote This (v1.4)
-* Rating Method: Stars Review
-* Rating Method: Thumbs Rating
-* Addon: Sync To Meta (v3.1)
-* Addon: Instant Notifications (v3.0)
-* Addon: BuddyPress Integration (v2.0)
-* Addon: BuddyPress Notifications (v3.5)
-* Addon: BuddyPress Activities (v3.5)
-* Addon: Tooltip (v2.0)
-* Addon: Client Detection (v1.3)
-* Addon: bbPress Integration (v1.1)
-* Addon: Bayesian Calculation (v1.1)
-* Addon: WP REST API Plugin Support
-* Addon: Dummy Ratings
-* Addon: Edit Rating Votes
-* Addon: GEO Location for Votes
-* Addon: Admin Enhancer
-* Published date can be used in queries (v3.0)
-* Date based period queries (v2.2)
-* Date based voting limiters (v4.0)
-* Aggregate ratings (v2.2)
-* Posts Addon: Auto sort by rating (v1.2)
-* bbPress Addon: Rating topics views (v1.2)
-* Font Icons: FontAwesome 4.7 support (v1.3)
-* Presentation: Additional Templates
-* Presentation: Additional Widgets
-
-With more features on the roadmap exclusively for Pro version.
-
-* More information about [GD Rating System Pro](https://plugins.dev4press.com/gd-rating-system/)
-* Premium addons for [GD Rating System Pro](https://plugins.dev4press.com/gd-rating-system/addons/)
-* Compare [Free vs. Pro Plugin](https://plugins.dev4press.com/gd-rating-system/articles/lite-vs-pro/)
-
-Premium addons:
-* Multi Rating Addon (4 new rating methods)
-* User Reviews Addon
-* Analytics Addon
-* myCRED Integration Addon
-* myCRED Simple Integration Addon (free with GD Rating System Pro license)
-* Recipe Rich Snippet Addon (free with GD Rating System Pro license)
-* Book Rich Snippet Addon (free with GD Rating System Pro license)
-* Code Builder Addon (free with GD Rating System Pro license)
-* Comments Form Addon (free with GD Rating System Pro license)
-
-Premium graphics packs:
-* Halloween Pack (free with GD Rating System Pro license)
-* Christmas Pack (free with GD Rating System Pro license)
-* Emoji Pack (free with GD Rating System Pro license)
 
 = Documentation and Support =
 You need to register for a free account on [Dev4Press](https://www.dev4press.com/):
@@ -126,34 +72,31 @@ You need to register for a free account on [Dev4Press](https://www.dev4press.com
 
 = Basic Installation =
 * Plugin folder in the WordPress plugins folder must be `gd-rating-system`.
-* Upload `gd-rating-system` folder to the `/wp-content/plugins/` directory.
+* Upload the `gd-rating-system` folder to the `/wp-content/plugins/` directory.
 * Activate the plugin through the 'Plugins' menu in WordPress.
-* Plugin adds top level menu 'Rating System' where you can start using it.
+* Plugin adds the top-level menu 'Rating System' where you can start using it.
 
 == Frequently Asked Questions ==
 = Is the GD Rating System compatible with GD Star Rating? =
-No. GD Rating System is a completely new and different plugin, that has nothing in common with old GD Star Rating plugin. You can transfer data from GD Star Rating to the GD Rating System.
-
-= How can I upgrade to Pro version? =
-You need to buy Pro plugin license from plugin [home page](https://plugins.dev4press.com/gd-rating-system/), and download Pro plugin and replace free plugin with Pro plugin. All data and settings will be used by Pro version, no data will be lost.
+No. GD Rating System is a completely new and different plugin that has nothing in common with the old GD Star Rating plugin. You can transfer data from GD Star Rating to the GD Rating System.
 
 = Can GD Rating System work with cache plugins? =
-Yes. Plugin includes Dynamic Load addon that will load rating blocks through AJAX. This addon is disabled by default, and if you use cache plugins, just enable this addon from plugin Settings -> Extensions panel.
+Yes. Plugin includes Dynamic Load addon that will load rating blocks through AJAX. This addon is disabled by default, and if you use cache plugins, just enable this addon from a plugin Settings -> Extensions panel.
 
 = How can I setup the rich snippets for the search engines to find and use? =
 Make sure to read this tutorial: [Setup rich snippets for rating items](https://support.dev4press.com/kb/article/setup-rich-snippets-for-rating-items/) and the linked user guide about rich snippets.
 
 = Can I use shortcodes to add ratings to posts? =
-Yes. There are several shortcodes available, and you can use Shortcodes Builder (plugin menu, panel Shortcodes) to generate every supported shortcode.
+Yes. There are several shortcodes available, and you can use Shortcode Builder (plugin menu, panel Shortcodes) to generate every supported shortcode.
 
 = Can I import data from other rating plugins? =
 Yes. GD Rating System supports the import of rating data from: GD Star Rating, WP PostRatings, Yet Another Stars Rating, KK Star Ratings. PRO version of GD Rating System can import thumbs and review ratings too.
 
-= Does plugin work with WordPress MultiSite installations? =
-Yes. Each website in the network can activate and use plugin on its on.
+= Does the plugin work with WordPress Multisite installations? =
+Yes. Each website in the network can activate and use a plugin on its on.
 
-= Can I translate plugin to my language? =
-Yes. POT file is provided as a base for translation. Translation files should go into Languages directory. You can join WordPress Translation project and translate online: [GD Rating System Translations](https://translate.wordpress.org/projects/wp-plugins/gd-rating-system/).
+= Can I translate this plugin to my language? =
+Yes. POT file is provided as a base for translation. Translation files should go into the Languages directory. You can join the WordPress Translation project and translate online: [GD Rating System Translations](https://translate.wordpress.org/projects/wp-plugins/gd-rating-system/).
 
 Find more FAQ here: [Frequently Asked Questions](https://support.dev4press.com/kb/product/gd-rating-system/faqs/).
 
@@ -161,6 +104,9 @@ Find more FAQ here: [Frequently Asked Questions](https://support.dev4press.com/k
 * English
 
 == Upgrade Notice ==
+= 3.7 =
+Various improvements and fixes.
+
 = 3.6 =
 Various improvements and fixes.
 
@@ -168,6 +114,18 @@ Various improvements and fixes.
 Various improvements and fixes.
 
 == Changelog ==
+= 3.7 - 2026.04.27
+* New: tested and compatible with WordPress up to 7.0
+* New: tested and compatible with PHP 8.5
+* Edit: improvements to the SQL query building and validation
+* Edit: improvements to the input data processing and sanitization
+* Edit: various changes to the PHP code style and structure
+* Edit: d4pLib 2.8.20
+* Fix: security issue related to the stored script vulnerability
+* Fix: security issue related to improper sanitization of input data
+* Fix: loading order causing issue with translations
+* Fix: small issue with the About page layout
+
 = 3.6.2 - 2024.11.15
 * Edit: proper sanitization of the HTML classes
 * Edit: d4pLib 2.8.19

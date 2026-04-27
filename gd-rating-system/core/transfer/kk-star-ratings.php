@@ -47,14 +47,14 @@ class gdrts_transfer_kk_star_ratings {
 					$args = array(
 						'entity' => 'posts',
 						'name'   => $post_type,
-						'id'     => $post
+						'id'     => $post,
 					);
 
 					$item = gdrts_get_rating_item( $args );
 					$item->prepare_save();
 					$item->prepare( 'stars-rating' );
 
-					if ( $item->get_meta( 'kksr-import', false ) === false ) {
+					if ( $item->get_meta( 'kksr-import' ) === false ) {
 						$factor = gdrtsm_stars_rating()->get_rule( 'stars' ) / $max;
 
 						$votes = intval( $item->get( 'stars-rating_votes', 0 ) );

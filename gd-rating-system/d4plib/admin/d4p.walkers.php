@@ -2,7 +2,7 @@
 
 /*
 Name:    d4pLib_Admin_Walkers
-Version: v2.8.19
+Version: v2.8.20
 Author:  Milan Petrovic
 Email:   support@dev4press.com
 Website: https://www.dev4press.com/
@@ -63,7 +63,7 @@ if (!class_exists('d4pCheckboxRadioWalker')) {
 
             $output.= $indent.sprintf(
                 '<li class="%s"><label><input type="%s" value="%s" name="%s%s"%s class="widefat" />%s</label>',
-                esc_attr(sanitize_html_class($css_classes)),
+                esc_attr(d4p_sanitize_html_classes($css_classes)),
                 esc_attr($args['input']),
                 esc_attr($page->id),
                 esc_attr($args['name']),

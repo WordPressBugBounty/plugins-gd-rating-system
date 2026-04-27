@@ -28,7 +28,7 @@ abstract class gdrts_extension_admin {
 		if ( $this->has_help ) {
 			add_action( 'gdrts_load_admin_page_settings_addon_' . str_replace( '-', '_', $this->prefix ), array(
 				$this,
-				'help'
+				'help',
 			) );
 		}
 	}
@@ -243,7 +243,7 @@ abstract class gdrts_extension {
 			}
 		}
 
-		return isset( $this->settings[ $name ] ) ? $this->settings[ $name ] : null;
+		return $this->settings[ $name ] ?? null;
 	}
 
 	public function key( $name, $prekey = '' ) {
@@ -365,9 +365,9 @@ abstract class gdrts_method extends gdrts_extension {
 
 	public function calc( $name, $key = null, $default = false ) {
 		if ( is_null( $key ) ) {
-			return isset( $this->_calc[ $name ] ) ? $this->_calc[ $name ] : $default;
+			return $this->_calc[ $name ] ?? $default;
 		} else {
-			return isset( $this->_calc[ $name ][ $key ] ) ? $this->_calc[ $name ][ $key ] : $default;
+			return $this->_calc[ $name ][ $key ] ?? $default;
 		}
 	}
 
@@ -390,19 +390,19 @@ abstract class gdrts_method extends gdrts_extension {
 	}
 
 	public function templates_list( $entity, $name ) {
-		$template = isset( $this->_args['template'] ) ? $this->_args['template'] : 'widget';
+		$template = $this->_args['template'] ?? 'widget';
 
 		$base = 'gdrts--' . $this->prefix . '--list--' . $template;
 
 		return array(
 			$base . '--' . $entity . '-' . $name . '.php',
 			$base . '--' . $entity . '.php',
-			$base . '.php'
+			$base . '.php',
 		);
 	}
 
 	public function templates_single( $item ) {
-		$template = isset( $this->_args['template'] ) ? $this->_args['template'] : 'default';
+		$template = $this->_args['template'] ?? 'default';
 
 		$base = 'gdrts--' . $this->prefix . '--single--' . $template;
 
@@ -410,7 +410,7 @@ abstract class gdrts_method extends gdrts_extension {
 			$base . '--' . $item->entity . '-' . $item->name . '-' . $item->id . '.php',
 			$base . '--' . $item->entity . '-' . $item->name . '.php',
 			$base . '--' . $item->entity . '.php',
-			$base . '.php'
+			$base . '.php',
 		);
 	}
 
@@ -468,7 +468,7 @@ abstract class gdrts_method extends gdrts_extension {
 		$_default_open = array(
 			'status'    => false,
 			'message'   => __( 'Currently, you can\'t vote.', 'gd-rating-system' ),
-			'remaining' => 0
+			'remaining' => 0,
 		);
 
 		$open = apply_filters( 'gdrts_vote_limit_open_' . $_calc_vote, $_default_open, $this->user(), $_calc_vote_limit );
@@ -657,7 +657,7 @@ abstract class gdrts_method_render_single {
 				'gdrts-block-' . $this->owner()->method() . '-item-' . gdrts_single()->item()->item_id,
 				$this->owner()->calc( 'allowed' ) ? 'gdrts-rating-allowed' : 'gdrts-rating-forbidden',
 				$this->owner()->calc( 'open' ) ? 'gdrts-rating-open' : 'gdrts-rating-closed',
-				$this->owner()->args( 'style_class' )
+				$this->owner()->args( 'style_class' ),
 			),
 			gdrts_single()->item()->rating_classes()
 		);
@@ -700,7 +700,7 @@ abstract class gdrts_method_render_list {
 	protected function get_classes( $extra = '' ) {
 		$classes = array(
 			'gdrts-rating-list',
-			'gdrts-method-' . $this->owner()->method()
+			'gdrts-method-' . $this->owner()->method(),
 		);
 
 		if ( ! empty( $extra ) ) {

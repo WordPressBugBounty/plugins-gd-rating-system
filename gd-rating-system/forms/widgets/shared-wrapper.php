@@ -1,27 +1,27 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 global $wp_roles;
 $list = array(
-	array(
-		'title'  => __( 'Global', 'gd-rating-system' ),
-		'values' => array(
-			'all'     => __( 'Everyone', 'gd-rating-system' ),
-			'visitor' => __( 'Only Visitors', 'gd-rating-system' ),
-			'user'    => __( 'All Users', 'gd-rating-system' )
-		)
-	),
-	array(
-		'title'  => __( 'User Roles', 'gd-rating-system' ),
-		'values' => array()
-	)
+        array(
+                'title'  => __( 'Global', 'gd-rating-system' ),
+                'values' => array(
+                        'all'     => __( 'Everyone', 'gd-rating-system' ),
+                        'visitor' => __( 'Only Visitors', 'gd-rating-system' ),
+                        'user'    => __( 'All Users', 'gd-rating-system' ),
+                ),
+        ),
+        array(
+                'title'  => __( 'User Roles', 'gd-rating-system' ),
+                'values' => array(),
+        ),
 );
 
 foreach ( $wp_roles->role_names as $role => $title ) {
-	$list[1]['values'][ 'role:' . $role ] = $title;
+    $list[1]['values'][ 'role:' . $role ] = $title;
 }
 
 ?>
@@ -32,12 +32,12 @@ foreach ( $wp_roles->role_names as $role => $title ) {
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( '_display' ); ?>"><?php _e( 'Display To', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_grouped_select( $list, array(
-				'id'       => $this->get_field_id( '_display' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( '_display' ),
-				'selected' => $instance['_display']
-			) ); ?>
+            <?php d4p_render_grouped_select( $list, array(
+                    'id'       => $this->get_field_id( '_display' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( '_display' ),
+                    'selected' => $instance['_display'],
+            ) ); ?>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( '_hook' ); ?>"><?php _e( 'Visibility Hook', 'gd-rating-system' ); ?>:</label>

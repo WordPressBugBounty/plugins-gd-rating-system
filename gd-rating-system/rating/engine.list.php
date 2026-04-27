@@ -98,7 +98,7 @@ class gdrts_engine_list extends gdrts_base_engine {
 		$this->items = gdrts_query()->run( $this->_args );
 		$this->_sql  = gdrts_query()->sql;
 
-		$this->items_count  = ! is_null( $this->items ) && is_array( $this->items ) ? count( $this->items ) : 0;
+		$this->items_count  = is_array( $this->items ) ? count( $this->items ) : 0;
 		$this->current_item = - 1;
 		$this->in_the_loop  = false;
 
@@ -133,7 +133,7 @@ class gdrts_engine_list extends gdrts_base_engine {
 			'entity' => null,
 			'name'   => null,
 			'method' => 'stars-rating',
-			'series' => null
+			'series' => null,
 		) );
 
 		$this->_args = wp_parse_args( $args, $defaults );
@@ -196,7 +196,7 @@ class gdrts_engine_list extends gdrts_base_engine {
 
 			if ( in_array( 'rule', $variant ) ) {
 				$this->_filter = array(
-					'terms' => gdrts()->page()->terms_hierarchy_ids()
+					'terms' => gdrts()->page()->terms_hierarchy_ids(),
 				);
 			}
 		}

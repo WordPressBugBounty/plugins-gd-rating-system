@@ -1,14 +1,14 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-reset d4p-group-important">
     <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
     <div class="d4p-group-inner">
-		<?php _e( 'This tool removes or changes rich snippets related data in the database tables added by the plugin.', 'gd-rating-system' ); ?>
-		<?php _e( 'Tools on this panel target individual rating items settings, the settings you can control via rich snippets metabox.', 'gd-rating-system' ); ?>
+        <?php _e( 'This tool removes or changes rich snippets related data in the database tables added by the plugin.', 'gd-rating-system' ); ?>
+        <?php _e( 'Tools on this panel target individual rating items settings, the settings you can control via rich snippets metabox.', 'gd-rating-system' ); ?>
         <br/><br/>
-		<?php _e( 'Deletion operations are not reversible, and it is highly recommended to create database backup before proceeding with this tool.', 'gd-rating-system' ); ?>
+        <?php _e( 'Deletion operations are not reversible, and it is highly recommended to create database backup before proceeding with this tool.', 'gd-rating-system' ); ?>
     </div>
 </div>
 
@@ -36,11 +36,11 @@
         </label>
         <hr/>
         <p style="font-weight: bold; margin-bottom: 1em;"><?php _e( 'Select which post types posts will be affected by the selected actions.', 'gd-rating-system' ); ?></p>
-		<?php foreach ( gdrts()->get_entity_types( 'posts' ) as $name => $label ) { ?>
+        <?php foreach ( gdrts()->get_entity_types( 'posts' ) as $name => $label ) { ?>
             <label>
                 <input type="checkbox" class="widefat" name="gdrtstools[snippets][bulk][cpt][<?php echo $name; ?>]" value="on"/> <?php echo $label; ?>
             </label>
-		<?php } ?>
+        <?php } ?>
     </div>
 </div>
 

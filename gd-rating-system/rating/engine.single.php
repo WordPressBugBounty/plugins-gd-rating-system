@@ -103,7 +103,7 @@ class gdrts_engine_single extends gdrts_base_engine {
 			'id'                   => null,
 			'method'               => 'stars-rating',
 			'series'               => null,
-			'disable_dynamic_load' => false
+			'disable_dynamic_load' => false,
 		) );
 
 		if ( isset( $method['disable_rating'] ) && $method['disable_rating'] === true ) {
@@ -162,8 +162,8 @@ class gdrts_engine_single extends gdrts_base_engine {
 			'item'   => $this->_item->item_data(),
 			'render' => array(
 				'args'   => $this->_args,
-				'method' => array()
-			)
+				'method' => array(),
+			),
 		), $this->_args['method'] );
 
 		echo '<script class="gdrts-rating-data" type="application/json">';

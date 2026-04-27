@@ -14,7 +14,7 @@ class gdrts_admin_shared {
 			'disabled' => __( 'Disabled', 'gd-rating-system' ),
 			'latest'   => __( 'Latest Range', 'gd-rating-system' ),
 			'range'    => __( 'Custom Range', 'gd-rating-system' ),
-			'exact'    => __( 'Exact Match', 'gd-rating-system' )
+			'exact'    => __( 'Exact Match', 'gd-rating-system' ),
 		);
 	}
 
@@ -94,17 +94,17 @@ class gdrts_admin_shared {
 		switch ( $method ) {
 			default:
 				$list = array(
-					'rating' => __( 'Rating', 'gd-rating-system' )
+					'rating' => __( 'Rating', 'gd-rating-system' ),
 				);
 				break;
 			case 'stars-rating':
 				$list = array(
-					'average' => __( 'Average', 'gd-rating-system' )
+					'average' => __( 'Average', 'gd-rating-system' ),
 				);
 				break;
 			case 'like-this':
 				$list = array(
-					'sum' => __( 'Sum', 'gd-rating-system' )
+					'sum' => __( 'Sum', 'gd-rating-system' ),
 				);
 				break;
 		}
@@ -124,7 +124,7 @@ class gdrts_admin_shared {
 				'votes'   => __( 'Votes', 'gd-rating-system' ),
 				'item_id' => __( 'Item ID', 'gd-rating-system' ),
 				'id'      => __( 'Object ID', 'gd-rating-system' ),
-				'latest'  => __( 'Latest Vote', 'gd-rating-system' )
+				'latest'  => __( 'Latest Vote', 'gd-rating-system' ),
 			);
 
 		switch ( $method ) {
@@ -140,7 +140,7 @@ class gdrts_admin_shared {
 	public static function data_list_order() : array {
 		return array(
 			'DESC' => __( 'Descending', 'gd-rating-system' ),
-			'ASC'  => __( 'Ascending', 'gd-rating-system' )
+			'ASC'  => __( 'Ascending', 'gd-rating-system' ),
 		);
 	}
 
@@ -185,7 +185,7 @@ class gdrts_admin_shared {
 	public static function data_list_distributions() : array {
 		return array(
 			'normalized' => __( 'Normalized', 'gd-rating-system' ),
-			'exact'      => __( 'Exact', 'gd-rating-system' )
+			'exact'      => __( 'Exact', 'gd-rating-system' ),
 		);
 	}
 
@@ -195,7 +195,7 @@ class gdrts_admin_shared {
 			50  => __( '50% - Half Star', 'gd-rating-system' ),
 			25  => __( '25% - One Quarter Star', 'gd-rating-system' ),
 			20  => __( '20% - One Fifth Star', 'gd-rating-system' ),
-			10  => __( '10% - One Tenth Star', 'gd-rating-system' )
+			10  => __( '10% - One Tenth Star', 'gd-rating-system' ),
 		);
 	}
 
@@ -203,7 +203,7 @@ class gdrts_admin_shared {
 		$default_rules = array(
 			'single' => __( 'Basic', 'gd-rating-system' ) . ': ' . __( 'Single vote only', 'gd-rating-system' ),
 			'revote' => __( 'Basic', 'gd-rating-system' ) . ': ' . __( 'Single vote with revote', 'gd-rating-system' ),
-			'multi'  => __( 'Basic', 'gd-rating-system' ) . ': ' . __( 'Multiple votes', 'gd-rating-system' )
+			'multi'  => __( 'Basic', 'gd-rating-system' ) . ': ' . __( 'Multiple votes', 'gd-rating-system' ),
 		);
 
 		$custom_rules = apply_filters( 'gdrts_custom_vote_rules', array() );
@@ -220,7 +220,7 @@ class gdrts_admin_shared {
 			'none'   => __( 'No alignment', 'gd-rating-system' ),
 			'left'   => __( 'Left', 'gd-rating-system' ),
 			'center' => __( 'Center', 'gd-rating-system' ),
-			'right'  => __( 'Right', 'gd-rating-system' )
+			'right'  => __( 'Right', 'gd-rating-system' ),
 		);
 	}
 }

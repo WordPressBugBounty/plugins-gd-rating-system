@@ -16,7 +16,7 @@ class gdrtsWidget_stars_rating_block extends gdrts_widget_single_core {
 		'style_size'         => 30,
 		'font_color_empty'   => '',
 		'font_color_current' => '',
-		'font_color_active'  => ''
+		'font_color_active'  => '',
 	);
 
 	public function __construct( $id_base = false, $name = "", $widget_options = array(), $control_options = array() ) {
@@ -33,20 +33,20 @@ class gdrtsWidget_stars_rating_block extends gdrts_widget_single_core {
 			$_tabs = array(
 				'global'  => array(
 					'name'    => __( 'Global', 'gd-rating-system' ),
-					'include' => array( 'shared-global', 'shared-display' )
+					'include' => array( 'shared-global', 'shared-display' ),
 				),
 				'content' => array(
 					'name'    => __( 'Content', 'gd-rating-system' ),
-					'include' => array( 'shared-content', 'stars-rating-rating' )
+					'include' => array( 'shared-content', 'stars-rating-rating' ),
 				),
 				'display' => array(
 					'name'    => __( 'Display', 'gd-rating-system' ),
-					'include' => array( 'stars-rating-display' )
+					'include' => array( 'stars-rating-display' ),
 				),
 				'extra'   => array(
 					'name'    => __( 'Extra', 'gd-rating-system' ),
-					'include' => array( 'shared-wrapper' )
-				)
+					'include' => array( 'shared-wrapper' ),
+				),
 			);
 
 			include( GDRTS_PATH . 'forms/widgets/shared-loader.php' );
@@ -90,7 +90,7 @@ class gdrtsWidget_stars_rating_block extends gdrts_widget_single_core {
 				'font_color_empty',
 				'font_color_current',
 				'font_color_active',
-				'style_class'
+				'style_class',
 			), 'stars_rating_block', 'stars-rating' );
 
 			foreach ( $keys as $key ) {

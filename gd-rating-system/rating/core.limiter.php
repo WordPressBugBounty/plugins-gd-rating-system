@@ -40,7 +40,7 @@ class gdrts_core_limiter {
 
 				return call_user_func( array(
 					$this,
-					$call
+					$call,
 				), $parts[0], $arguments[0], $arguments[1], $arguments[2], $arguments[3], $arguments[4], $arguments[5] );
 			}
 		} else if ( substr( $name, 0, 5 ) == 'open_' ) {
@@ -62,11 +62,11 @@ class gdrts_core_limiter {
 		$scope   = $limiter;
 
 		if ( $process ) {
-			$vote = is_null( $vote ) ? array(
+			$vote = $vote ?? array(
 				'multi'  => __( 'Your previous vote was <strong>%s</strong>, %s ago.', 'gd-rating-system' ),
 				'revote' => __( 'You voted <strong>%s</strong>, %s ago.', 'gd-rating-system' ),
-				'single' => __( 'You have voted <strong>%s</strong>, %s ago.', 'gd-rating-system' )
-			) : $vote;
+				'single' => __( 'You have voted <strong>%s</strong>, %s ago.', 'gd-rating-system' ),
+			);
 
 			$tpls['vote'] = $vote[ $scope ];
 
@@ -214,7 +214,7 @@ class gdrts_core_limiter {
 		return array(
 			'status'    => $open,
 			'message'   => ! $open ? __( 'You have reached the limit of allowed number of votes.', 'gd-rating-system' ) : '',
-			'remaining' => $limit - $stats['vote']['items']
+			'remaining' => $limit - $stats['vote']['items'],
 		);
 	}
 
@@ -231,7 +231,7 @@ class gdrts_core_limiter {
 		return array(
 			'status'    => $open,
 			'message'   => ! $open ? __( 'You have reached the limit of allowed vote changes.', 'gd-rating-system' ) : '',
-			'remaining' => $limit - $stats['revote']['items']
+			'remaining' => $limit - $stats['revote']['items'],
 		);
 	}
 
@@ -248,7 +248,7 @@ class gdrts_core_limiter {
 		return array(
 			'status'    => $open,
 			'message'   => ! $open ? __( 'You have already voted.', 'gd-rating-system' ) : '',
-			'remaining' => 0
+			'remaining' => 0,
 		);
 	}
 

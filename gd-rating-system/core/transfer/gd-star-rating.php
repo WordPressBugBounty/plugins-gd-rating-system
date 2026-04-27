@@ -20,7 +20,7 @@ class gdrts_transfer_gd_star_rating {
 		$tables = array(
 			gdrts_db()->wpdb()->prefix . 'gdsr_data_article',
 			gdrts_db()->wpdb()->prefix . 'gdsr_data_comment',
-			gdrts_db()->wpdb()->prefix . 'gdsr_votes_log'
+			gdrts_db()->wpdb()->prefix . 'gdsr_votes_log',
 		);
 
 		$ok = true;
@@ -83,7 +83,7 @@ class gdrts_transfer_gd_star_rating {
 				$args = array(
 					'entity' => 'comments',
 					'name'   => 'comment',
-					'id'     => $rating->comment_id
+					'id'     => $rating->comment_id,
 				);
 
 				$item = gdrts_get_rating_item( $args );
@@ -130,7 +130,7 @@ class gdrts_transfer_gd_star_rating {
 					$args = array(
 						'entity' => 'posts',
 						'name'   => $post_type,
-						'id'     => $rating->post_id
+						'id'     => $rating->post_id,
 					);
 
 					$item = gdrts_get_rating_item( $args );
@@ -178,14 +178,14 @@ class gdrts_transfer_gd_star_rating {
 				$args = array();
 
 				if ( $rating->vote_type == 'article' ) {
-					$post_type = isset( $this->post_types[ $rating->id ] ) ? $this->post_types[ $rating->id ] : 'post';
+					$post_type = $this->post_types[ $rating->id ] ?? 'post';
 
 					gdrtsm_stars_rating()->init_rule_settings( 'posts', $post_type );
 
 					$args = array(
 						'entity' => 'posts',
 						'name'   => $post_type,
-						'id'     => $rating->id
+						'id'     => $rating->id,
 					);
 				} else {
 					gdrtsm_stars_rating()->init_rule_settings( 'comments', 'comment' );
@@ -193,7 +193,7 @@ class gdrts_transfer_gd_star_rating {
 					$args = array(
 						'entity' => 'comments',
 						'name'   => 'comment',
-						'id'     => $rating->id
+						'id'     => $rating->id,
 					);
 				}
 
@@ -206,11 +206,11 @@ class gdrts_transfer_gd_star_rating {
 					'ip'     => $rating->ip,
 					'logged' => $rating->voted,
 					'vote'   => $rating->vote * $factor,
-					'max'    => gdrtsm_stars_rating()->get_rule( 'stars' )
+					'max'    => gdrtsm_stars_rating()->get_rule( 'stars' ),
 				);
 
 				$meta = array(
-					'gdsr-rating-import' => $rating->record_id
+					'gdsr-rating-import' => $rating->record_id,
 				);
 
 				if ( $rating->comment_id > 0 ) {
@@ -235,7 +235,7 @@ class gdrts_transfer_gd_star_rating {
 		}
 
 		if ( ! empty( $_list ) ) {
-			$sql = "SELECT ID, post_type FROM " . gdrts_db()->wpdb()->posts . " WHERE ID IN (" . join( ',', $_list ) . ");";
+			$sql = "SELECT ID, post_type FROM " . gdrts_db()->wpdb()->posts . " WHERE ID IN (" . join( ',', array_map( 'absint', $_list ) ) . ");";
 			$raw = gdrts_db()->run( $sql );
 
 			foreach ( $raw as $r ) {

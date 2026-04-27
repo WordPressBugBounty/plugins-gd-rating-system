@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class gdrts_admin_grids {
 	public $options = array(
 		'gdrts_rows_ratings_per_page',
-		'gdrts_rows_votes_per_page'
+		'gdrts_rows_votes_per_page',
 	);
 
 	public function __construct() {
@@ -37,14 +37,14 @@ class gdrts_admin_grids {
 			if ( $_GET['page'] === 'gd-rating-system-ratings' ) {
 				add_action( 'load-rating-system_page_gd-rating-system-ratings', array(
 					$this,
-					'screen_options_grid_rows_ratings'
+					'screen_options_grid_rows_ratings',
 				) );
 			}
 
 			if ( $_GET['page'] === 'gd-rating-system-log' ) {
 				add_action( 'load-rating-system_page_gd-rating-system-log', array(
 					$this,
-					'screen_options_grid_rows_votes'
+					'screen_options_grid_rows_votes',
 				) );
 			}
 		}
@@ -54,7 +54,7 @@ class gdrts_admin_grids {
 		$args = array(
 			'label'   => __( 'Rows', 'gd-rating-system' ),
 			'default' => 25,
-			'option'  => 'gdrts_rows_ratings_per_page'
+			'option'  => 'gdrts_rows_ratings_per_page',
 		);
 
 		add_screen_option( 'per_page', $args );
@@ -68,7 +68,7 @@ class gdrts_admin_grids {
 		$args = array(
 			'label'   => __( 'Rows', 'gd-rating-system' ),
 			'default' => 25,
-			'option'  => 'gdrts_rows_votes_per_page'
+			'option'  => 'gdrts_rows_votes_per_page',
 		);
 
 		add_screen_option( 'per_page', $args );

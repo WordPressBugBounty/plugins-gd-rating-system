@@ -1,11 +1,11 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div class="d4p-group d4p-group-import d4p-group-important">
     <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
     <div class="d4p-group-inner">
-		<?php _e( 'Data transfer is in progress.', 'gd-rating-system' ); ?>
+        <?php _e( 'Data transfer is in progress.', 'gd-rating-system' ); ?>
         <ul style="list-style: inside disc; font-weight: normal;">
             <li><?php _e( 'Do not close this page, it will interupt the transfer process.', 'gd-rating-system' ); ?></li>
             <li><?php _e( 'Number of records found is approximation only, and the actual number of ratings can be much lower then reported. Approximate count is used to speed up the transfer process.', 'gd-rating-system' ); ?></li>

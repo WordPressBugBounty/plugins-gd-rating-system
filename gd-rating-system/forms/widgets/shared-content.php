@@ -1,12 +1,12 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 $list_content = array(
-	'post'   => __( 'Current single post/page', 'gd-rating-system' ),
-	'custom' => __( 'Custom rating item', 'gd-rating-system' ),
+        'post'   => __( 'Current single post/page', 'gd-rating-system' ),
+        'custom' => __( 'Custom rating item', 'gd-rating-system' ),
 );
 
 ?>
@@ -16,17 +16,17 @@ $list_content = array(
     <tr>
         <td class="cell-singular">
             <label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e( 'Content for widget', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( $list_content, array(
-				'id'       => $this->get_field_id( 'content' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'content' ),
-				'selected' => $instance['content']
-			) ); ?>
+            <?php d4p_render_select( $list_content, array(
+                    'id'       => $this->get_field_id( 'content' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'content' ),
+                    'selected' => $instance['content'],
+            ) ); ?>
             <em class="solo-content"><?php
 
-				_e( 'If current post/page is set, widget will be vivisble only on singular posts. If set to custom, use options below to set the rating object.', 'gd-rating-system' );
+                _e( 'If current post/page is set, widget will be vivisble only on singular posts. If set to custom, use options below to set the rating object.', 'gd-rating-system' );
 
-				?></em>
+                ?></em>
         </td>
     </tr>
     </tbody>
@@ -38,12 +38,12 @@ $list_content = array(
     <tr>
         <td class="cell-left">
             <label for="<?php echo $this->get_field_id( 'type' ); ?>"><?php _e( 'Type', 'gd-rating-system' ); ?>:</label>
-			<?php d4p_render_select( gdrts_admin_shared::data_list_entity_name_types(), array(
-				'id'       => $this->get_field_id( 'type' ),
-				'class'    => 'widefat',
-				'name'     => $this->get_field_name( 'type' ),
-				'selected' => $instance['type']
-			) ); ?>
+            <?php d4p_render_select( gdrts_admin_shared::data_list_entity_name_types(), array(
+                    'id'       => $this->get_field_id( 'type' ),
+                    'class'    => 'widefat',
+                    'name'     => $this->get_field_name( 'type' ),
+                    'selected' => $instance['type'],
+            ) ); ?>
         </td>
         <td class="cell-right">
             <label for="<?php echo $this->get_field_id( 'id' ); ?>"><?php _e( 'ID', 'gd-rating-system' ); ?>:</label>
@@ -53,9 +53,9 @@ $list_content = array(
     <tr>
         <td colspan="2" class="cell-singular"><em class="solo-content"><?php
 
-				_e( 'If you use this, make sure you enter correct ID for the selected rating type. Plugin will not check if the item is valid.', 'gd-rating-system' );
+                _e( 'If you use this, make sure you enter correct ID for the selected rating type. Plugin will not check if the item is valid.', 'gd-rating-system' );
 
-				?></em></td>
+                ?></em></td>
     </tr>
     </tbody>
 </table>

@@ -1,5 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div id="gdrts-remotecall-intro">
@@ -8,7 +8,7 @@
     <div class="d4p-group d4p-group-import d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'This tool can import rating data from WP PostRatings plugin. There are some important things you need to know about import process.', 'gd-rating-system' ); ?>
+            <?php _e( 'This tool can import rating data from WP PostRatings plugin. There are some important things you need to know about import process.', 'gd-rating-system' ); ?>
             <ul style="list-style: inside disc; font-weight: normal;">
                 <li><?php _e( 'This tool can transfer posts ratings and number of votes along with votes log data.', 'gd-rating-system' ); ?></li>
                 <li><?php _e( 'Imported data will be marked with special import flag and will be skipped later if you decide to use this tool again.', 'gd-rating-system' ); ?></li>
@@ -21,34 +21,34 @@
         </div>
     </div>
 
-	<?php
+    <?php
 
-	require_once( GDRTS_PATH . 'core/transfer/wp-postratings.php' );
+    require_once( GDRTS_PATH . 'core/transfer/wp-postratings.php' );
 
-	$transfer = new gdrts_transfer_wp_postratings();
+    $transfer = new gdrts_transfer_wp_postratings();
 
-	if ( ! $transfer->db_tables_exist() ) {
+    if ( ! $transfer->db_tables_exist() ) {
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import d4p-group-important">
             <h3><?php _e( 'Transfer not possible', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php _e( 'Required database table not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
+                <?php _e( 'Required database table not found. Import process can\'t proceed.', 'gd-rating-system' ); ?>
             </div>
         </div>
 
-		<?php
+        <?php
 
-	} else {
-		$max_rating = intval( get_option( 'postratings_max', 5 ) );
+    } else {
+        $max_rating = intval( get_option( 'postratings_max', 5 ) );
 
-		?>
+        ?>
 
         <div class="d4p-group d4p-group-import">
             <h3><?php _e( 'Import: Stars Rating', 'gd-rating-system' ); ?></h3>
             <div class="d4p-group-inner">
-				<?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
+                <?php if ( gdrts_is_method_loaded( 'stars-rating' ) ) { ?>
                     <table class="form-table">
                         <tbody>
                         <tr valign="top">
@@ -67,8 +67,8 @@
                                 <div class="d4p-setting-number">
                                     <input type="text" class="widefat gdrts-tr-option gdrts-tr-checked-stars-rating" value="<?php echo $max_rating; ?>" name="max">
                                     <em><strong><?php _e( 'Set this to the maximum rating value you used with WP PostRaings plugin for stars rating.', 'gd-rating-system' ); ?></strong>
-										<?php _e( 'When imported, ratings will be recalculated based on this value and currently set number of stars in GD Rating System.', 'gd-rating-system' ); ?>
-										<?php _e( 'If you want to keep same max rating, make sure to adjust the GD Rating System settings for this rating method before the transfer.', 'gd-rating-system' ); ?>
+                                        <?php _e( 'When imported, ratings will be recalculated based on this value and currently set number of stars in GD Rating System.', 'gd-rating-system' ); ?>
+                                        <?php _e( 'If you want to keep same max rating, make sure to adjust the GD Rating System settings for this rating method before the transfer.', 'gd-rating-system' ); ?>
                                     </em>
                                 </div>
                             </td>
@@ -89,15 +89,15 @@
                         </tr>
                         </tbody>
                     </table>
-				<?php } else { ?>
+                <?php } else { ?>
                     <p style="text-align: left"><?php _e( 'Rating method is not active.', 'gd-rating-system' ); ?></p>
-				<?php } ?>
+                <?php } ?>
             </div>
         </div>
 
-	<?php } ?>
+    <?php } ?>
 </div>
 
 <div id="gdrts-remotecall-process" style="display: none;">
-	<?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
+    <?php include( GDRTS_PATH . 'forms/shared/transfer-process.php' ); ?>
 </div>

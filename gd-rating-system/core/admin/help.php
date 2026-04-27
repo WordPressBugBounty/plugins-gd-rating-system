@@ -30,7 +30,7 @@ class gdrts_admin_help {
 				'id'      => 'gdbbx-help-info',
 				'title'   => __( 'Help & Support', 'gd-rating-system' ),
 				'content' => '<h2>' . __( 'Help & Support', 'gd-rating-system' ) . '</h2><p>' . __( 'To get help with this plugin, you can start with Knowledge Base list of frequently asked questions, user guides, articles (tutorials) and reference guide (for developers).', 'gd-rating-system' ) .
-				             '</p><p><a href="https://support.dev4press.com/kb/product/' . gdrts_admin()->plugin . '/" class="button-primary" target="_blank">' . __( 'Knowledge Base', 'gd-rating-system' ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . gdrts_admin()->plugin . '/" class="button-secondary" target="_blank">' . __( 'Support Forum', 'gd-rating-system' ) . '</a></p>'
+				             '</p><p><a href="https://support.dev4press.com/kb/product/' . gdrts_admin()->plugin . '/" class="button-primary" target="_blank">' . __( 'Knowledge Base', 'gd-rating-system' ) . '</a> <a href="https://support.dev4press.com/forums/forum/plugins/' . gdrts_admin()->plugin . '/" class="button-secondary" target="_blank">' . __( 'Support Forum', 'gd-rating-system' ) . '</a></p>',
 			)
 		);
 
@@ -40,7 +40,7 @@ class gdrts_admin_help {
 				'title'   => __( 'Found a bug?', 'gd-rating-system' ),
 				'content' => '<h2>' . __( 'Found a bug?', 'gd-rating-system' ) . '</h2><p>' . __( 'If you find a bug in GD Rating System, you can report it in the support forum.', 'gd-rating-system' ) .
 				             '</p><p>' . __( 'Before reporting a bug, make sure you use latest plugin version, your website and server meet system requirements. And, please be as descriptive as possible, include server side logged errors, or errors from browser debugger.', 'gd-rating-system' ) .
-				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . gdrts_admin()->plugin . '/" class="button-primary" target="_blank">' . __( 'Open new topic', 'gd-rating-system' ) . '</a></p>'
+				             '</p><p><a href="https://support.dev4press.com/forums/forum/plugins/' . gdrts_admin()->plugin . '/" class="button-primary" target="_blank">' . __( 'Open new topic', 'gd-rating-system' ) . '</a></p>',
 			)
 		);
 	}
@@ -59,7 +59,7 @@ class gdrts_admin_help {
 			array(
 				'id'      => 'gdrts-help-types',
 				'title'   => __( 'Rating Types', 'gd-rating-system' ),
-				'content' => $render
+				'content' => $render,
 			)
 		);
 	}
@@ -72,7 +72,7 @@ class gdrts_admin_help {
 		$render .= '<ul>';
 		$render .= '<li>' . __( 'Deleting votes from the log will recalculate object ratings. If you delete one vote, plugin will take previous vote by the user for the object, if available. This way it is undoing the revoting.', 'gd-rating-system' ) . '</li>';
 		$render .= '<li>' . __( 'Each vote that is replacing previous vote (revote) hold reference to vote it replaces. If you break this chain, plugin will not be able to correctly calculate the correct rating. In general, it is not recommend to mess with the votes at all if you want to maintain the correct votes and revotes log.', 'gd-rating-system' ) . '</li>';
-		$render .= '<li>' . __( 'It is not recommended to use \'Remove from Log\' option because it will just remove log entry, it will not recaulcaulte object rating. If you don\'t understand this option, do not use it. This option is disabled by default, and it can be enabled from plugin settings.', 'gd-rating-system' ) . '</li>';
+		$render .= '<li>' . __( 'It is not recommended to use \'Remove from Log\' option because it will just remove log entry, it will not recalculate object rating. If you don\'t understand this option, do not use it. This option is disabled by default, and it can be enabled from plugin settings.', 'gd-rating-system' ) . '</li>';
 		$render .= '<li>' . __( 'If log takes too long to load, disable GEO Location flags for votes IP\'s from plugin settings.', 'gd-rating-system' ) . '</li>';
 		$render .= '<li>' . __( 'Do not mess with votes log in database directly, or you might delete something that will cause problems to the way plugin works.', 'gd-rating-system' ) . '</li>';
 		$render .= '</ul>';
@@ -81,7 +81,7 @@ class gdrts_admin_help {
 			array(
 				'id'      => 'gdrts-help-log',
 				'title'   => __( 'Votes Log', 'gd-rating-system' ),
-				'content' => $render
+				'content' => $render,
 			)
 		);
 	}
@@ -101,7 +101,7 @@ class gdrts_admin_help {
 			array(
 				'id'      => 'gdrts-help-rules',
 				'title'   => __( 'Rules', 'gd-rating-system' ),
-				'content' => $render
+				'content' => $render,
 			)
 		);
 	}

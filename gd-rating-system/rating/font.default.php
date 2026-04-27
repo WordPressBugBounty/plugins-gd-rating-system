@@ -35,7 +35,7 @@ class gdrts_font_default extends gdrts_font {
 			'minus'     => array( 'char' => '\f10d', 'label' => __( 'Minus', 'gd-rating-system' ) ),
 			'spinner'   => array( 'char' => '\f111', 'label' => __( 'Spinner', 'gd-rating-system' ) ),
 			'clear'     => array( 'char' => '\f105', 'label' => __( 'Clear', 'gd-rating-system' ) ),
-			'check'     => array( 'char' => '\f103', 'label' => __( 'Check', 'gd-rating-system' ) )
+			'check'     => array( 'char' => '\f103', 'label' => __( 'Check', 'gd-rating-system' ) ),
 		);
 
 		$this->likes = array(
@@ -43,14 +43,14 @@ class gdrts_font_default extends gdrts_font {
 				'like'  => '\f10b',
 				'liked' => '\f103',
 				'clear' => '\f105',
-				'label' => __( 'Hands Filled', 'gd-rating-system' )
+				'label' => __( 'Hands Filled', 'gd-rating-system' ),
 			),
 			'hands-empty' => array(
 				'like'  => '\f10c',
 				'liked' => '\f103',
 				'clear' => '\f105',
-				'label' => __( 'Hands Empty', 'gd-rating-system' )
-			)
+				'label' => __( 'Hands Empty', 'gd-rating-system' ),
+			),
 		);
 	}
 

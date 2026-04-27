@@ -19,9 +19,9 @@ class gdrts_cache_db {
 		if ( $cache > 0 ) {
 			gdrts_db()->update( gdrts_db()->db->cache, array(
 				'store'  => $store,
-				'expire' => $expire
+				'expire' => $expire,
 			), array(
-				'cache_id' => $cache
+				'cache_id' => $cache,
 			) );
 		} else {
 			gdrts_db()->insert( gdrts_db()->db->cache, array(
@@ -29,7 +29,7 @@ class gdrts_cache_db {
 				'method' => $method,
 				'access' => $this->_access( $args ),
 				'store'  => $store,
-				'expire' => $expire
+				'expire' => $expire,
 			) );
 		}
 	}

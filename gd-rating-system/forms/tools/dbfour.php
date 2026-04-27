@@ -1,12 +1,12 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 } ?>
 
 <div id="gdrts-dbfour-intro">
     <div class="d4p-group d4p-group-reset d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner">
-			<?php _e( 'Database Upgrade tool will transfer some of the rating data from rating meta tables into new database tables.', 'gd-rating-system' ); ?>
+            <?php _e( 'Database Upgrade tool will transfer some of the rating data from rating meta tables into new database tables.', 'gd-rating-system' ); ?>
             <br/><br/>
             <ul style="list-style: inside disc; font-weight: normal; margin: 0">
                 <li><?php _e( 'Make sure that the rating maintenance mode is in effect on the website to avoid problems with data changing during the process.', 'gd-rating-system' ); ?></li>
@@ -15,7 +15,7 @@
                 <li style="font-weight: bold"><?php _e( 'This page will show the progress, make sure not to close the page while the process is working!', 'gd-rating-system' ); ?></li>
             </ul>
             <hr/>
-			<?php _e( 'In a very rare case, database tables can end up with different charset collations (if database was moved from one server to another or some other changes were made).', 'gd-rating-system' ); ?>
+            <?php _e( 'In a very rare case, database tables can end up with different charset collations (if database was moved from one server to another or some other changes were made).', 'gd-rating-system' ); ?>
             <br/><br/>
             <ul style="list-style: inside disc; font-weight: normal; margin: 0">
                 <li><?php _e( 'The plugin will attempt to adjust the collation before the upgrade process.', 'gd-rating-system' ); ?></li>
@@ -30,7 +30,7 @@
     <div class="d4p-group d4p-group-reset d4p-group-important">
         <h3><?php _e( 'Important', 'gd-rating-system' ); ?></h3>
         <div class="d4p-group-inner" style="text-align: left;">
-			<?php _e( 'Upgrade is in progress.', 'gd-rating-system' ); ?><br/><br/>
+            <?php _e( 'Upgrade is in progress.', 'gd-rating-system' ); ?><br/><br/>
             <ul style="list-style: inside disc; font-weight: normal; margin: 0">
                 <li><?php _e( 'Do not close this page, it will stop the process!', 'gd-rating-system' ); ?></li>
             </ul>

@@ -64,7 +64,7 @@ class gdrts_core_query {
 			'status'    => gdrts_get_default_post_statuses(),
 			'author'    => array(),
 			'meta'      => array(),
-			'terms'     => array()
+			'terms'     => array(),
 		);
 	}
 
@@ -94,7 +94,7 @@ class gdrts_core_query {
 			'rating_min' => 0,
 			'votes_min'  => 1,
 			'source'     => '',
-			'object'     => array()
+			'object'     => array(),
 		);
 
 		$this->args           = wp_parse_args( $args, $defaults );
@@ -149,17 +149,16 @@ class gdrts_core_query {
 
 	protected function prepare_query_parts( $count = false ) {
 		$parts = array(
-			'select' => '',
-			'found'  => ' SQL_CALC_FOUND_ROWS',
-			'from'   => gdrts_db()->items . " i INNER JOIN " . gdrts_db()->items_basic . " b" .
-			            " ON b.`item_id` = i.`item_id` AND b.`method` = '" . $this->args['method'] . "'",
-			'where'  => array(
+			'found' => ' SQL_CALC_FOUND_ROWS',
+			'from'  => gdrts_db()->items . " i INNER JOIN " . gdrts_db()->items_basic . " b" .
+			           " ON b.`item_id` = i.`item_id` AND b.`method` = '" . $this->args['method'] . "'",
+			'where' => array(
 				"i.`entity` = '" . $this->args['entity'] . "'",
-				"i.`name` = '" . $this->args['name'] . "'"
+				"i.`name` = '" . $this->args['name'] . "'",
 			),
-			'group'  => '',
-			'order'  => '',
-			'limit'  => ''
+			'group' => '',
+			'order' => '',
+			'limit' => '',
 		);
 
 		if ( $count ) {
@@ -173,9 +172,9 @@ class gdrts_core_query {
 		}
 
 		if ( ! empty( $this->args['id__in'] ) ) {
-			$parts['where'][] = "i.`id` IN (" . join( ', ', $this->args['id__in'] ) . ")";
+			$parts['where'][] = "i.`id` IN (" . join( ', ', array_map( 'absint', $this->args['id__in'] ) ) . ")";
 		} else if ( ! empty( $this->args['id__not_in'] ) ) {
-			$parts['where'][] = "i.`id` NOT IN (" . join( ', ', $this->args['id__not_in'] ) . ")";
+			$parts['where'][] = "i.`id` NOT IN (" . join( ', ', array_map( 'absint', $this->args['id__not_in'] ) ) . ")";
 		}
 
 		if ( is_numeric( $this->args['rating_min'] ) && $this->args['rating_min'] > 0 ) {
@@ -249,8 +248,8 @@ class gdrts_core_query {
 					'name'    => $obj->name,
 					'id'      => intval( $obj->id ),
 					'latest'  => intval( mysql2date( 'G', $obj->latest ) ),
-					'meta'    => isset( $metas[ $item_id ] ) ? $metas[ $item_id ] : array(),
-					'ratings' => isset( $ratings[ $item_id ] ) ? $ratings[ $item_id ] : array()
+					'meta'    => $metas[ $item_id ] ?? array(),
+					'ratings' => $ratings[ $item_id ] ?? array(),
 				);
 
 				$item = gdrts_rating_item::cache_and_get_instance( $item_id, $data );
@@ -335,7 +334,7 @@ class gdrts_core_query {
 			'post_type' => array(),
 			'author'    => array(),
 			'meta'      => array(),
-			'terms'     => array()
+			'terms'     => array(),
 		) );
 
 		$active = false;
@@ -387,11 +386,11 @@ class gdrts_core_query {
 			$data = $this->_process_items( $d['authors'] );
 
 			if ( ! empty( $data['add'] ) ) {
-				$q['where'][] = 'op.`post_author` IN (' . join( ', ', $data['add'] ) . ')';
+				$q['where'][] = 'op.`post_author` IN (' . join( ', ', array_map( 'absint', $data['add'] ) ) . ')';
 			}
 
 			if ( ! empty( $data['sub'] ) ) {
-				$q['where'][] = 'op.`post_author` NOT IN (' . join( ', ', $data['sub'] ) . ')';
+				$q['where'][] = 'op.`post_author` NOT IN (' . join( ', ', array_map( 'absint', $data['sub'] ) ) . ')';
 			}
 		}
 
@@ -423,11 +422,11 @@ class gdrts_core_query {
 				$data = $this->_process_items( $d['terms'] );
 
 				if ( ! empty( $data['add'] ) ) {
-					$q['where'][] = 'ott.`term_id` IN (' . join( ', ', $data['add'] ) . ')';
+					$q['where'][] = 'ott.`term_id` IN (' . join( ', ', array_map( 'absint', $data['add'] ) ) . ')';
 				}
 
 				if ( ! empty( $data['sub'] ) ) {
-					$q['where'][] = 'ott.`term_id` NOT IN (' . join( ', ', $data['sub'] ) . ')';
+					$q['where'][] = 'ott.`term_id` NOT IN (' . join( ', ', array_map( 'absint', $data['sub'] ) ) . ')';
 				}
 
 				$q['where'][] = "ott.`taxonomy` IN ('" . join( "', '", $taxonomies ) . "')";
@@ -446,11 +445,11 @@ class gdrts_core_query {
 			$data = $this->_process_items( $d['authors'] );
 
 			if ( ! empty( $data['add'] ) ) {
-				$q['where'][] = 'oc.`user_id` IN (' . join( ', ', $data['add'] ) . ')';
+				$q['where'][] = 'oc.`user_id` IN (' . join( ', ', array_map( 'absint', $data['add'] ) ) . ')';
 			}
 
 			if ( ! empty( $data['sub'] ) ) {
-				$q['where'][] = 'oc.`user_id` NOT IN (' . join( ', ', $data['sub'] ) . ')';
+				$q['where'][] = 'oc.`user_id` NOT IN (' . join( ', ', array_map( 'absint', $data['sub'] ) ) . ')';
 			}
 		}
 
@@ -577,7 +576,7 @@ class gdrts_core_query {
 			if ( $this->_use_cache() ) {
 				$results = array(
 					'items' => $items,
-					'rows'  => $rows
+					'rows'  => $rows,
 				);
 
 				gdrts_db_cache()->set( $this->cache_key, $this->_method(), $db_cache_args, $results );

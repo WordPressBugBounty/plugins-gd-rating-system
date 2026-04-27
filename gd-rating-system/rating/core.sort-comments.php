@@ -100,7 +100,7 @@ class gdrts_core_comments_sorter {
 		}
 
 		if ( $this->scope == 'rated' ) {
-			if ( isset( $pieces['where'] ) && ! empty( $pieces['where'] ) ) {
+			if ( ! empty( $pieces['where'] ) ) {
 				$pieces['where'] .= ' AND ';
 			}
 

@@ -86,7 +86,7 @@ abstract class gdrts_user_rating {
 		return $this->has_voted( array(
 			'entity' => 'posts',
 			'name'   => $post_type,
-			'id'     => $post_id
+			'id'     => $post_id,
 		), $method, $series );
 	}
 
@@ -96,7 +96,7 @@ abstract class gdrts_user_rating {
 		return $this->has_voted( array(
 			'entity' => 'posts',
 			'name'   => $post->post_type,
-			'id'     => $post->ID
+			'id'     => $post->ID,
 		), $method, $series );
 	}
 
@@ -127,7 +127,7 @@ abstract class gdrts_user_rating {
 		return $this->get_the_vote( array(
 			'entity' => 'posts',
 			'name'   => $post_type,
-			'id'     => $post_id
+			'id'     => $post_id,
 		), $method, $series );
 	}
 
@@ -137,7 +137,7 @@ abstract class gdrts_user_rating {
 		return $this->get_the_vote( array(
 			'entity' => 'posts',
 			'name'   => $post->post_type,
-			'id'     => $post->ID
+			'id'     => $post->ID,
 		), $method, $series );
 	}
 
@@ -150,7 +150,7 @@ abstract class gdrts_user_rating {
 			$series = 'default';
 		}
 
-		return isset( $this->log[ $item_id ][ $method ][ $series ] ) ? $this->log[ $item_id ][ $method ][ $series ] : array();
+		return $this->log[ $item_id ][ $method ][ $series ] ?? array();
 	}
 
 	public function get_all_votes_for_item( $item_id, $method = 'stars-rating', $series = null ) {
@@ -163,7 +163,7 @@ abstract class gdrts_user_rating {
 		return $this->get_all_votes( array(
 			'entity' => 'posts',
 			'name'   => $post_type,
-			'id'     => $post_id
+			'id'     => $post_id,
 		), $method, $series );
 	}
 
@@ -173,7 +173,7 @@ abstract class gdrts_user_rating {
 		return $this->get_all_votes( array(
 			'entity' => 'posts',
 			'name'   => $post->post_type,
-			'id'     => $post->ID
+			'id'     => $post->ID,
 		), $method, $series );
 	}
 
@@ -184,7 +184,7 @@ abstract class gdrts_user_rating {
 			'entity'  => null,
 			'name'    => null,
 			'item_id' => null,
-			'id'      => null
+			'id'      => null,
 		);
 
 		$atts = shortcode_atts( $defaults, $args );

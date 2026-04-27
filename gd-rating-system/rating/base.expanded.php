@@ -10,12 +10,12 @@ function gdrts_args_for_posts_render_rating( $args = array() ) {
 		'name'   => '',
 		'id'     => null,
 		'method' => 'stars-rating',
-		'series' => null
+		'series' => null,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	if ( is_null( $args['id'] ) || $args['id'] == 0 ) {
+	if ( $args['id'] == 0 ) {
 		$post = get_post();
 
 		if ( $post ) {
@@ -53,7 +53,7 @@ function gdrts_args_for_comments_render_rating( $args = array() ) {
 		'name'   => 'comment',
 		'id'     => null,
 		'method' => 'stars-rating',
-		'series' => null
+		'series' => null,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
