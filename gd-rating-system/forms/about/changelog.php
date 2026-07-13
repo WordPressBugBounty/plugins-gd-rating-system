@@ -5,6 +5,25 @@
 <div class="d4p-group d4p-group-changelog">
     <h3><?php _e( 'Version', 'gd-rating-system' ); ?> 3</h3>
     <div class="d4p-group-inner">
+        <h4>Version: 3.7.1 / july 13 2026</h4>
+        <ul>
+            <li><strong>fix</strong> security issue related to the SQL injection vulnerability</li>
+        </ul>
+
+        <h4>Version: 3.7 / april 27 2026</h4>
+        <ul>
+            <li><strong>new</strong> tested and compatible with WordPress up to 7.0</li>
+            <li><strong>new</strong> tested and compatible with PHP 8.5</li>
+            <li><strong>edit</strong> improvements to the SQL query building and validation</li>
+            <li><strong>edit</strong> improvements to the input data processing and sanitization</li>
+            <li><strong>edit</strong> various changes to the PHP code style and structure</li>
+            <li><strong>edit</strong> d4pLib 2.8.20</li>
+            <li><strong>fix</strong> security issue related to the stored script vulnerability</li>
+            <li><strong>fix</strong> security issue related to improper sanitization of input data</li>
+            <li><strong>fix</strong> loading order causing issue with translations</li>
+            <li><strong>fix</strong> small issue with the About page layout</li>
+        </ul>
+
         <h4>Version: 3.6.2 / november 15 2024</h4>
         <ul>
             <li><strong>edit</strong> proper sanitization of the HTML classes</li>

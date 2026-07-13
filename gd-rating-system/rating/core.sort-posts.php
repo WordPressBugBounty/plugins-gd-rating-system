@@ -153,10 +153,10 @@ class gdrts_core_posts_sorter {
 		$_use_join = $this->scope == 'rated' ? " INNER JOIN " : " LEFT JOIN ";
 
 		$join .= $_use_join . gdrts_db()->items . " gdrts_i ON gdrts_i.entity = 'posts' AND gdrts_i.id = " . gdrts_db()->wpdb()->posts . ".ID";
-		$join .= $_use_join . gdrts_db()->items_basic . " gdrts_b ON gdrts_i.item_id = gdrts_b.item_id AND gdrts_b.method = '" . $this->method . "'";
+		$join .= $_use_join . gdrts_db()->items_basic . " gdrts_b ON gdrts_i.item_id = gdrts_b.item_id AND gdrts_b.method = '" . esc_sql( $this->method ) . "'";
 
 		if ( ! empty( $this->series ) ) {
-			$join .= " AND gdrts_b.series = '" . $this->series . "'";
+			$join .= " AND gdrts_b.series = '" . esc_sql( $this->series ) . "'";
 		}
 
 		return $join;

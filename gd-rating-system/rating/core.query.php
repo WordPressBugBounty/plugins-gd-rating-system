@@ -151,10 +151,10 @@ class gdrts_core_query {
 		$parts = array(
 			'found' => ' SQL_CALC_FOUND_ROWS',
 			'from'  => gdrts_db()->items . " i INNER JOIN " . gdrts_db()->items_basic . " b" .
-			           " ON b.`item_id` = i.`item_id` AND b.`method` = '" . $this->args['method'] . "'",
+			           " ON b.`item_id` = i.`item_id` AND b.`method` = '" . esc_sql( $this->args['method'] ) . "'",
 			'where' => array(
-				"i.`entity` = '" . $this->args['entity'] . "'",
-				"i.`name` = '" . $this->args['name'] . "'",
+				"i.`entity` = '" . esc_sql( $this->args['entity'] ) . "'",
+				"i.`name` = '" . esc_sql( $this->args['name'] ) . "'",
 			),
 			'group' => '',
 			'order' => '',
@@ -278,7 +278,7 @@ class gdrts_core_query {
 				$q['order'] = ' ORDER BY ';
 
 				$order   = $this->_get_order();
-				$orderby = $this->args['orderby'];
+				$orderby = esc_sql( $this->args['orderby'] );
 
 				$has_max = gdrts()->get_method_prop( $this->args['method'], 'has_max', false );
 
@@ -395,7 +395,7 @@ class gdrts_core_query {
 		}
 
 		if ( ! empty( $d['status'] ) ) {
-			$q['where'][] = "op.`post_status` IN ('" . join( "', '", $d['status'] ) . "')";
+			$q['where'][] = "op.`post_status` IN ('" . join( "', '", array_map( 'esc_sql', $d['status'] ) ) . "')";
 		}
 
 		if ( ! empty( $d['meta'] ) ) {
@@ -429,7 +429,7 @@ class gdrts_core_query {
 					$q['where'][] = 'ott.`term_id` NOT IN (' . join( ', ', array_map( 'absint', $data['sub'] ) ) . ')';
 				}
 
-				$q['where'][] = "ott.`taxonomy` IN ('" . join( "', '", $taxonomies ) . "')";
+				$q['where'][] = "ott.`taxonomy` IN ('" . join( "', '", array_map( 'esc_sql', $taxonomies ) ) . "')";
 			}
 		}
 
@@ -456,7 +456,7 @@ class gdrts_core_query {
 		if ( ! empty( $d['post_type'] ) ) {
 			$q['from'] .= ' INNER JOIN ' . gdrts_db()->wpdb()->posts . ' ops ON oc.`comment_post_ID` = ops.`ID`';
 
-			$q['where'][] = "ops.`post_type` IN ('" . join( "', '", $d['post_type'] ) . "')";
+			$q['where'][] = "ops.`post_type` IN ('" . join( "', '", array_map( 'esc_sql', $d['post_type'] ) ) . "')";
 		}
 
 		if ( ! empty( $d['meta'] ) ) {

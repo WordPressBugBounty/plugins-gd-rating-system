@@ -26,13 +26,13 @@ class gdrts_admin_maintenance {
 		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 		$sql_logs  = "DELETE l FROM " . gdrts_db()->logs . " l WHERE l.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 
-		if ( $method != '' ) {
-			$sql_items .= " AND b.method = '" . $method . "'";
-			$sql_logs  .= " AND l.method = '" . $method . "'";
+		if ( ! empty( $method ) ) {
+			$sql_items .= gdrts_db()->prepare( " AND b.method = %s", $method );
+			$sql_logs  .= gdrts_db()->prepare( " AND l.method = %s", $method );
 
 			if ( ! empty( $series ) ) {
-				$sql_items .= " AND b.series = '" . $series . "'";
-				$sql_logs  .= " AND l.series = '" . $series . "'";
+				$sql_items .= gdrts_db()->prepare( " AND b.series = %s", $series );
+				$sql_logs  .= gdrts_db()->prepare( " AND l.series = %s", $series );
 			}
 		}
 
@@ -45,11 +45,11 @@ class gdrts_admin_maintenance {
 
 		$sql_items = "DELETE b FROM " . gdrts_db()->items_basic . " b WHERE b.item_id in (" . join( ', ', array_map( 'absint', $item_id ) ) . ")";
 
-		if ( $method != '' ) {
-			$sql_items .= " AND b.method = '" . $method . "'";
+		if ( ! empty( $method ) ) {
+			$sql_items .= gdrts_db()->prepare( " AND b.method = %s", $method );
 
 			if ( ! empty( $series ) ) {
-				$sql_items .= " AND b.series = '" . $series . "'";
+				$sql_items .= gdrts_db()->prepare( " AND b.series = %s", $series );
 			}
 		}
 
@@ -131,7 +131,7 @@ class gdrts_admin_maintenance {
 	}
 
 	public static function recalculate_rating_objects( $offset, $limit, $settings = array() ) {
-		$query   = "SELECT i.item_id FROM " . gdrts_db()->items . " i INNER JOIN (SELECT DISTINCT item_id FROM " . gdrts_db()->items_basic . ") b ON i.item_id = b.item_id ORDER BY item_id ASC LIMIT " . $offset . ", " . $limit;
+		$query   = "SELECT i.item_id FROM " . gdrts_db()->items . " i INNER JOIN (SELECT DISTINCT item_id FROM " . gdrts_db()->items_basic . ") b ON i.item_id = b.item_id ORDER BY item_id ASC LIMIT " . absint( $offset ) . ", " . absint( $limit );
 		$objects = gdrts_db()->get_results( $query );
 
 		$results = array(
@@ -180,7 +180,7 @@ class gdrts_admin_maintenance {
 			"l.`status` = 'active'",
 			"l.`action` = 'like'",
 			"l.`method` = 'like-this'",
-			"l.`item_id` = " . $item->item_id,
+			"l.`item_id` = " . absint( $item->item_id ),
 		);
 
 		$log    = gdrts_db()->get_log_items_filter( $rule );
@@ -212,7 +212,7 @@ class gdrts_admin_maintenance {
 	public static function recalculate_stars_rating( $item, $settings = array() ) {
 		gdrtsm_stars_rating()->init_rule_settings_for_item( $item );
 
-		$rule = array( "l.`status` = 'active'", "l.`method` = 'stars-rating'", "l.`item_id` = " . $item->item_id );
+		$rule = array( "l.`status` = 'active'", "l.`method` = 'stars-rating'", "l.`item_id` = " . absint( $item->item_id ) );
 
 		$log    = gdrts_db()->get_log_items_filter( $rule );
 		$latest = gdrts_db()->get_log_latest_logged( $rule );

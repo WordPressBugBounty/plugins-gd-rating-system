@@ -1,7 +1,7 @@
 === GD Rating System ===
 Contributors: GDragoN
 Donate link: https://plugins.dev4press.com/gd-rating-system/
-Version: 3.7
+Version: 3.7.1
 Tags: dev4press, stars, rating, like, vote
 Requires at least: 5.5
 Requires PHP: 7.4
@@ -114,6 +114,9 @@ Various improvements and fixes.
 Various improvements and fixes.
 
 == Changelog ==
+= 3.7.1 - 2026.07.13
+* Fix: security issue related to the SQL injection vulnerability
+
 = 3.7 - 2026.04.27
 * New: tested and compatible with WordPress up to 7.0
 * New: tested and compatible with PHP 8.5

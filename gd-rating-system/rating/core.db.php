@@ -165,12 +165,12 @@ class gdrts_core_db extends d4p_wpdb_core {
 		}
 
 		$where = array(
-			"entity = '$entity'",
+			"entity = '" . esc_sql( $entity ) . "'",
 			"id IN (" . join( ',', array_map( 'absint', $ids ) ) . ")",
 		);
 
 		if ( ! is_null( $name ) ) {
-			$where[] = "name = '$name'";
+			$where[] = "name = '" . esc_sql( $name ) . "'";
 		}
 
 		$sql = "SELECT * FROM " . $this->items . " WHERE " . join( " AND ", $where );
@@ -316,8 +316,8 @@ class gdrts_core_db extends d4p_wpdb_core {
 				'LEFT JOIN ' . $this->logmeta . ' m ON m.`log_id` = l.`log_id`',
 			),
 			'where'  => array(
-				"l.`item_id` = " . $item_id,
-				"l.`method` = '" . $method . "'",
+				"l.`item_id` = " . absint( $item_id ),
+				"l.`method` = '" . esc_sql( $method ) . "'",
 			),
 			'group'  => 'l.`log_id`',
 			'order'  => 'l.`log_id` DESC',
@@ -376,7 +376,7 @@ class gdrts_core_db extends d4p_wpdb_core {
 			),
 			'where'  => array(
 				"l.`item_id` IN (" . join( ',', array_map( 'absint', $items ) ) . ")",
-				"l.`method` = '" . $method . "'",
+				"l.`method` = '" . esc_sql( $method ) . "'",
 			),
 			'group'  => 'l.`item_id`, l.`action`',
 		);
@@ -652,8 +652,8 @@ class gdrts_core_db extends d4p_wpdb_core {
 		$meta_keys  = (array) $meta_keys;
 
 		$query = "DELETE m FROM " . $this->itemmeta . " m INNER JOIN " . $this->items . " i 
-                  ON i.item_id = m.item_id AND m.meta_key IN ('" . join( "', '", $meta_keys ) . "') 
-                  WHERE i.`entity` = 'posts' AND i.`name` IN ('" . join( "', '", $post_types ) . "')";
+                  ON i.item_id = m.item_id AND m.meta_key IN ('" . join( "', '", array_map( 'esc_sql', $meta_keys ) ) . "') 
+                  WHERE i.`entity` = 'posts' AND i.`name` IN ('" . join( "', '", array_map( 'esc_sql', $post_types ) ) . "')";
 
 		$this->query( $query );
 	}

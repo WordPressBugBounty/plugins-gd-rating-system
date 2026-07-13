@@ -6,7 +6,7 @@
  * Author:            Milan Petrovic
  * Author URI:        https://www.dev4press.com/
  * Text Domain:       gd-rating-system
- * Version:           3.7
+ * Version:           3.7.1
  * Requires at least: 5.5
  * Tested up to:      7.0
  * Requires PHP:      7.4

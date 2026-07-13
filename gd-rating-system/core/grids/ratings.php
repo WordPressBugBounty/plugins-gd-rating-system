@@ -255,7 +255,7 @@ class gdrts_grid_ratings extends d4p_grid {
 	public function prepare_items() {
 		$this->_column_headers = $this->get_column_info();
 
-		$per_page = $this->rows_per_page();
+		$per_page = absint( $this->rows_per_page() );
 
 		$select = "i.*";
 		$join   = gdrts_db()->items . " i";
@@ -336,7 +336,7 @@ class gdrts_grid_ratings extends d4p_grid {
 		}
 
 		$query = "SELECT SQL_CALC_FOUND_ROWS " . $SQL['select'] . " FROM " . $SQL['join'] . $SQL['where'];
-		$query .= " ORDER BY " . $SQL['orderby'] . " " . $SQL['order'] . " LIMIT " . $SQL['offset'] . ", " . $SQL['per_page'];
+		$query .= " ORDER BY " . esc_sql( $SQL['orderby'] ) . " " . esc_sql( $SQL['order'] ) . " LIMIT " . $SQL['offset'] . ", " . $SQL['per_page'];
 
 		$this->items = gdrts_db()->run_and_index( $query, 'item_id' );
 

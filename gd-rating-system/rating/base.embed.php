@@ -94,8 +94,8 @@ function _gdrts_helper_clean_call_args( $args ) {
 		$_type_name = explode( '.', $args['type'] );
 
 		if ( count( $_type_name ) == 2 ) {
-			$args['entity'] = $_type_name[0];
-			$args['name']   = $_type_name[1];
+			$args['entity'] = esc_sql( $_type_name[0] );
+			$args['name']   = esc_sql( $_type_name[1] );
 		}
 	}
 

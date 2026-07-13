@@ -36,16 +36,20 @@ class gdrts_admin_cron {
 	}
 
 	public static function recalculate_max_changed_single_type( $object, $sum = true ) {
-		$max = $object['max'];
+		$max = absint( $object['max'] );
+
+		if ( $max === 0 ) {
+			return;
+		}
 
 		$set = array(
 			"b.`rating` = FLOOR(b.`rating` * (" . $max . "/b.`max`))",
 		);
 
 		$where = array(
-			"b.`method` = '" . $object['method'] . "'",
-			"i.`entity` = '" . $object['entity'] . "'",
-			"i.`name` = '" . $object['name'] . "'",
+			gdrts_db()->prepare( "b.`method` = %s", $object['method'] ),
+			gdrts_db()->prepare( "i.`entity` = %s", $object['entity'] ),
+			gdrts_db()->prepare( "i.`name` = %s", $object['name'] ),
 			"b.`max` != " . $max,
 		);
 
